@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+  <TemplateData>
+    <ProjectType>VC</ProjectType>
+  </TemplateData>
+  <TemplateContent>
+	<Project TargetFileName="Template.vcxproj" File="Template.vcxproj" ReplaceParameters="true">
+	  <ProjectItem ReplaceParameters="true" TargetFileName="$projectname$.vcxproj.filters">Template.vcxproj.filters</ProjectItem>
+	  <ProjectItem ReplaceParameters="true" TargetFileName="main.cpp">main.cpp</ProjectItem>
+	  <ProjectItem ReplaceParameters="true" TargetFileName="packages.config">packages.config</ProjectItem>
+	</Project>
+  </TemplateContent>
+</VSTemplate>

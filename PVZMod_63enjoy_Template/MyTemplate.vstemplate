@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+    <TemplateData>
+        <Name>PVZMod 模板</Name>
+        <Description>开始制作新的 PVZ 改版！</Description>
+        <ProjectType>VC</ProjectType>
+		<DefaultName>Mod</DefaultName>
+		<Icon>icon.ico</Icon>
+		<LanguageTag>Cpp</LanguageTag>
+        <PlatformTag>Windows</PlatformTag>
+        <ProjectTypeTag>植物大战僵尸</ProjectTypeTag>
+        <ProjectTypeTag>Desktop</ProjectTypeTag>
+		<ProjectTypeTag>Library</ProjectTypeTag>
+		<ProjectTypeTag>Games</ProjectTypeTag>
+    </TemplateData>
+    <TemplateContent>
+        <ProjectCollection>
+			<SolutionFolder Name="$safeprojectname$">
+				<ProjectTemplateLink ProjectName="$safeprojectname$" CopyParameters="true">
+					Template\MyTemplate.vstemplate
+				</ProjectTemplateLink>
+				<ProjectTemplateLink ProjectName="$safeprojectname$Launcher" CopyParameters="true">
+					TemplateLauncher\MyTemplate.vstemplate
+				</ProjectTemplateLink>
+			</SolutionFolder>
+        </ProjectCollection>
+    </TemplateContent>
+</VSTemplate>

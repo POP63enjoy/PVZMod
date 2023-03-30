@@ -1,0 +1,364 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Attachment.h" />
+    <ClInclude Include="bass.h" />
+    <ClInclude Include="BassLoader.h" />
+    <ClInclude Include="BassMusicInterface.h" />
+    <ClInclude Include="Board.h" />
+    <ClInclude Include="Buffer.h" />
+    <ClInclude Include="ButtonListener.h" />
+    <ClInclude Include="ButtonWidget.h" />
+    <ClInclude Include="Challenge.h" />
+    <ClInclude Include="ChallengeScreen.h" />
+    <ClInclude Include="Checkbox.h" />
+    <ClInclude Include="CheckboxListener.h" />
+    <ClInclude Include="Coin.h" />
+    <ClInclude Include="Color.h" />
+    <ClInclude Include="CritSect.h" />
+    <ClInclude Include="CursorObject.h" />
+    <ClInclude Include="CursorPreview.h" />
+    <ClInclude Include="CutScene.h" />
+    <ClInclude Include="D3DInterface.h" />
+    <ClInclude Include="DataArray.h" />
+    <ClInclude Include="DDImage.h" />
+    <ClInclude Include="DDInterface.h" />
+    <ClInclude Include="Definition.h" />
+    <ClInclude Include="Dialog.h" />
+    <ClInclude Include="DialogButton.h" />
+    <ClInclude Include="DialogListener.h" />
+    <ClInclude Include="EditWidget.h" />
+    <ClInclude Include="EffectPatch.h" />
+    <ClInclude Include="EffectSystem.h" />
+    <ClInclude Include="Flags.h" />
+    <ClInclude Include="FlashWidget.h" />
+    <ClInclude Include="FolderMappingInterface.h" />
+    <ClInclude Include="Font.h" />
+    <ClInclude Include="GameButton.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameObjectPatch.h" />
+    <ClInclude Include="GameSelector.h" />
+    <ClInclude Include="GameUIPatch.h" />
+    <ClInclude Include="Graphics.h" />
+    <ClInclude Include="GridItem.h" />
+    <ClInclude Include="Hook.h" />
+    <ClInclude Include="HyperlinkWidget.h" />
+    <ClInclude Include="Image.h" />
+    <ClInclude Include="ImageLib.h" />
+    <ClInclude Include="Insets.h" />
+    <ClInclude Include="KeyCodes.h" />
+    <ClInclude Include="LawnApp.h" />
+    <ClInclude Include="MagicBoard_Reference.h" />
+    <ClInclude Include="MagicLawnApp.h" />
+    <ClInclude Include="LawnCommon.h" />
+    <ClInclude Include="LawnDialog.h" />
+    <ClInclude Include="LawnMower.h" />
+    <ClInclude Include="ListListener.h" />
+    <ClInclude Include="ListWidget.h" />
+    <ClInclude Include="Magic.h" />
+    <ClInclude Include="MagicBoard.h" />
+    <ClInclude Include="MagicMusic.h" />
+    <ClInclude Include="MagicMusic_Reference.h" />
+    <ClInclude Include="MagicPlant.h" />
+    <ClInclude Include="MagicPlant_Reference.h" />
+    <ClInclude Include="MagicZombie.h" />
+    <ClInclude Include="MagicZombie_Reference.h" />
+    <ClInclude Include="MemoryImage.h" />
+    <ClInclude Include="MTRand.h" />
+    <ClInclude Include="Music.h" />
+    <ClInclude Include="MusicInterface.h" />
+    <ClInclude Include="NativeDisplay.h" />
+    <ClInclude Include="PakInterface.h" />
+    <ClInclude Include="Plant.h" />
+    <ClInclude Include="PlayerInfo.h" />
+    <ClInclude Include="Point.h" />
+    <ClInclude Include="Projectile.h" />
+    <ClInclude Include="EditListener.h" />
+    <ClInclude Include="PVZMod.h" />
+    <ClInclude Include="PVZSTL.h" />
+    <ClInclude Include="Ratio.h" />
+    <ClInclude Include="Reanimator.h" />
+    <ClInclude Include="Rect.h" />
+    <ClInclude Include="Res.h" />
+    <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="ResourcePatch.h" />
+    <ClInclude Include="ScrollbarWidget.h" />
+    <ClInclude Include="ScrollbuttonWidget.h" />
+    <ClInclude Include="ScrollListener.h" />
+    <ClInclude Include="SeedPacket.h" />
+    <ClInclude Include="SexyApp.h" />
+    <ClInclude Include="SexyAppBase.h" />
+    <ClInclude Include="SexyCommon.h" />
+    <ClInclude Include="SexyMatrix.h" />
+    <ClInclude Include="SexyVector.h" />
+    <ClInclude Include="SharedImage.h" />
+    <ClInclude Include="SysFont.h" />
+    <ClInclude Include="TitleScreen.h" />
+    <ClInclude Include="TodCommon.h" />
+    <ClInclude Include="TodFoley.h" />
+    <ClInclude Include="TodParticle.h" />
+    <ClInclude Include="TodStringFile.h" />
+    <ClInclude Include="ToolTipWidget.h" />
+    <ClInclude Include="TriVertex.h" />
+    <ClInclude Include="Widget.h" />
+    <ClInclude Include="WidgetContainer.h" />
+    <ClInclude Include="WidgetManager.h" />
+    <ClInclude Include="WidgetPatch.h" />
+    <ClInclude Include="Zombie.h" />
+    <ClInclude Include="MagicLawnApp_Reference.h" />
+    <ClInclude Include="xtree.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Attachment.cpp" />
+    <ClCompile Include="BassLoader.cpp" />
+    <ClCompile Include="BassMusicInterface.cpp" />
+    <ClCompile Include="Board.cpp" />
+    <ClCompile Include="ButtonWidget.cpp" />
+    <ClCompile Include="ChallengeScreen.cpp" />
+    <ClCompile Include="Checkbox.cpp" />
+    <ClCompile Include="Coin.cpp" />
+    <ClCompile Include="Color.cpp" />
+    <ClCompile Include="CritSect.cpp" />
+    <ClCompile Include="CutScene.cpp" />
+    <ClCompile Include="D3DInterface.cpp" />
+    <ClCompile Include="DDImage.cpp" />
+    <ClCompile Include="DDInterface.cpp" />
+    <ClCompile Include="Definition.cpp" />
+    <ClCompile Include="Dialog.cpp" />
+    <ClCompile Include="DialogButton.cpp" />
+    <ClCompile Include="EditWidget.cpp" />
+    <ClCompile Include="EffectPatch.cpp" />
+    <ClCompile Include="FlashWidget.cpp" />
+    <ClCompile Include="FolderMappingInterface.cpp" />
+    <ClCompile Include="Font.cpp" />
+    <ClCompile Include="GameButton.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameObjectPatch.cpp" />
+    <ClCompile Include="GameSelector.cpp" />
+    <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="Hook.cpp" />
+    <ClCompile Include="HyperlinkWidget.cpp" />
+    <ClCompile Include="Image.cpp" />
+    <ClCompile Include="ImageLib.cpp" />
+    <ClCompile Include="Insets.cpp" />
+    <ClCompile Include="LawnApp.cpp" />
+    <ClCompile Include="LawnCommon.cpp" />
+    <ClCompile Include="LawnDialog.cpp" />
+    <ClCompile Include="ListWidget.cpp" />
+    <ClCompile Include="MagicBoard.cpp" />
+    <ClCompile Include="MagicLawnApp.cpp" />
+    <ClCompile Include="MagicMusic.cpp" />
+    <ClCompile Include="MagicPlant.cpp" />
+    <ClCompile Include="MagicZombie.cpp" />
+    <ClCompile Include="MTRand.cpp" />
+    <ClCompile Include="Music.cpp" />
+    <ClCompile Include="PakInterface.cpp" />
+    <ClCompile Include="Plant.cpp" />
+    <ClCompile Include="PVZMod.cpp" />
+    <ClCompile Include="Ratio.cpp" />
+    <ClCompile Include="Reanimator.cpp" />
+    <ClCompile Include="Res.cpp" />
+    <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="ResourcePatch.cpp" />
+    <ClCompile Include="ScrollbarWidget.cpp" />
+    <ClCompile Include="ScrollbuttonWidget.cpp" />
+    <ClCompile Include="SexyAppBase.cpp" />
+    <ClCompile Include="SexyCommon.cpp" />
+    <ClCompile Include="SexyMatrix.cpp" />
+    <ClCompile Include="SharedImage.cpp" />
+    <ClCompile Include="SysFont.cpp" />
+    <ClCompile Include="TitleScreen.cpp" />
+    <ClCompile Include="TodCommon.cpp" />
+    <ClCompile Include="TodStringFile.cpp" />
+    <ClCompile Include="ToolTipWidget.cpp" />
+    <ClCompile Include="Widget.cpp" />
+    <ClCompile Include="WidgetContainer.cpp" />
+    <ClCompile Include="WidgetManager.cpp" />
+    <ClCompile Include="WidgetPatch.cpp" />
+    <ClCompile Include="Zombie.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="GameUIPatch.inl" />
+    <None Include="MagicBoard.inl" />
+    <None Include="MagicLawnApp.inl" />
+    <None Include="MagicMusic.inl" />
+    <None Include="MagicPlant.inl" />
+    <None Include="MagicZombie.inl" />
+    <None Include="packages.config" />
+    <None Include="ResourcePatch.inl" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{fb02ae31-bbe4-4f01-bb1d-5cb006ef6df0}</ProjectGuid>
+    <RootNamespace>PVZModShared</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)lib\</OutDir>
+    <TargetName>$(ProjectName)_d</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)lib\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)lib64\</OutDir>
+    <TargetName>$(ProjectName)_d</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)lib64\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions);_ITERATOR_DEBUG_LEVEL=0</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <EnableEnhancedInstructionSet>NoExtensions</EnableEnhancedInstructionSet>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions);_ITERATOR_DEBUG_LEVEL=0</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <EnableEnhancedInstructionSet>NoExtensions</EnableEnhancedInstructionSet>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions);_ITERATOR_DEBUG_LEVEL=0</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <EnableEnhancedInstructionSet>NoExtensions</EnableEnhancedInstructionSet>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions);_ITERATOR_DEBUG_LEVEL=0</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <EnableEnhancedInstructionSet>NoExtensions</EnableEnhancedInstructionSet>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\Detours.4.0.1\build\native\Detours.targets" Condition="Exists('..\packages\Detours.4.0.1\build\native\Detours.targets')" />
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Detours.4.0.1\build\native\Detours.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Detours.4.0.1\build\native\Detours.targets'))" />
+  </Target>
+</Project>

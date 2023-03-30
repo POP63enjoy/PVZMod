@@ -1,0 +1,626 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Widgets">
+      <UniqueIdentifier>{242e5502-281f-4c8f-abe0-eed72145f862}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{04885901-1196-40eb-aecf-c05ba4c2d114}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="STL">
+      <UniqueIdentifier>{27a92694-572c-4fcf-9941-a97cddaef7f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Other">
+      <UniqueIdentifier>{092fcf47-5a81-4b15-a99f-d9ca87ac05ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Effects">
+      <UniqueIdentifier>{caaa29f5-5b27-408f-9c47-f1c81231e648}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound &amp; Music">
+      <UniqueIdentifier>{432d33dd-f049-4ff3-93be-0507255c0a66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Objects">
+      <UniqueIdentifier>{4a729176-af1e-4f16-94d2-3fc4841cd380}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game UI">
+      <UniqueIdentifier>{6a17448e-3a70-4f99-91af-45be7e7cc939}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{85abfc7d-e466-4c05-aeae-edfee2a6000a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Widgets\Sexy">
+      <UniqueIdentifier>{d9e2a705-de89-4cf8-9de7-43f84128a232}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Images">
+      <UniqueIdentifier>{124210e8-d24b-4960-a2ce-e86b599b2973}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Fonts">
+      <UniqueIdentifier>{0807ad6f-3422-4f8e-97bb-8d666f87826e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Interfaces">
+      <UniqueIdentifier>{7fc06a00-9e6d-455f-ad0b-064271d9723c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Color">
+      <UniqueIdentifier>{94804cf0-5500-41dc-964f-b257c4bd2c3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Other\Sexy">
+      <UniqueIdentifier>{91a92e44-c827-47b9-95b1-f517ac0d9d27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application">
+      <UniqueIdentifier>{a746c9a9-7ae9-45d0-a9de-84e739dd8efe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hook">
+      <UniqueIdentifier>{472a6378-deb7-4ddc-97df-f45edf6ebb4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Save">
+      <UniqueIdentifier>{3609bbea-4183-4518-851c-d02bdc27c62a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Widgets\Patch">
+      <UniqueIdentifier>{8126c1e9-9b03-4ca4-bfbb-2b3048ddb19a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Patch">
+      <UniqueIdentifier>{ef7710cb-644c-45ce-90ef-7b0cdbbf6e5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Objects\Patch">
+      <UniqueIdentifier>{75c681af-a2d8-42fc-bc2d-c8ade85a29ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game UI\Patch">
+      <UniqueIdentifier>{11dc4411-f7e0-440d-a3c9-c033fa0baeed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Patch">
+      <UniqueIdentifier>{20719483-9f05-4dce-9dab-6fff786e0d82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound &amp; Music\Patch">
+      <UniqueIdentifier>{bf56d6fd-35b5-4fc1-a674-b2f952b1aa9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Effects\Patch">
+      <UniqueIdentifier>{5d1bc3d0-a5db-4084-b949-5fb95b0c097d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Magic">
+      <UniqueIdentifier>{73debc3e-d0a9-496e-ae86-bae56fdef8fb}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ButtonListener.h">
+      <Filter>Widgets\Sexy</Filter>
+    </ClInclude>
+    <ClInclude Include="ButtonWidget.h">
+      <Filter>Widgets\Sexy</Filter>
+    </ClInclude>
+    <ClInclude Include="Checkbox.h">
+      <Filter>Widgets\Sexy</Filter>
+    </ClInclude>
+    <ClInclude Include="CheckboxListener.h">
+      <Filter>Widgets\Sexy</Filter>
+    </ClInclude>
+    <ClInclude Include="Dialog.h">
+      <Filter>Widgets\Sexy</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogButton.h">
+      <Filter>Widgets\Sexy</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogListener.h">
+      <Filter>Widgets\Sexy</Filter>
+    </ClInclude>
+    <ClInclude Include="EditListener.h">
+      <Filter>Widgets\Sexy</Filter>
+    </ClInclude>
+    <ClInclude Include="EditWidget.h">
+      <Filter>Widgets\Sexy</Filter>
+    </ClInclude>
+    <ClInclude Include="FlashWidget.h">
+      <Filter>Widgets\Sexy</Filter>
+    </ClInclude>
+    <ClInclude Include="GameButton.h">
+      <Filter>Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="Widget.h">
+      <Filter>Widgets\Sexy</Filter>
+    </ClInclude>
+    <ClInclude Include="WidgetContainer.h">
+      <Filter>Widgets\Sexy</Filter>
+    </ClInclude>
+    <ClInclude Include="WidgetManager.h">
+      <Filter>Widgets\Sexy</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="LawnDialog.h">
+      <Filter>Widgets</Filter>
+    </ClInclude>
+    <ClInclude Include="Flags.h">
+      <Filter>Other\Sexy</Filter>
+    </ClInclude>
+    <ClInclude Include="Insets.h">
+      <Filter>Other\Sexy</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyCodes.h">
+      <Filter>Other\Sexy</Filter>
+    </ClInclude>
+    <ClInclude Include="Point.h">
+      <Filter>Other\Sexy</Filter>
+    </ClInclude>
+    <ClInclude Include="Rect.h">
+      <Filter>Other\Sexy</Filter>
+    </ClInclude>
+    <ClInclude Include="SexyMatrix.h">
+      <Filter>Other\Sexy</Filter>
+    </ClInclude>
+    <ClInclude Include="SexyVector.h">
+      <Filter>Other\Sexy</Filter>
+    </ClInclude>
+    <ClInclude Include="TriVertex.h">
+      <Filter>Other\Sexy</Filter>
+    </ClInclude>
+    <ClInclude Include="LawnCommon.h">
+      <Filter>Other</Filter>
+    </ClInclude>
+    <ClInclude Include="PakInterface.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Res.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="TodStringFile.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="DataArray.h">
+      <Filter>Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Hook.h">
+      <Filter>Hook</Filter>
+    </ClInclude>
+    <ClInclude Include="PVZSTL.h">
+      <Filter>STL</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSelector.h">
+      <Filter>Game UI</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Board.h">
+      <Filter>Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Zombie.h">
+      <Filter>Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Plant.h">
+      <Filter>Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
+      <Filter>Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Coin.h">
+      <Filter>Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerInfo.h">
+      <Filter>Save</Filter>
+    </ClInclude>
+    <ClInclude Include="LawnMower.h">
+      <Filter>Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="GridItem.h">
+      <Filter>Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectSystem.h">
+      <Filter>Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="Reanimator.h">
+      <Filter>Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="Attachment.h">
+      <Filter>Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="TodCommon.h">
+      <Filter>Other</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="SexyCommon.h">
+      <Filter>Other\Sexy</Filter>
+    </ClInclude>
+    <ClInclude Include="PVZMod.h" />
+    <ClInclude Include="CritSect.h">
+      <Filter>Other\Sexy</Filter>
+    </ClInclude>
+    <ClInclude Include="Buffer.h">
+      <Filter>Other\Sexy</Filter>
+    </ClInclude>
+    <ClInclude Include="Ratio.h">
+      <Filter>Other\Sexy</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleScreen.h">
+      <Filter>Game UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageLib.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="SeedPacket.h">
+      <Filter>Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Music.h">
+      <Filter>Sound &amp; Music</Filter>
+    </ClInclude>
+    <ClInclude Include="MusicInterface.h">
+      <Filter>Sound &amp; Music</Filter>
+    </ClInclude>
+    <ClInclude Include="BassMusicInterface.h">
+      <Filter>Sound &amp; Music</Filter>
+    </ClInclude>
+    <ClInclude Include="CursorPreview.h">
+      <Filter>Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="CursorObject.h">
+      <Filter>Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolTipWidget.h">
+      <Filter>Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="DDImage.h">
+      <Filter>Graphics\Images</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>Graphics\Images</Filter>
+    </ClInclude>
+    <ClInclude Include="MemoryImage.h">
+      <Filter>Graphics\Images</Filter>
+    </ClInclude>
+    <ClInclude Include="SharedImage.h">
+      <Filter>Graphics\Images</Filter>
+    </ClInclude>
+    <ClInclude Include="D3DInterface.h">
+      <Filter>Graphics\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="DDInterface.h">
+      <Filter>Graphics\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="NativeDisplay.h">
+      <Filter>Graphics\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Font.h">
+      <Filter>Graphics\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="SysFont.h">
+      <Filter>Graphics\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Graphics\Color</Filter>
+    </ClInclude>
+    <ClInclude Include="SexyAppBase.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="SexyApp.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="LawnApp.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="WidgetPatch.h">
+      <Filter>Widgets\Patch</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectPatch.h">
+      <Filter>Game Objects\Patch</Filter>
+    </ClInclude>
+    <ClInclude Include="GameUIPatch.h">
+      <Filter>Game UI\Patch</Filter>
+    </ClInclude>
+    <ClInclude Include="bass.h">
+      <Filter>Sound &amp; Music</Filter>
+    </ClInclude>
+    <ClInclude Include="BassLoader.h">
+      <Filter>Sound &amp; Music</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourcePatch.h">
+      <Filter>Resources\Patch</Filter>
+    </ClInclude>
+    <ClInclude Include="HyperlinkWidget.h">
+      <Filter>Widgets\Sexy</Filter>
+    </ClInclude>
+    <ClInclude Include="Challenge.h">
+      <Filter>Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="MTRand.h">
+      <Filter>Other</Filter>
+    </ClInclude>
+    <ClInclude Include="TodParticle.h">
+      <Filter>Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="ChallengeScreen.h">
+      <Filter>Game UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ListWidget.h">
+      <Filter>Widgets\Sexy</Filter>
+    </ClInclude>
+    <ClInclude Include="ScrollListener.h">
+      <Filter>Widgets\Sexy</Filter>
+    </ClInclude>
+    <ClInclude Include="ListListener.h">
+      <Filter>Widgets\Sexy</Filter>
+    </ClInclude>
+    <ClInclude Include="ScrollbarWidget.h">
+      <Filter>Widgets\Sexy</Filter>
+    </ClInclude>
+    <ClInclude Include="ScrollbuttonWidget.h">
+      <Filter>Widgets\Sexy</Filter>
+    </ClInclude>
+    <ClInclude Include="Definition.h">
+      <Filter>Other</Filter>
+    </ClInclude>
+    <ClInclude Include="xtree.h">
+      <Filter>STL</Filter>
+    </ClInclude>
+    <ClInclude Include="TodFoley.h">
+      <Filter>Sound &amp; Music</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectPatch.h">
+      <Filter>Effects\Patch</Filter>
+    </ClInclude>
+    <ClInclude Include="Magic.h">
+      <Filter>Magic</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicBoard.h">
+      <Filter>Game Objects\Patch</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicPlant.h">
+      <Filter>Game Objects\Patch</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicZombie.h">
+      <Filter>Game Objects\Patch</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicLawnApp.h">
+      <Filter>Application\Patch</Filter>
+    </ClInclude>
+    <ClInclude Include="FolderMappingInterface.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicMusic.h">
+      <Filter>Sound &amp; Music\Patch</Filter>
+    </ClInclude>
+    <ClInclude Include="CutScene.h">
+      <Filter>Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicLawnApp_Reference.h">
+      <Filter>Application\Patch</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicBoard_Reference.h">
+      <Filter>Game Objects\Patch</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicPlant_Reference.h">
+      <Filter>Game Objects\Patch</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicZombie_Reference.h">
+      <Filter>Game Objects\Patch</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicMusic_Reference.h">
+      <Filter>Sound &amp; Music\Patch</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ButtonWidget.cpp">
+      <Filter>Widgets\Sexy</Filter>
+    </ClCompile>
+    <ClCompile Include="Checkbox.cpp">
+      <Filter>Widgets\Sexy</Filter>
+    </ClCompile>
+    <ClCompile Include="Dialog.cpp">
+      <Filter>Widgets\Sexy</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogButton.cpp">
+      <Filter>Widgets\Sexy</Filter>
+    </ClCompile>
+    <ClCompile Include="FlashWidget.cpp">
+      <Filter>Widgets\Sexy</Filter>
+    </ClCompile>
+    <ClCompile Include="GameButton.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Widget.cpp">
+      <Filter>Widgets\Sexy</Filter>
+    </ClCompile>
+    <ClCompile Include="WidgetContainer.cpp">
+      <Filter>Widgets\Sexy</Filter>
+    </ClCompile>
+    <ClCompile Include="WidgetManager.cpp">
+      <Filter>Widgets\Sexy</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="LawnDialog.cpp">
+      <Filter>Widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Insets.cpp">
+      <Filter>Other\Sexy</Filter>
+    </ClCompile>
+    <ClCompile Include="SexyMatrix.cpp">
+      <Filter>Other\Sexy</Filter>
+    </ClCompile>
+    <ClCompile Include="LawnCommon.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="PakInterface.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Res.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="TodStringFile.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Hook.cpp">
+      <Filter>Hook</Filter>
+    </ClCompile>
+    <ClCompile Include="GameSelector.cpp">
+      <Filter>Game UI</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Game Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Zombie.cpp">
+      <Filter>Game Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Reanimator.cpp">
+      <Filter>Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="Attachment.cpp">
+      <Filter>Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="TodCommon.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="PVZMod.cpp" />
+    <ClCompile Include="Ratio.cpp">
+      <Filter>Other\Sexy</Filter>
+    </ClCompile>
+    <ClCompile Include="CritSect.cpp">
+      <Filter>Other\Sexy</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleScreen.cpp">
+      <Filter>Game UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageLib.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Music.cpp">
+      <Filter>Sound &amp; Music</Filter>
+    </ClCompile>
+    <ClCompile Include="BassMusicInterface.cpp">
+      <Filter>Sound &amp; Music</Filter>
+    </ClCompile>
+    <ClCompile Include="SexyCommon.cpp">
+      <Filter>Other\Sexy</Filter>
+    </ClCompile>
+    <ClCompile Include="Board.cpp">
+      <Filter>Game Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="DDImage.cpp">
+      <Filter>Graphics\Images</Filter>
+    </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>Graphics\Images</Filter>
+    </ClCompile>
+    <ClCompile Include="SharedImage.cpp">
+      <Filter>Graphics\Images</Filter>
+    </ClCompile>
+    <ClCompile Include="DDInterface.cpp">
+      <Filter>Graphics\Interfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="Color.cpp">
+      <Filter>Graphics\Color</Filter>
+    </ClCompile>
+    <ClCompile Include="SexyAppBase.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="LawnApp.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="WidgetPatch.cpp">
+      <Filter>Widgets\Patch</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectPatch.cpp">
+      <Filter>Game Objects\Patch</Filter>
+    </ClCompile>
+    <ClCompile Include="BassLoader.cpp">
+      <Filter>Sound &amp; Music</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourcePatch.cpp">
+      <Filter>Resources\Patch</Filter>
+    </ClCompile>
+    <ClCompile Include="HyperlinkWidget.cpp">
+      <Filter>Widgets\Sexy</Filter>
+    </ClCompile>
+    <ClCompile Include="Coin.cpp">
+      <Filter>Game Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="SysFont.cpp">
+      <Filter>Graphics\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="Font.cpp">
+      <Filter>Graphics\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="D3DInterface.cpp">
+      <Filter>Graphics\Interfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="MTRand.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="ToolTipWidget.cpp">
+      <Filter>Game Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="ChallengeScreen.cpp">
+      <Filter>Game UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ListWidget.cpp">
+      <Filter>Widgets\Sexy</Filter>
+    </ClCompile>
+    <ClCompile Include="ScrollbarWidget.cpp">
+      <Filter>Widgets\Sexy</Filter>
+    </ClCompile>
+    <ClCompile Include="ScrollbuttonWidget.cpp">
+      <Filter>Widgets\Sexy</Filter>
+    </ClCompile>
+    <ClCompile Include="Definition.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="EditWidget.cpp">
+      <Filter>Widgets\Sexy</Filter>
+    </ClCompile>
+    <ClCompile Include="Plant.cpp">
+      <Filter>Game Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="EffectPatch.cpp">
+      <Filter>Effects\Patch</Filter>
+    </ClCompile>
+    <ClCompile Include="MagicBoard.cpp">
+      <Filter>Game Objects\Patch</Filter>
+    </ClCompile>
+    <ClCompile Include="MagicPlant.cpp">
+      <Filter>Game Objects\Patch</Filter>
+    </ClCompile>
+    <ClCompile Include="MagicZombie.cpp">
+      <Filter>Game Objects\Patch</Filter>
+    </ClCompile>
+    <ClCompile Include="MagicLawnApp.cpp">
+      <Filter>Application\Patch</Filter>
+    </ClCompile>
+    <ClCompile Include="FolderMappingInterface.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="MagicMusic.cpp">
+      <Filter>Sound &amp; Music\Patch</Filter>
+    </ClCompile>
+    <ClCompile Include="CutScene.cpp">
+      <Filter>Game Objects</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="GameUIPatch.inl">
+      <Filter>Game UI\Patch</Filter>
+    </None>
+    <None Include="ResourcePatch.inl">
+      <Filter>Resources\Patch</Filter>
+    </None>
+    <None Include="MagicBoard.inl">
+      <Filter>Game Objects\Patch</Filter>
+    </None>
+    <None Include="MagicPlant.inl">
+      <Filter>Game Objects\Patch</Filter>
+    </None>
+    <None Include="MagicZombie.inl">
+      <Filter>Game Objects\Patch</Filter>
+    </None>
+    <None Include="MagicLawnApp.inl">
+      <Filter>Application\Patch</Filter>
+    </None>
+    <None Include="MagicMusic.inl">
+      <Filter>Sound &amp; Music\Patch</Filter>
+    </None>
+  </ItemGroup>
+</Project>
