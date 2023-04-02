@@ -204,6 +204,32 @@ bool LawnApp::IsWallnutBowlingLevel()
 	return IsAdventureMode() && mPlayerInfo->mLevel == 5;
 }
 
+bool LawnApp::IsScaryPotterLevel()
+{
+	if (mGameMode >= GAMEMODE_SCARY_POTTER_1 && mGameMode <= GAMEMODE_SCARY_POTTER_ENDLESS)
+		return true;
+
+	return IsAdventureMode() && mPlayerInfo->mLevel == 35;
+}
+
+bool LawnApp::IsIZombieLevel()
+{
+	if (mBoard == nullptr)
+		return false;
+
+	return
+		mGameMode == GameMode::GAMEMODE_PUZZLE_I_ZOMBIE_1 ||
+		mGameMode == GameMode::GAMEMODE_PUZZLE_I_ZOMBIE_2 ||
+		mGameMode == GameMode::GAMEMODE_PUZZLE_I_ZOMBIE_3 ||
+		mGameMode == GameMode::GAMEMODE_PUZZLE_I_ZOMBIE_4 ||
+		mGameMode == GameMode::GAMEMODE_PUZZLE_I_ZOMBIE_5 ||
+		mGameMode == GameMode::GAMEMODE_PUZZLE_I_ZOMBIE_6 ||
+		mGameMode == GameMode::GAMEMODE_PUZZLE_I_ZOMBIE_7 ||
+		mGameMode == GameMode::GAMEMODE_PUZZLE_I_ZOMBIE_8 ||
+		mGameMode == GameMode::GAMEMODE_PUZZLE_I_ZOMBIE_9 ||
+		mGameMode == GameMode::GAMEMODE_PUZZLE_I_ZOMBIE_ENDLESS;
+}
+
 void LawnApp::PreNewGame(GameMode theGameMode, bool theLookForSavedGame)
 {
 	int func = 0x452390;

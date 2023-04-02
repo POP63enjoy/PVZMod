@@ -501,6 +501,8 @@ namespace PVZMod
 
 		bool							StageIsNight();
 
+		static int						MakeRenderOrder(RenderLayer theRenderLayer, int theRow, int theLayerOffset);
+
 		friend void MagicZombie::Binding_ExtendBase(InitPatch& patch, size_t theZombieSize, size_t theDataArraySize);
 		friend void MagicPlant::Binding_ExtendBase(InitPatch& patch, size_t thePlantSize, size_t theDataArraySize);
 	};
