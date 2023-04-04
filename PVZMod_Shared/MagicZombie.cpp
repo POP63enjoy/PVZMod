@@ -1,8 +1,8 @@
 #include "PVZMod.h"
+#include "Zombie.h"
 #include "MagicZombie.h"
 #include "Board.h"
 #include "Reanimator.h"
-#include "Zombie.h"
 #include "Attachment.h"
 #include "LawnApp.h"
 #include "TodParticle.h"
@@ -159,7 +159,7 @@ static ZombieDefinition& _ZombieInitialize_InitMemberVariable_base(Zombie* _this
 {
 	_this->mFromWave = theFromWave;
 	_this->mRow = theRow;
-	_this->mPosX = 780 + Rand(40);
+	_this->mPosX = (float)(780 + Rand(40));
 	_this->mPosY = _this->GetPosYBasedOnRow(theRow);
 	_this->mVelX = 0.0f;
 	_this->mVelZ = 0.0f;
@@ -210,7 +210,7 @@ static ZombieDefinition& _ZombieInitialize_InitMemberVariable_base(Zombie* _this
 	_this->mHelmHealth = 0;
 	_this->mAltitude = 0.0f;
 	_this->mFlyingHealth = 0;
-	//_this->mOriginalAnimRate = 0.0f;
+	_this->mOrginalAnimRate = 0.0f;
 	_this->mAttachmentID = ATTACHMENTID_NULL;
 	_this->mSummonCounter = 0;
 	_this->mBossStompCounter = -1;
@@ -226,14 +226,13 @@ static ZombieDefinition& _ZombieInitialize_InitMemberVariable_base(Zombie* _this
 	_this->mIsFireBall = false;
 	_this->mMoweredReanimID = ReanimationID::REANIMATIONID_NULL;
 	_this->mLastPortalX = -1;
+
 	for (int i = 0; i < 4; i++)
-	{
 		_this->mFollowerZombieID[i] = ZombieID::ZOMBIEID_NULL;
-	}
+
 	if (_this->mBoard && _this->mBoard->IsFlagWave(_this->mFromWave))
-	{
 		_this->mPosX += 40.0f;
-	}
+
     _this->PickRandomSpeed();
 	_this->mBodyHealth = 270;
 
@@ -243,24 +242,14 @@ static ZombieDefinition& _ZombieInitialize_InitMemberVariable_base(Zombie* _this
 
 static auto _ZombieInitialize_InitMemberVariable = _ZombieInitialize_InitMemberVariable_base;
 
-static Reanimation* _ZombieInitialize_InitReanimation_base(Zombie* _this, ZombieDefinition& theZombieDef)
+static void _ZombieInitialize_InitReanimation_base(Zombie* _this, ZombieDefinition& theZombieDef)
 {
-	Reanimation* aBodyReanim = nullptr;
-	aBodyReanim = _this->LoadReanim(theZombieDef.mReanimationType);
-
-	return aBodyReanim;
+	_this->LoadReanim(theZombieDef.mReanimationType);
 }
 
 static auto _ZombieInitialize_InitReanimation = _ZombieInitialize_InitReanimation_base;
 
-void _ZombieInitialize_BeforeInitType_base(Zombie* _this, ZombieDefinition& theZombieDef, Reanimation* theBodyReanim)
-{
-
-}
-
-static auto _ZombieInitialize_BeforeInitType = _ZombieInitialize_BeforeInitType_base;
-
-void _ZombieInitialize_InitType_base(Zombie* _this, ZombieDefinition& theZombieDef, Reanimation* theBodyReanim, Zombie* theParentZombie, RenderLayer& theRenderLayer, int& theRenderOffset)
+void _ZombieInitialize_InitType_base(Zombie* _this, ZombieDefinition& theZombieDef, Zombie* theParentZombie, RenderLayer& theRenderLayer, int& theRenderOffset)
 {
     switch (_this->mZombieType)
     {
@@ -319,7 +308,7 @@ void _ZombieInitialize_InitType_base(Zombie* _this, ZombieDefinition& theZombieD
     {
         _this->mBodyHealth = 450;
         _this->mAnimFrames = 4;
-        _this->mAltitude = 3000 + RandRangeInt(0, 150);
+        _this->mAltitude = (float)(3000 + RandRangeInt(0, 150));
         _this->mVelX = 0.0f;
 
         if (_this->IsOnBoard())
@@ -374,9 +363,7 @@ void _ZombieInitialize_InitType_base(Zombie* _this, ZombieDefinition& theZombieD
         aBodyReanim->SetTruncateDisappearingFrames(nullptr, false);
 
         if (!_this->IsOnBoard())
-        {
             _this->mZombiePhase = PHASE_DIGGER_CUTSCENE;
-        }
         else
         {
             _this->mZombiePhase = PHASE_DIGGER_TUNNELING;
@@ -394,7 +381,7 @@ void _ZombieInitialize_InitType_base(Zombie* _this, ZombieDefinition& theZombieD
         _this->mZombiePhase = PHASE_POLEVAULTER_PRE_VAULT;
         _this->mHasObject = true;
         _this->mVariant = false;
-        _this->mPosX = 800 + 70 + Rand(10);
+        _this->mPosX = (float)(800 + 70 + Rand(10));
         if (_this->IsOnBoard())
         {
             _this->PlayZombieReanim("anim_run", REANIM_LOOP, 0, 0.0f);
@@ -425,7 +412,7 @@ void _ZombieInitialize_InitType_base(Zombie* _this, ZombieDefinition& theZombieD
         _this->mBodyHealth = 3000;
         _this->mAnimFrames = 24;
         _this->mAnimTicksPerFrame = 8;
-        _this->mPosX = 800 + 45 + Rand(10);
+        _this->mPosX = (float)(800 + 45 + Rand(10));
         _this->mZombieRect = Rect(-17, -38, 125, 154);
         _this->mZombieAttackRect = Rect(-30, -38, 89, 154);
         _this->mVariant = false;
@@ -434,20 +421,18 @@ void _ZombieInitialize_InitType_base(Zombie* _this, ZombieDefinition& theZombieD
 
         int aPoleHit = Rand(100);
         int aPoleVariant;
+
         if (!_this->IsOnBoard() || _this->mBoard->mLevel == 48)
             aPoleVariant = 0;
         else
             aPoleVariant = aPoleHit < 10 ? 2 : aPoleHit < 35 ? 1 : 0;
 
         Reanimation* aBodyReanim = _this->mApp->ReanimationGet(_this->mBodyReanimID);
+
         if (aPoleVariant == 2)
-        {
             aBodyReanim->SetImageOverride("Zombie_gargantuar_telephonepole", IMAGE_REANIM_ZOMBIE_GARGANTUAR_ZOMBIE);
-        }
         else if (aPoleVariant == 1)
-        {
             aBodyReanim->SetImageOverride("Zombie_gargantuar_telephonepole", IMAGE_REANIM_ZOMBIE_GARGANTUAR_DUCKXING);
-        }
 
         if (_this->mZombieType == ZOMBIE_REDEYE_GARGANTUAR)
         {
@@ -462,7 +447,7 @@ void _ZombieInitialize_InitType_base(Zombie* _this, ZombieDefinition& theZombieD
         _this->mBodyHealth = 1350;
         _this->mAnimFrames = 2;
         _this->mAnimTicksPerFrame = 8;
-        _this->mPosX = 800 + Rand(10);
+        _this->mPosX = (float)(800 + Rand(10));
         theRenderOffset = 8;
         _this->PlayZombieReanim("anim_drive", REANIM_LOOP, 0, 12.0f);
         _this->mZombieRect = Rect(0, -13, 153, 140);
@@ -472,16 +457,14 @@ void _ZombieInitialize_InitType_base(Zombie* _this, ZombieDefinition& theZombieD
 
     case ZOMBIE_CATAPULT:
         _this->mBodyHealth = 850;
-        _this->mPosX = 800 + 25 + Rand(10);
+        _this->mPosX = (float)(800 + 25 + Rand(10));
         _this->mSummonCounter = 20;
+
         if (_this->IsOnBoard())
-        {
             _this->PlayZombieReanim("anim_walk", REANIM_LOOP, 0, 5.5f);
-        }
         else
-        {
             _this->PlayZombieReanim("anim_idle", REANIM_LOOP, 0, 8.0f);
-        }
+
         _this->mZombieRect = Rect(0, -13, 153, 140);
         _this->mZombieAttackRect = Rect(10, -13, 133, 140);
         _this->mVariant = false;
@@ -502,21 +485,19 @@ void _ZombieInitialize_InitType_base(Zombie* _this, ZombieDefinition& theZombieD
         _this->mAnimTicksPerFrame = 6;
 
         int aDistance = 450 + Rand(300);
+
         if (Rand(20) == 0)  // Ôç±¬µÄ¸ÅÂÊ
-        {
             aDistance /= 3;
-        }
+
         _this->mPhaseCounter = (int)(aDistance / _this->mVelX) * 2;
         _this->mZombieAttackRect = Rect(20, 0, 50, 115);
 
         if (_this->mApp->IsScaryPotterLevel())
-        {
             _this->mPhaseCounter = 10;
-        }
+
         if (_this->IsOnBoard())
-        {
             _this->mZombiePhase = PHASE_JACK_IN_THE_BOX_RUNNING;
-        }
+
         break;
     }
 
@@ -528,9 +509,7 @@ void _ZombieInitialize_InitType_base(Zombie* _this, ZombieDefinition& theZombieD
         {
             int aPosition = 0;
             while (aPosition < 3 && theParentZombie->mFollowerZombieID[aPosition] != ZombieID::ZOMBIEID_NULL)
-            {
                 aPosition++;
-            }
             assert(aPosition < 3);
             theParentZombie->mFollowerZombieID[aPosition] = _this->mBoard->ZombieGetID(_this);
             _this->mRelatedZombieID = _this->mBoard->ZombieGetID(theParentZombie);
@@ -629,9 +608,7 @@ void _ZombieInitialize_InitType_base(Zombie* _this, ZombieDefinition& theZombieD
             _this->PlayZombieReanim("anim_idle", REANIM_LOOP, 0, aBodyReanim->mAnimRate);
         }
         else
-        {
             _this->SetAnimRate(RandRangeFloat(8.0f, 10.0f));
-        }
 
         Reanimation* aPropellerReanim = _this->mApp->AddReanimation(0.0f, 0.0f, 0, theZombieDef.mReanimationType);
         aPropellerReanim->SetFramesForLayer("Propeller");
@@ -647,9 +624,7 @@ void _ZombieInitialize_InitType_base(Zombie* _this, ZombieDefinition& theZombieD
 
     case ZOMBIE_DANCER:
         if (!_this->IsOnBoard())
-        {
             _this->PlayZombieReanim("anim_moonwalk", REANIM_LOOP, 0, 12.0f);
-        }
         else
         {
             _this->mZombiePhase = PHASE_DANCER_DANCING_IN;
@@ -663,22 +638,16 @@ void _ZombieInitialize_InitType_base(Zombie* _this, ZombieDefinition& theZombieD
 
     case ZOMBIE_BACKUP_DANCER:
         if (!_this->IsOnBoard())
-        {
             _this->PlayZombieReanim("anim_armraise", REANIM_LOOP, 0, 12.0f);
-        }
         _this->mZombiePhase = PHASE_DANCER_DANCING_LEFT;
         _this->mVariant = false;
         break;
 
     case ZOMBIE_IMP:
         if (!_this->IsOnBoard())
-        {
             _this->PlayZombieReanim("anim_walk", REANIM_LOOP, 0, 12.0f);
-        }
         if (_this->mApp->IsIZombieLevel())
-        {
             _this->mBodyHealth = 70;
-        }
         break;
 
     case ZOMBIE_BOSS:
@@ -696,9 +665,8 @@ void _ZombieInitialize_InitType_base(Zombie* _this, ZombieDefinition& theZombieD
             _this->mZombiePhase = PHASE_BOSS_ENTER;
         }
         else
-        {
             _this->PlayZombieReanim("anim_head_idle", REANIM_LOOP, 0, 12.0f);
-        }
+
         _this->BossSetupReanim();
         break;
 
@@ -709,10 +677,9 @@ void _ZombieInitialize_InitType_base(Zombie* _this, ZombieDefinition& theZombieD
         _this->ReanimShowPrefix("anim_head2", RENDER_GROUP_HIDDEN);
 
         Reanimation* aBodyReanim = _this->mApp->ReanimationGet(_this->mBodyReanimID);
+
         if (_this->IsOnBoard())
-        {
             aBodyReanim->SetFramesForLayer("anim_walk2");
-        }
 
         ReanimatorTrackInstance* aTrackInstance = aBodyReanim->GetTrackInstanceByName("anim_head1");
         aTrackInstance->mImageOverride = IMAGE_BLANK;
@@ -803,10 +770,9 @@ void _ZombieInitialize_InitType_base(Zombie* _this, ZombieDefinition& theZombieD
         _this->ReanimShowPrefix("anim_head2", RENDER_GROUP_HIDDEN);
 
         Reanimation* aBodyReanim = _this->mApp->ReanimationGet(_this->mBodyReanimID);
+
         if (_this->IsOnBoard())
-        {
             aBodyReanim->SetFramesForLayer("anim_walk2");
-        }
 
         ReanimatorTrackInstance* aTrackInstance = aBodyReanim->GetTrackInstanceByName("anim_head1");
         aTrackInstance->mImageOverride = IMAGE_BLANK;
@@ -829,10 +795,9 @@ void _ZombieInitialize_InitType_base(Zombie* _this, ZombieDefinition& theZombieD
         _this->ReanimShowPrefix("anim_head2", RENDER_GROUP_HIDDEN);
 
         Reanimation* aBodyReanim = _this->mApp->ReanimationGet(_this->mBodyReanimID);
+
         if (_this->IsOnBoard())
-        {
             aBodyReanim->SetFramesForLayer("anim_walk2");
-        }
 
         ReanimatorTrackInstance* aTrackInstance = aBodyReanim->GetTrackInstanceByName("anim_head1");
         aTrackInstance->mImageOverride = IMAGE_BLANK;
@@ -852,7 +817,7 @@ void _ZombieInitialize_InitType_base(Zombie* _this, ZombieDefinition& theZombieD
 
 static auto _ZombieInitialize_InitType = _ZombieInitialize_InitType_base;
 
-void _ZombieInitialize_AfterInitType_base(Zombie* _this, ZombieDefinition& theZombieDef, int theFromWave, Reanimation* theBodyReanim, RenderLayer theRenderLayer, int theRenderOffset)
+void _ZombieInitialize_AfterInitType_base(Zombie* _this, ZombieDefinition& theZombieDef, Zombie* theParentZombie, RenderLayer theRenderLayer, int theRenderOffset)
 {
     if (_this->IsOnBoard() && _this->mApp->mGameMode == GAMEMODE_CHALLENGE_ZOMBIQUARIUM)
     {
@@ -866,7 +831,7 @@ void _ZombieInitialize_AfterInitType_base(Zombie* _this, ZombieDefinition& theZo
         _this->mSummonCounter = RandRangeInt(200, 400);
     }
 
-    if (_this->mApp->IsLittleTroubleLevel() && (_this->IsOnBoard() || theFromWave == ZOMBIE_WAVE_CUTSCENE))
+    if (_this->mApp->IsLittleTroubleLevel() && (_this->IsOnBoard() || _this->mFromWave == ZOMBIE_WAVE_CUTSCENE))
     {
         _this->mScaleZombie = 0.5f;
         _this->mBodyHealth /= 4;
@@ -876,10 +841,9 @@ void _ZombieInitialize_AfterInitType_base(Zombie* _this, ZombieDefinition& theZo
     }
 
     _this->UpdateAnimSpeed();
+
     if (_this->mVariant)
-    {
         _this->ReanimShowPrefix("anim_tongue", RENDER_GROUP_NORMAL);
-    }
 
     _this->mBodyMaxHealth = _this->mBodyHealth;
     _this->mHelmMaxHealth = _this->mHelmHealth;
@@ -889,10 +853,9 @@ void _ZombieInitialize_AfterInitType_base(Zombie* _this, ZombieDefinition& theZo
     _this->mX = (int)_this->mPosX;
     _this->mY = (int)_this->mPosY;
     _this->mRenderOrder = Board::MakeRenderOrder(theRenderLayer, _this->mRow, theRenderOffset);
+
     if (_this->mZombieHeight == HEIGHT_ZOMBIQUARIUM)
-    {
         _this->mBodyMaxHealth = 300;
-    }
 
     if (_this->IsOnBoard())
     {
@@ -911,8 +874,7 @@ static void _PatchMF_ZombieInitialize(InitPatch& patch)
 		{
 			patch.mHook.InsertCodeAndJump((void*)0x5269F0, (void*)0x5284AB, [](Hook::Regs* regs)
 				{ 
-					Zombie* _this = nullptr;
-					_this = *(Zombie**)(regs->esp + 0x4);
+					Zombie* _this = *(Zombie**)(regs->esp + 0x4);
 					int aRow = (int)regs->eax;
 					ZombieType aZombieType = *(ZombieType*)(regs->esp + 0x8);
 					bool aVariant = *(bool*)(regs->esp + 0xc);
@@ -921,15 +883,14 @@ static void _PatchMF_ZombieInitialize(InitPatch& patch)
 
 					ZombieDefinition& aZombieDef = _ZombieInitialize_InitMemberVariable(_this, aRow, aZombieType, aVariant, aParentZombie, aFromWave);
 
-					Reanimation* aBodyReanim = nullptr;
 					if (aZombieDef.mReanimationType != REANIM_NONE)
-						aBodyReanim = _ZombieInitialize_InitReanimation(_this, aZombieDef);
+						_ZombieInitialize_InitReanimation(_this, aZombieDef);
 
-					_ZombieInitialize_BeforeInitType(_this, aZombieDef, aBodyReanim);
                     RenderLayer aRenderLayer = RENDER_LAYER_ZOMBIE;
                     int aRenderOffset = 4;
-                    _ZombieInitialize_InitType(_this, aZombieDef, aBodyReanim, aParentZombie, aRenderLayer, aRenderOffset);
-                    _ZombieInitialize_AfterInitType(_this, aZombieDef, aFromWave, aBodyReanim, aRenderLayer, aRenderOffset);
+
+                    _ZombieInitialize_InitType(_this, aZombieDef, aParentZombie, aRenderLayer, aRenderOffset);
+                    _ZombieInitialize_AfterInitType(_this, aZombieDef, aParentZombie, aRenderLayer, aRenderOffset);
 				});
 		});
 }
@@ -981,4 +942,145 @@ void MagicZombie::Binding_MF_ZombieInitialize_InitMemberVariable(InitPatch& patc
 				});
 			func_list.push_back(func);
 		}, false);
+}
+
+void MagicZombie::Binding_MF_ZombieInitialize_InitReanimation(InitPatch& patch, const std::function<void(Zombie* _this, ZombieDefinition& theZombieDef, ZombieInitialize_InitReanimation_t& base)>& func)
+{
+    patch.PatchTask("MagicZombie::Binding_MF_ZombieInitialize_InitReanimation", [&]
+        {
+            static std::vector<std::function<void(Zombie* _this, ZombieDefinition& theZombieDef, ZombieInitialize_InitReanimation_t& base)>> func_list;
+            patch.PatchTask("MagicZombie::Binding_MF_ZombieInitialize_InitReanimation(Hook)", [&]
+                {
+                    _PatchMF_ZombieInitialize(patch);
+                    _ZombieInitialize_InitReanimation = [](Zombie* _this, ZombieDefinition& theZombieDef)
+                    {
+                        ZombieInitialize_InitReanimation_t base;
+                        auto p_theZombieDef = &theZombieDef;
+
+                        base.mFunction = [&](Zombie* __this, ZombieDefinition& _theZombieDef)
+                        {
+                            auto _p_theZombieDef = &_theZombieDef;
+                            std::swap(_this, __this);
+                            std::swap(p_theZombieDef, _p_theZombieDef);
+                            base();
+                            _this = __this;
+                            p_theZombieDef = _p_theZombieDef;
+                        };
+                        base.mDefaultFunction = [&, i = func_list.size() - 1]() mutable
+                        {
+                            if (i == 0)
+                                return _ZombieInitialize_InitReanimation_base(_this, *p_theZombieDef);
+                            else
+                            {
+                                i--;
+                                func_list[i](_this, *p_theZombieDef, base);
+                                i++;
+                            }
+                        };
+
+                        func_list.back()(_this, theZombieDef, base);
+                    };
+                });
+            func_list.push_back(func);
+        }, false);
+}
+
+void MagicZombie::Binding_MF_ZombieInitialize_InitType(InitPatch& patch, const std::function<void(Zombie* _this, ZombieDefinition& theZombieDef, Zombie* theParentZombie, RenderLayer& theRenderLayer, int& theRenderOffset, ZombieInitialize_InitType_t& base)>& func)
+{
+    patch.PatchTask("MagicZombie::Binding_MF_ZombieInitialize_InitType", [&]
+        {
+            static std::vector<std::function<void(Zombie* _this, ZombieDefinition& theZombieDef, Zombie* theParentZombie, RenderLayer& theRenderLayer, int& theRenderOffset, ZombieInitialize_InitType_t& base)>> func_list;
+            patch.PatchTask("MagicZombie::Binding_MF_ZombieInitialize_InitType(Hook)", [&]
+                {
+                    _PatchMF_ZombieInitialize(patch);
+                    _ZombieInitialize_InitType = [](Zombie* _this, ZombieDefinition& theZombieDef, Zombie* theParentZombie, RenderLayer& theRenderLayer, int& theRenderOffset)
+                    {
+                        ZombieInitialize_InitType_t base;
+
+                        auto p_theZombieDef = &theZombieDef;
+                        auto p_theRenderLayer = &theRenderLayer;
+                        auto p_theRenderOffset = &theRenderOffset;
+
+                        base.mFunction = [&](Zombie* __this, ZombieDefinition& _theZombieDef, Zombie* _theParentZombie, RenderLayer& _theRenderLayer, int& _theRenderOffset)
+                        {
+                            auto _p_theZombieDef = &_theZombieDef;
+                            auto _p_theRenderLayer = &_theRenderLayer;
+                            auto _p_theRenderOffset = &_theRenderOffset;
+
+                            std::swap(_this, __this);
+                            std::swap(p_theZombieDef, _p_theZombieDef);
+                            std::swap(theParentZombie, _theParentZombie);
+                            std::swap(p_theRenderLayer, _p_theRenderLayer);
+                            std::swap(p_theRenderOffset, _p_theRenderOffset);
+                            base();
+                            _this = __this;
+                            p_theZombieDef = _p_theZombieDef;
+                            theParentZombie = _theParentZombie;
+                            p_theRenderLayer = p_theRenderLayer;
+                            p_theRenderOffset = _p_theRenderOffset;
+                        };
+                        base.mDefaultFunction = [&, i = func_list.size() - 1]() mutable
+                        {
+                            if (i == 0)
+                                _ZombieInitialize_InitType_base(_this, *p_theZombieDef, theParentZombie, *p_theRenderLayer, *p_theRenderOffset);
+                            else
+                            {
+                                i--;
+                                func_list[i](_this, *p_theZombieDef, theParentZombie, *p_theRenderLayer, *p_theRenderOffset, base);
+                                i++;
+                            }
+                        };
+
+                        func_list.back()(_this, theZombieDef, theParentZombie, theRenderLayer, theRenderOffset, base);
+                    };
+                });
+            func_list.push_back(func);
+        }, false);
+}
+
+void MagicZombie::Binding_MF_ZombieInitialize_AfterInitType(InitPatch& patch, const std::function<void(Zombie* _this, ZombieDefinition& theZombieDef, Zombie* theParentZombie, RenderLayer theRenderLayer, int theRenderOffset, ZombieInitialize_AfterInitType_t& base)>& func)
+{
+    patch.PatchTask("MagicZombie::Binding_MF_ZombieInitialize_AfterInitType", [&]
+        {
+            static std::vector<std::function<void(Zombie* _this, ZombieDefinition& theZombieDef, Zombie* theParentZombie, RenderLayer theRenderLayer, int theRenderOffset, ZombieInitialize_AfterInitType_t& base)>> func_list;
+            patch.PatchTask("MagicZombie::Binding_MF_ZombieInitialize_AfterInitType(Hook)", [&]
+                {
+                    _PatchMF_ZombieInitialize(patch);
+                    _ZombieInitialize_AfterInitType = [](Zombie* _this, ZombieDefinition& theZombieDef, Zombie* theParentZombie, RenderLayer theRenderLayer, int theRenderOffset)
+                    {
+                        ZombieInitialize_AfterInitType_t base;
+                        auto p_theZombieDef = &theZombieDef;
+
+                        base.mFunction = [&](Zombie* __this, ZombieDefinition& _theZombieDef, Zombie* _theParentZombie, RenderLayer _theRenderLayer, int _theRenderOffset)
+                        {
+                            auto _p_theZombieDef = &_theZombieDef;
+                            std::swap(_this, __this);
+                            std::swap(p_theZombieDef, _p_theZombieDef);
+                            std::swap(theParentZombie, _theParentZombie);
+                            std::swap(theRenderLayer, _theRenderLayer);
+                            std::swap(theRenderOffset, _theRenderOffset);
+                            base();
+                            _this = __this;
+                            p_theZombieDef = _p_theZombieDef;
+                            theParentZombie = _theParentZombie;
+                            theRenderLayer = _theRenderLayer;
+                            theRenderOffset = _theRenderOffset;
+                        };
+                        base.mDefaultFunction = [&, i = func_list.size() - 1]() mutable
+                        {
+                            if (i == 0)
+                                _ZombieInitialize_InitType_base(_this, *p_theZombieDef, theParentZombie, theRenderLayer, theRenderOffset);
+                            else
+                            {
+                                i--;
+                                func_list[i](_this, *p_theZombieDef, theParentZombie, theRenderLayer, theRenderOffset, base);
+                                i++;
+                            }
+                        };
+
+                        func_list.back()(_this, theZombieDef, theParentZombie, theRenderLayer, theRenderOffset, base);
+                    };
+                });
+            func_list.push_back(func);
+        }, false);
 }

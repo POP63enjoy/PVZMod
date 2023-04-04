@@ -476,7 +476,6 @@ void MagicBoard::Binding_MF_ZombiePicker_SpecialLevelPut(InitPatch& patch, const
 					_ZombiePicker_SpecialLevelPut = [](Board* _this, ZombiePicker& theZombiePicker, int theWave)
 					{
 						ZombiePicker_SpecialLevelPut_t base;
-
 						auto p_theZombiePicker = &theZombiePicker;
 
 						base.mFunction = [&](Board* __this, ZombiePicker& _theZombiePicker, int _theWave)
@@ -492,11 +491,11 @@ void MagicBoard::Binding_MF_ZombiePicker_SpecialLevelPut(InitPatch& patch, const
 						base.mDefaultFunction = [&, i = func_list.size() - 1]() mutable
 						{
 							if (i == 0)
-								return _ZombiePicker_SpecialLevelPut_base(_this, theZombiePicker, theWave);
+								return _ZombiePicker_SpecialLevelPut_base(_this, *p_theZombiePicker, theWave);
 							else
 							{
 								i--;
-								bool result = func_list[i](_this, theZombiePicker, theWave, base);
+								bool result = func_list[i](_this, *p_theZombiePicker, theWave, base);
 								i++;
 								return result;
 							}
@@ -520,7 +519,6 @@ void MagicBoard::Binding_MF_ZombiePicker_CalculateBasicPoints(InitPatch& patch, 
 					_ZombiePicker_CalculateBasicPoints = [](Board* _this, ZombiePicker& theZombiePicker, int theWave)
 					{
 						ZombiePicker_CalculateBasicPoints_t base;
-
 						auto p_theZombiePicker = &theZombiePicker;
 
 						base.mFunction = [&](Board* __this, ZombiePicker& _theZombiePicker, int _theWave)
@@ -562,7 +560,6 @@ void MagicBoard::Binding_MF_ZombiePicker_PutBeforeMultiple(InitPatch& patch, con
 					_ZombiePicker_PutBeforeMultiple = [](Board* _this, ZombiePicker& theZombiePicker, int theWave)
 					{
 						ZombiePicker_PutBeforeMultiple_t base;
-
 						auto p_theZombiePicker = &theZombiePicker;
 
 						base.mFunction = [&](Board* __this, ZombiePicker& _theZombiePicker, int _theWave)
@@ -604,7 +601,6 @@ void MagicBoard::Binding_MF_ZombiePicker_CalculateMultiplePoints(InitPatch& patc
 					_ZombiePicker_CalculateMultiplePoints = [](Board* _this, ZombiePicker& theZombiePicker, int theWave)
 					{
 						ZombiePicker_CalculateMultiplePoints_t base;
-
 						auto p_theZombiePicker = &theZombiePicker;
 
 						base.mFunction = [&](Board* __this, ZombiePicker& _theZombiePicker, int _theWave)
@@ -646,7 +642,6 @@ void MagicBoard::Binding_MF_ZombiePicker_PutPreset(InitPatch& patch, const std::
 					_ZombiePicker_PutPreset = [](Board* _this, ZombiePicker& theZombiePicker, int theWave)
 					{
 						ZombiePicker_PutPreset_t base;
-
 						auto p_theZombiePicker = &theZombiePicker;
 
 						base.mFunction = [&](Board* __this, ZombiePicker& _theZombiePicker, int _theWave)
@@ -688,7 +683,6 @@ void MagicBoard::Binding_MF_ZombiePicker_PutRandom(InitPatch& patch, const std::
 					_ZombiePicker_PutRandom = [](Board* _this, ZombiePicker& theZombiePicker, int theWave)
 					{
 						ZombiePicker_PutRandom_t base;
-
 						auto p_theZombiePicker = &theZombiePicker;
 
 						base.mFunction = [&](Board* __this, ZombiePicker& _theZombiePicker, int _theWave)
