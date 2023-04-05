@@ -59,7 +59,7 @@ namespace PVZMod
 
 					PVZMOD_MAGIC_FUNC(MF_ZombieInitialize_AfterInitType, void(ZombieDefinition & theZombieDef, Zombie * theParentZombie, RenderLayer theRenderLayer, int theRenderOffset, ZombieInitialize_AfterInitType_t & base), T,
 						{
-							Binding_MF_ZombieInitialize_AfterInitType(patch, [](Zombie* _this, ZombieDefinition& theZombieDef, Zombie* theParentZombie, RenderLayer theRenderLayer, int theRenderOffset, ZombieInitialize_InitType_t& base)
+							Binding_MF_ZombieInitialize_AfterInitType(patch, [](Zombie* _this, ZombieDefinition& theZombieDef, Zombie* theParentZombie, RenderLayer theRenderLayer, int theRenderOffset, ZombieInitialize_AfterInitType_t& base)
 								{
 									((T*)_this)->MF_ZombieInitialize_AfterInitType(theZombieDef, theParentZombie, theRenderLayer, theRenderOffset, base);
 								});
@@ -114,7 +114,7 @@ namespace PVZMod
 
 					PVZMOD_MAGIC_FUNC_CHECK_BASE_CLASS(MF_ZombieInitialize_AfterInitType, void(ZombieDefinition& theZombieDef, Zombie* theParentZombie, RenderLayer theRenderLayer, int theRenderOffset, ZombieInitialize_AfterInitType_t& base), ZombieClass, BaseClass,
 						{
-							Binding_MF_ZombieInitialize_AfterInitType(patch, [](Zombie* _this, ZombieDefinition& theZombieDef, Zombie* theParentZombie, RenderLayer theRenderLayer, int theRenderOffset, ZombieInitialize_InitType_t& base)
+							Binding_MF_ZombieInitialize_AfterInitType(patch, [](Zombie* _this, ZombieDefinition& theZombieDef, Zombie* theParentZombie, RenderLayer theRenderLayer, int theRenderOffset, ZombieInitialize_AfterInitType_t& base)
 								{
 									if (_this->mZombieType == theZombieId)
 										((ZombieClass*)_this)->MF_ZombieInitialize_AfterInitType(theZombieDef, theParentZombie, theRenderLayer, theRenderOffset, base);
