@@ -1069,7 +1069,7 @@ void MagicZombie::Binding_MF_ZombieInitialize_AfterInitType(InitPatch& patch, co
                         base.mDefaultFunction = [&, i = func_list.size() - 1]() mutable
                         {
                             if (i == 0)
-                                _ZombieInitialize_InitType_base(_this, *p_theZombieDef, theParentZombie, theRenderLayer, theRenderOffset);
+                                _ZombieInitialize_AfterInitType_base(_this, *p_theZombieDef, theParentZombie, theRenderLayer, theRenderOffset);
                             else
                             {
                                 i--;
