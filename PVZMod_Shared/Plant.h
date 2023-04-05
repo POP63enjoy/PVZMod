@@ -182,6 +182,11 @@ namespace PVZMod
 		SUBCLASS_SHOOTER,
 	};
 
+	enum PlantID
+	{
+		PLANTID_NULL
+	};
+
 	struct MagnetItem
 	{
 		float			mPosX;

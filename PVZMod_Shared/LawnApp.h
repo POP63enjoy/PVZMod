@@ -287,6 +287,8 @@ namespace PVZMod
 		bool					IsBungeeBlitzLevel();
 		bool					IsShovelLevel();
 		bool					IsWallnutBowlingLevel();
+		bool					IsScaryPotterLevel();
+		bool					IsIZombieLevel();
 
 		void				PreNewGame(GameMode theGameMode, bool theLookForSavedGame);
 

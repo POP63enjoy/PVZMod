@@ -216,3 +216,8 @@ void Reanimation::SetTruncateDisappearingFrames(const char* theTrackName, bool t
 	else
 		GetTrackInstanceByName(theTrackName)->mTruncateDisappearingFrames = theTruncateDisappearingFrames;
 }
+
+void Reanimation::SetImageOverride(const char* theTrackName, Image* theImage)
+{
+	GetTrackInstanceByName(theTrackName)->mImageOverride = theImage;
+}

@@ -4,6 +4,7 @@
 
 #include "GameObject.h"
 #include "Rect.h"
+#include "SexyCommon.h"
 
 namespace PVZMod
 {
@@ -196,9 +197,15 @@ namespace PVZMod
 		ZOMBIE_WAVE_WINNER = -4
 	};
 
+	class TodParticleSystem;
+	class Reanimation;
+
 	enum AttachmentID;
 	enum ReanimationID;
 	enum PlantID;
+	enum ReanimationType;
+	enum ReanimLoopType;
+	enum ParticleEffect;
 
 	/// 【游戏类】僵尸。（原 ::Zombie）
 	class Zombie : public GameObject
@@ -281,11 +288,46 @@ namespace PVZMod
 		int					mLastPortalX;
 
 	public:
-		void ReanimShowPrefix(const char* theTrackPrefix, int theRenderGroup);
-		bool IsOnBoard();
+		bool				IsOnBoard();
+
+		float				GetPosYBasedOnRow(int theRow);
+
+		Reanimation*		LoadReanim(ReanimationType theReanimationType);
+		void				LoadPlainZombieReanim();
+		void                PlayZombieReanim(const char* theTrackName, ReanimLoopType theLoopType, int theBlendTime, float theAnimRate);
+		void				ReanimShowPrefix(const char* theTrackPrefix, int theRenderGroup);
+		void				StartWalkAnim(int theBlendTime);
+		void                SetupWaterTrack(const char* theTrackName);
+		void                SetAnimRate(float theAnimRate);
+		void                BossSetupReanim();
+		void				UpdateAnimSpeed();
+		void				UpdateReanim();
+
+		void				AttachShield();
+		void                PickBungeeZombieTarget(int theColumn);
+		TodParticleSystem*	AddAttachedParticle(int thePosX, int thePosY, ParticleEffect theEffect);
+		void                PickRandomSpeed();
+
+		void				PlayZombieAppearSound();
+		void				StartZombieSound();
 	};
 
 	static_assert(sizeof(Zombie) == 0x158);
+	
+	/// 【游戏类】僵尸定义信息。（原 ::ZombieDefinition）
+	class ZombieDefinition
+	{
+	public:
+		ZombieType           mZombieType;
+		ReanimationType      mReanimationType;
+		int                  mZombieValue;
+		int                  mStartingLevel;
+		int                  mFirstAllowedWave;
+		int                  mPickWeight;
+		const SexyChar*		 mZombieName;
+	};
+
+	ZombieDefinition& GetZombieDefinition(ZombieType theZombieType);
 }
 
 #endif // !_PVZMOD_ZOMBIE_H_

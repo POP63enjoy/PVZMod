@@ -206,6 +206,15 @@ bool Board::StageIsNight()
 		mBackground == BackgroundType::BACKGROUND_ZOMBIQUARIUM;
 }
 
+ZombieID Board::ZombieGetID(Zombie* theZombie)
+{
+	return (ZombieID)mZombies.DataArrayGetId(theZombie);
+}
+
+int Board::MakeRenderOrder(RenderLayer theRenderLayer, int theRow, int theLayerOffset)
+{
+	return theRow * RENDER_LAYER_ROW_OFFSET + theRenderLayer + theLayerOffset;
+}
 
 size_t Board::gExtraZombieSize = 0;
 size_t Board::gExtraPlantSize = 0;

@@ -21,7 +21,7 @@ namespace PVZMod
 		RegisterManager<T> Extend(InitPatch& patch)
 		{
 			static_assert(std::is_base_of<Plant, T>::value);
-			patch.PatchTask("GameObjectPatch::ExtendPlant", [&]
+			patch.PatchTask("MagicPlant::ExtendPlant", [&]
 				{
 					using namespace __PRIVATE__;
 
@@ -36,7 +36,7 @@ namespace PVZMod
 
 					PVZMOD_MAGIC_FUNC(MF_PlantInitialize_InitMemberVariable, PlantDefinition & (int theGridX, int theGridY, SeedType theSeedType, SeedType theImitaterType, PlantInitialize_InitMemberVariable_t & base), T,
 						{
-							Binding_MF_PlantInitialize_InitMemberVariable(patch, [](Plant* _this, int theGridX, int theGridY, SeedType theSeedType, SeedType theImitaterType, PlantInitialize_InitMemberVariable_t& base)->PlantDefinition&
+							Binding_MF_PlantInitialize_InitMemberVariable(patch, [](Plant* _this, int theGridX, int theGridY, SeedType theSeedType, SeedType theImitaterType, PlantInitialize_InitMemberVariable_t& base) -> PlantDefinition&
 								{
 									return ((T*)_this)->MF_PlantInitialize_InitMemberVariable(theGridX, theGridY, theSeedType, theImitaterType, base);
 								});
@@ -81,6 +81,8 @@ namespace PVZMod
 		template<SeedType thePlantId, typename PlantClass>
 		RegisterManager<BaseClass> RegisterManager<BaseClass>::RegisterPlant(InitPatch& patch)
 		{
+			static_assert(std::is_base_of<BaseClass, PlantClass>::value);
+			static_assert(sizeof(BaseClass) == sizeof(PlantClass));
 			patch.PatchTask("MagicPlant::RegisterManager::RegisterPlant", [&]
 				{
 					using namespace __PRIVATE__;

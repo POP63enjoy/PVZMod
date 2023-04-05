@@ -598,24 +598,26 @@ void MagicPlant::Binding_MF_PlantInitialize_InitReanimation(InitPatch& patch, co
 					_PlantInitialize_InitReanimation = [](Plant* _this, PlantDefinition& thePlantDef)
 					{
 						PlantInitialize_InitReanimation base;
+						auto p_thePlantDef = &thePlantDef;
 
 						base.mFunction = [&](Plant* __this, PlantDefinition& _thePlantDef)
 						{
+							auto _p_thePlantDef = &_thePlantDef;
 							std::swap(_this, __this);
-							std::swap(thePlantDef, _thePlantDef);
+							std::swap(p_thePlantDef, _p_thePlantDef);
 							auto result = base();
 							_this = __this;
-							thePlantDef = _thePlantDef;
+							p_thePlantDef = _p_thePlantDef;
 							return result;
 						};
 						base.mDefaultFunction = [&, i = func_list.size() - 1]() mutable
 						{
 							if (i == 0)
-								return _PlantInitialize_InitReanimation_base(_this, thePlantDef);
+								return _PlantInitialize_InitReanimation_base(_this, *p_thePlantDef);
 							else
 							{
 								i--;
-								auto result = func_list[i](_this, thePlantDef, base);
+								auto result = func_list[i](_this, *p_thePlantDef, base);
 								i++;
 								return result;
 							}
@@ -639,25 +641,27 @@ void MagicPlant::Binding_MF_PlantInitialize_BeforeInitType(InitPatch& patch, con
 					_PlantInitialize_BeforeInitType = [](Plant* _this, PlantDefinition& thePlantDef, Reanimation* theBodyReanim)
 					{
 						PlantInitialize_BeforeInitType base;
+						auto p_thePlantDef = &thePlantDef;
 
 						base.mFunction = [&](Plant* __this, PlantDefinition& _thePlantDef, Reanimation* _theBodyReanim)
 						{
+							auto _p_thePlantDef = &_thePlantDef;
 							std::swap(_this, __this);
-							std::swap(thePlantDef, _thePlantDef);
+							std::swap(p_thePlantDef, _p_thePlantDef);
 							std::swap(theBodyReanim, _theBodyReanim);
 							base();
 							_this = __this;
-							thePlantDef = _thePlantDef;
+							p_thePlantDef = _p_thePlantDef;
 							theBodyReanim = _theBodyReanim;
 						};
 						base.mDefaultFunction = [&, i = func_list.size() - 1]() mutable
 						{
 							if (i == 0)
-								_PlantInitialize_BeforeInitType_base(_this, thePlantDef, theBodyReanim);
+								_PlantInitialize_BeforeInitType_base(_this, *p_thePlantDef, theBodyReanim);
 							else
 							{
 								i--;
-								func_list[i](_this, thePlantDef, theBodyReanim, base);
+								func_list[i](_this, *p_thePlantDef, theBodyReanim, base);
 								i++;
 							}
 						};
@@ -680,25 +684,27 @@ void MagicPlant::Binding_MF_PlantInitialize_InitType(InitPatch& patch, const std
 					_PlantInitialize_InitType = [](Plant* _this, PlantDefinition& thePlantDef, Reanimation* theBodyReanim)
 					{
 						PlantInitialize_InitType base;
+						auto p_thePlantDef = &thePlantDef;
 
 						base.mFunction = [&](Plant* __this, PlantDefinition& _thePlantDef, Reanimation* _theBodyReanim)
 						{
+							auto _p_thePlantDef = &_thePlantDef;
 							std::swap(_this, __this);
-							std::swap(thePlantDef, _thePlantDef);
+							std::swap(p_thePlantDef, _p_thePlantDef);
 							std::swap(theBodyReanim, _theBodyReanim);
 							base();
 							_this = __this;
-							thePlantDef = _thePlantDef;
+							p_thePlantDef = _p_thePlantDef;
 							theBodyReanim = _theBodyReanim;
 						};
 						base.mDefaultFunction = [&, i = func_list.size() - 1]() mutable
 						{
 							if (i == 0)
-								_PlantInitialize_InitType_base(_this, thePlantDef, theBodyReanim);
+								_PlantInitialize_InitType_base(_this, *p_thePlantDef, theBodyReanim);
 							else
 							{
 								i--;
-								func_list[i](_this, thePlantDef, theBodyReanim, base);
+								func_list[i](_this, *p_thePlantDef, theBodyReanim, base);
 								i++;
 							}
 						};
@@ -721,25 +727,27 @@ void MagicPlant::Binding_MF_PlantInitialize_AfterInitType(InitPatch& patch, cons
 					_PlantInitialize_AfterInitType = [](Plant* _this, PlantDefinition& thePlantDef, Reanimation* theBodyReanim)
 					{
 						PlantInitialize_AfterInitType base;
+						auto p_thePlantDef = &thePlantDef;
 
 						base.mFunction = [&](Plant* __this, PlantDefinition& _thePlantDef, Reanimation* _theBodyReanim)
 						{
+							auto _p_thePlantDef = &_thePlantDef;
 							std::swap(_this, __this);
-							std::swap(thePlantDef, _thePlantDef);
+							std::swap(p_thePlantDef, _p_thePlantDef);
 							std::swap(theBodyReanim, _theBodyReanim);
 							base();
 							_this = __this;
-							thePlantDef = _thePlantDef;
+							p_thePlantDef = _p_thePlantDef;
 							theBodyReanim = _theBodyReanim;
 						};
 						base.mDefaultFunction = [&, i = func_list.size() - 1]() mutable
 						{
 							if (i == 0)
-								_PlantInitialize_AfterInitType_base(_this, thePlantDef, theBodyReanim);
+								_PlantInitialize_AfterInitType_base(_this, *p_thePlantDef, theBodyReanim);
 							else
 							{
 								i--;
-								func_list[i](_this, thePlantDef, theBodyReanim, base);
+								func_list[i](_this, *p_thePlantDef, theBodyReanim, base);
 								i++;
 							}
 						};
