@@ -6,7 +6,7 @@
 
 namespace PVZMod
 {
-	/// 【游戏类】二维向量。（原 Sexy::SexyVector2）
+	/// 【游戏类】二维向量。（原 `Sexy::SexyVector2`）
 	class SexyVector2
 	{
 	public:
@@ -45,7 +45,7 @@ namespace PVZMod
 		}
 	};
 
-	/// 【游戏类】三维向量。（原 Sexy::SexyVector3）
+	/// 【游戏类】三维向量。（原 `Sexy::SexyVector3`）
 	class SexyVector3
 	{
 	public:

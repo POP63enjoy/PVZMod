@@ -7,15 +7,11 @@
 
 namespace PVZMod
 {
+	/// 文件夹映射接口，可取代 PakInterface。
 	class FolderMappingInterface :public PakInterfaceBase
 	{
 	public:
-		struct PFindData :public PVZMod::PFindData
-		{
-			size_t mIndex;
-		};
-
-		class Pak:public PakInterface
+		class Pak :public PakInterface
 		{
 		public:
 			Pak(const String& pakFile);
@@ -23,9 +19,16 @@ namespace PVZMod
 		};
 
 		using Folder = String;
+		using FolderList = std::list<std::variant<Pak*, Folder>>;
 
-		std::vector<std::variant<Pak*, Folder>> mFolderList;
+		struct PFindData :PVZMod::PFindData
+		{
+			FolderList::iterator	mIter;
+		};
 
+		FolderList	mFolderList;
+
+	public:
 		FolderMappingInterface();
 		virtual ~FolderMappingInterface();
 

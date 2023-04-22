@@ -9,7 +9,7 @@ namespace PVZMod
 	class Font;
 	class EditListener;
 
-	/// 【游戏类】输入框控件。（原 Sexy::EditWidget）
+	/// 【游戏类】输入框控件。（原 `Sexy::EditWidget`）
 	class EditWidget : public Widget
 	{
 	public:

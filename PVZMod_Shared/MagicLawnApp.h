@@ -14,9 +14,7 @@ namespace PVZMod
 	class LawnApp;
 	class InitPatch;
 
-	/// LawnApp 魔法成员扩展。
-	/// 
-	/// @see MagicLawnApp_Reference
+	/// `LawnApp` 魔法成员扩展。
 	namespace MagicLawnApp
 	{
 		/// 【补丁函数】为 LawnApp 扩展魔法成员。
@@ -24,7 +22,7 @@ namespace PVZMod
 		/// @tparam T		一个继承于 LawnApp 的类，不允许定义构造函数、析构函数、虚函数。
 		/// @param patch	补丁对象。
 		template <typename T>
-		void Extend(InitPatch& patch);
+		void RegisterMain(InitPatch& patch);
 
 		using Constructor_t = Magic::BaseFunction<void(LawnApp* _this)>;
 		void Binding_MF_Constructor(InitPatch& patch, const std::function<void(LawnApp* _this, Constructor_t& base)>& func);

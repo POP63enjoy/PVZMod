@@ -31,7 +31,7 @@ namespace PVZMod
 	class NewLawnButton;
 	class ButtonWidget;
 
-	/// 【游戏类】选关界面。（原 ::ChallengeScreen）
+	/// 【游戏类】选关界面。（原 `::%ChallengeScreen`）
 	class ChallengeScreen : public Widget, public ButtonListener
 	{
 	private:
@@ -79,7 +79,7 @@ namespace PVZMod
 		bool						IsIZombieLevel(GameMode theGameMode);
 	};
 
-	/// 【游戏类】关卡定义信息（原 ::ChallengeDefinition）
+	/// 【游戏类】关卡定义信息（原 `::%ChallengeDefinition`）
 	class ChallengeDefinition
 	{
 	public:

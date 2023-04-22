@@ -297,7 +297,7 @@ namespace PVZMod
 		int                             mAnimFrameAfterInt;  
 	};
 
-	/// 【游戏类】动画。（原 ::Reanimation）
+	/// 【游戏类】动画。（原 `::%Reanimation`）
 	class Reanimation
 	{
 	public:

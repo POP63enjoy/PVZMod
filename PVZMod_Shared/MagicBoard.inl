@@ -24,11 +24,12 @@ namespace PVZMod
 			PVZMOD_CHECK_MAGIC_VAR(MC_AUTO_SAVE_EXTENDED_DATA);
 		}
 
-		template<typename T>
-		RegisterManager<T> Extend(InitPatch& patch)
+		template <typename T>
+		RegisterManager<T> RegisterMain(InitPatch& patch)
 		{
-			static_assert(std::is_base_of<Board, T>::value);
-			patch.PatchTask("MagicBoard::Extend", [&]
+			static_assert(std::is_base_of<Board, T>::value,	"MagicBoard::RegisterMain: T must based on Board.");
+
+			patch.PatchTask("MagicBoard::RegisterMain", [&]
 				{
 					using namespace __PRIVATE__;
 
@@ -146,19 +147,27 @@ namespace PVZMod
 			return {};
 		}
 
-		template<typename BaseClass>
-		template<GameMode theLevelId, typename LevelClass>
-		RegisterManager<BaseClass> RegisterManager<BaseClass>::RegisterLevel(InitPatch& patch)
+		template <typename BaseClass>
+		template <typename LevelClass>
+		RegisterManager<BaseClass> RegisterManager<BaseClass>::RegisterLevel(InitPatch& patch, GameMode theLevelId, bool enableMultipleRegister)
 		{
-			static_assert(std::is_base_of<BaseClass, LevelClass>::value);
-			static_assert(sizeof(BaseClass) == sizeof(LevelClass));
-			patch.PatchTask("MagicBoard::RegisterManager::RegisterLevel", [&]
+			static_assert(std::is_base_of<BaseClass, LevelClass>::value,	"MagicBoard::RegisterManager::RegisterLevel: LevelClass must based on BaseClass.");
+			static_assert(sizeof(BaseClass) == sizeof(LevelClass),			"MagicBoard::RegisterManager::RegisterLevel: Do not define non-static member variables in LevelClass.");
+
+			enableMultipleRegister |= Magic::IsEnableMultiReg<LevelClass>();
+
+			patch.PatchTask("MagicBoard::RegisterManager::RegisterLevel(" + std::to_string(theLevelId) + "," + std::to_string(typeid(LevelClass).hash_code()) + ")", [&]
 				{
 					using namespace __PRIVATE__;
 
+					Magic::IterateRef<LevelClass>([&] <typename T>
+						{
+							RegisterLevel<T>(patch, theLevelId);
+						});
+
 					PVZMOD_MAGIC_FUNC_CHECK_BASE_CLASS(MF_Constructor, void(LawnApp * theApp, Constructor_t & base), LevelClass, BaseClass,
 						{
-							Binding_MF_Constructor(patch, [](Board* _this, LawnApp* theApp, Constructor_t& base)
+							Binding_MF_Constructor(patch, [theLevelId](Board* _this, LawnApp* theApp, Constructor_t& base)
 									{
 										if (theApp->mGameMode == theLevelId)
 											((LevelClass*)_this)->MF_Constructor(theApp, base);
@@ -169,7 +178,7 @@ namespace PVZMod
 
 					PVZMOD_MAGIC_FUNC_CHECK_BASE_CLASS(MF_Destructor, void(Destructor_t & base), LevelClass, BaseClass,
 						{
-							Binding_MF_Destructor(patch, [](Board* _this, Destructor_t& base)
+							Binding_MF_Destructor(patch, [theLevelId](Board* _this, Destructor_t& base)
 								{
 									if (_this->mApp->mGameMode == theLevelId)
 										((LevelClass*)_this)->MF_Destructor(base);
@@ -180,7 +189,7 @@ namespace PVZMod
 
 					PVZMOD_MAGIC_FUNC_CHECK_BASE_CLASS(MF_InitLevel, void(InitLevel_t & base), LevelClass, BaseClass,
 						{
-							Binding_MF_InitLevel(patch, [](Board* _this, InitLevel_t& base)
+							Binding_MF_InitLevel(patch, [theLevelId](Board* _this, InitLevel_t& base)
 								{
 									if (_this->mApp->mGameMode == theLevelId)
 										((LevelClass*)_this)->MF_InitLevel(base);
@@ -191,7 +200,7 @@ namespace PVZMod
 
 					PVZMOD_MAGIC_FUNC_CHECK_BASE_CLASS(MF_DisposeBoard, void(DisposeBoard_t & base), LevelClass, BaseClass,
 						{
-							Binding_MF_DisposeBoard(patch, [](Board* _this, DisposeBoard_t& base)
+							Binding_MF_DisposeBoard(patch, [theLevelId](Board* _this, DisposeBoard_t& base)
 								{
 									if (_this->mApp->mGameMode == theLevelId)
 										((LevelClass*)_this)->MF_DisposeBoard(base);
@@ -202,7 +211,7 @@ namespace PVZMod
 
 					PVZMOD_MAGIC_FUNC_CHECK_BASE_CLASS(MF_ZombiePicker_CalculateNumWaves, void(ZombiePicker_CalculateNumWaves_t & base), LevelClass, BaseClass,
 						{
-							Binding_MF_ZombiePicker_CalculateNumWaves(patch, [](Board* _this, ZombiePicker_CalculateNumWaves_t& base)
+							Binding_MF_ZombiePicker_CalculateNumWaves(patch, [theLevelId](Board* _this, ZombiePicker_CalculateNumWaves_t& base)
 								{
 									if (_this->mApp->mGameMode == theLevelId)
 										((LevelClass*)_this)->MF_ZombiePicker_CalculateNumWaves(base);
@@ -213,7 +222,7 @@ namespace PVZMod
 
 					PVZMOD_MAGIC_FUNC_CHECK_BASE_CLASS(MF_ZombiePicker_SpecialLevelPut, bool(ZombiePicker & theZombiePicker, int theWave, MagicBoard::ZombiePicker_SpecialLevelPut_t & base), LevelClass, BaseClass,
 						{
-							Binding_MF_ZombiePicker_SpecialLevelPut(patch, [](Board* _this, ZombiePicker& theZombiePicker, int theWave, ZombiePicker_SpecialLevelPut_t& base)
+							Binding_MF_ZombiePicker_SpecialLevelPut(patch, [theLevelId](Board* _this, ZombiePicker& theZombiePicker, int theWave, ZombiePicker_SpecialLevelPut_t& base)
 								{
 									if (_this->mApp->mGameMode == theLevelId)
 										return ((LevelClass*)_this)->MF_ZombiePicker_SpecialLevelPut(theZombiePicker, theWave, base);
@@ -224,7 +233,7 @@ namespace PVZMod
 
 					PVZMOD_MAGIC_FUNC_CHECK_BASE_CLASS(MF_ZombiePicker_CalculateBasicPoints, void(ZombiePicker & theZombiePicker, int theWave, MagicBoard::ZombiePicker_CalculateBasicPoints_t & base), LevelClass, BaseClass,
 						{
-							Binding_MF_ZombiePicker_CalculateBasicPoints(patch, [](Board* _this, ZombiePicker& theZombiePicker, int theWave, ZombiePicker_CalculateBasicPoints_t& base)
+							Binding_MF_ZombiePicker_CalculateBasicPoints(patch, [theLevelId](Board* _this, ZombiePicker& theZombiePicker, int theWave, ZombiePicker_CalculateBasicPoints_t& base)
 								{
 									if (_this->mApp->mGameMode == theLevelId)
 										((LevelClass*)_this)->MF_ZombiePicker_CalculateBasicPoints(theZombiePicker, theWave, base);
@@ -235,7 +244,7 @@ namespace PVZMod
 
 					PVZMOD_MAGIC_FUNC_CHECK_BASE_CLASS(MF_ZombiePicker_PutBeforeMultiple, void(ZombiePicker & theZombiePicker, int theWave, MagicBoard::ZombiePicker_PutBeforeMultiple_t & base), LevelClass, BaseClass,
 						{
-							Binding_MF_ZombiePicker_PutBeforeMultiple(patch, [](Board* _this, ZombiePicker& theZombiePicker, int theWave, ZombiePicker_PutBeforeMultiple_t& base)
+							Binding_MF_ZombiePicker_PutBeforeMultiple(patch, [theLevelId](Board* _this, ZombiePicker& theZombiePicker, int theWave, ZombiePicker_PutBeforeMultiple_t& base)
 								{
 									if (_this->mApp->mGameMode == theLevelId)
 										((LevelClass*)_this)->MF_ZombiePicker_PutBeforeMultiple(theZombiePicker, theWave, base);
@@ -246,7 +255,7 @@ namespace PVZMod
 
 					PVZMOD_MAGIC_FUNC_CHECK_BASE_CLASS(MF_ZombiePicker_CalculateMultiplePoints, void(ZombiePicker & theZombiePicker, int theWave, MagicBoard::ZombiePicker_CalculateMultiplePoints_t & base), LevelClass, BaseClass,
 						{
-							Binding_MF_ZombiePicker_CalculateMultiplePoints(patch, [](Board* _this, ZombiePicker& theZombiePicker, int theWave, ZombiePicker_CalculateMultiplePoints_t& base)
+							Binding_MF_ZombiePicker_CalculateMultiplePoints(patch, [theLevelId](Board* _this, ZombiePicker& theZombiePicker, int theWave, ZombiePicker_CalculateMultiplePoints_t& base)
 								{
 									if (_this->mApp->mGameMode == theLevelId)
 										((LevelClass*)_this)->MF_ZombiePicker_CalculateMultiplePoints(theZombiePicker, theWave, base);
@@ -257,7 +266,7 @@ namespace PVZMod
 
 					PVZMOD_MAGIC_FUNC_CHECK_BASE_CLASS(MF_ZombiePicker_PutPreset, void(ZombiePicker& theZombiePicker, int theWave, MagicBoard::ZombiePicker_PutPreset_t& base), LevelClass, BaseClass,
 						{
-							Binding_MF_ZombiePicker_PutPreset(patch, [](Board* _this, ZombiePicker& theZombiePicker, int theWave, ZombiePicker_PutPreset_t& base)
+							Binding_MF_ZombiePicker_PutPreset(patch, [theLevelId](Board* _this, ZombiePicker& theZombiePicker, int theWave, ZombiePicker_PutPreset_t& base)
 								{
 									if (_this->mApp->mGameMode == theLevelId)
 										((LevelClass*)_this)->MF_ZombiePicker_PutPreset(theZombiePicker, theWave, base);
@@ -268,7 +277,7 @@ namespace PVZMod
 
 					PVZMOD_MAGIC_FUNC_CHECK_BASE_CLASS(MF_ZombiePicker_PutRandom, void(ZombiePicker& theZombiePicker, int theWave, MagicBoard::ZombiePicker_PutRandom_t& base), LevelClass, BaseClass,
 						{
-							Binding_MF_ZombiePicker_PutRandom(patch, [](Board* _this, ZombiePicker& theZombiePicker, int theWave, ZombiePicker_PutRandom_t& base)
+							Binding_MF_ZombiePicker_PutRandom(patch, [theLevelId](Board* _this, ZombiePicker& theZombiePicker, int theWave, ZombiePicker_PutRandom_t& base)
 								{
 									if (_this->mApp->mGameMode == theLevelId)
 										((LevelClass*)_this)->MF_ZombiePicker_PutRandom(theZombiePicker, theWave, base);
@@ -276,7 +285,7 @@ namespace PVZMod
 										return base();
 								});
 						});
-				}, false);
+				}, !enableMultipleRegister);
 			return {};
 		}
 	}

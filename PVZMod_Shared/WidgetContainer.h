@@ -14,7 +14,7 @@ namespace PVZMod
 
 	typedef List<Widget*> WidgetList;
 
-	/// 【游戏类】控件容器。（原 Sexy::WidgetContainer）
+	/// 【游戏类】控件容器。（原 `Sexy::WidgetContainer`）
 	class WidgetContainer
 	{
 	public:

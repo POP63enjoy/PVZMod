@@ -14,10 +14,10 @@ namespace PVZMod
 		}
 
 		template<typename T>
-		void Extend(InitPatch& patch)
+		void RegisterMain(InitPatch& patch)
 		{
 			static_assert(std::is_base_of<Music, T>::value);
-			patch.PatchTask("MagicMusic::Extend", [&]
+			patch.PatchTask("MagicMusic::RegisterMain", [&]
 				{
 					using namespace __PRIVATE__;
 

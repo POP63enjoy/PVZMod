@@ -20,7 +20,7 @@ namespace PVZMod
 		PixelFormat_Palette8	= 0x0008,
 	};
 
-	/// 【游戏类】Direct3D 接口。（原 Sexy::D3DInterface）
+	/// 【游戏类】Direct3D 接口。（原 `Sexy::D3DInterface`）
 	class D3DInterface
 	{
 	public:

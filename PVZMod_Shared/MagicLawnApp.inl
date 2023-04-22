@@ -26,10 +26,10 @@ namespace PVZMod
 		}
 		
 		template <typename T>
-		void Extend(InitPatch& patch)
+		void RegisterMain(InitPatch& patch)
 		{
 			static_assert(std::is_base_of<LawnApp, T>::value);
-			patch.PatchTask("MagicLawnApp::Extend", [&]
+			patch.PatchTask("MagicLawnApp::RegisterMain", [&]
 				{
 					using namespace __PRIVATE__;
 

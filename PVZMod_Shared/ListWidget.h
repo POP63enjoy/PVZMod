@@ -14,7 +14,7 @@ namespace PVZMod
 	class ListListener;
 	class Font;
 
-	/// 【游戏类】列表控件。（原 Sexy::ListWidget）
+	/// 【游戏类】列表控件。（原 `Sexy::ListWidget`）
 	class ListWidget : public Widget, public ScrollListener
 	{
 	public:

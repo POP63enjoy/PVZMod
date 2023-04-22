@@ -15,7 +15,7 @@ namespace PVZMod
 
 	typedef Vector<Color> ColorVector;
 
-	/// 【游戏类】控件。（原 Sexy::Widget）
+	/// 【游戏类】控件。（原 `Sexy::Widget`）
 	class Widget : public WidgetContainer
 	{
 	public:

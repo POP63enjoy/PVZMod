@@ -6,7 +6,7 @@
 
 namespace PVZMod
 {
-	/// 【游戏类】光标预览。（原 ::CursorPreview）
+	/// 【游戏类】光标预览。（原 `::%CursorPreview`）
 	class CursorPreview : public GameObject
 	{
 	public:

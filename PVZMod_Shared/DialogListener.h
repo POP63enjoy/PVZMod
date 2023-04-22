@@ -4,7 +4,7 @@
 
 namespace PVZMod
 {
-	/// 【游戏类】对话框事件接口。（原 Sexy::DialogListener）
+	/// 【游戏类】对话框事件接口。（原 `Sexy::DialogListener`）
 	class DialogListener
 	{
 	public:

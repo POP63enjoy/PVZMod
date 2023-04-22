@@ -77,7 +77,7 @@ namespace PVZMod
 	enum ZombieType;
 	enum SeedType;
 
-	/// 【游戏类】格内物品。（原 ::GridItem）
+	/// 【游戏类】格内物品。（原 `::%GridItem`）
 	class GridItem
 	{
 	public:

@@ -10,7 +10,7 @@ namespace PVZMod
 {
 	class Graphics;
 
-	/// 【游戏类】字体基本接口。（原 Sexy::Font）
+	/// 【游戏类】字体基本接口。（原 `Sexy::Font`）
 	class Font
 	{
 	public:

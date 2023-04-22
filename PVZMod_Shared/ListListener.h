@@ -4,7 +4,7 @@
 
 namespace PVZMod
 {
-	/// 【游戏类】列表事件接口。（原 Sexy::ListListener）
+	/// 【游戏类】列表事件接口。（原 `Sexy::ListListener`）
 	class ListListener
 	{
 	public:

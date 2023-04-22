@@ -24,7 +24,7 @@ namespace PVZMod
 		double b;
 	};
 	
-	/// 【游戏类】绘图状态。（原 Sexy::GraphicsState）
+	/// 【游戏类】绘图状态。（原 `Sexy::GraphicsState`）
 	class GraphicsState
 	{
 	public:
@@ -52,7 +52,7 @@ namespace PVZMod
 
 	typedef List<GraphicsState> GraphicsStateList;
 
-	/// 【游戏类】绘图对象。（原 Sexy::Graphics）
+	/// 【游戏类】绘图对象。（原 `Sexy::Graphics`）
 	class Graphics : public GraphicsState
 	{
 	public:	

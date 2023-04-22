@@ -20,7 +20,7 @@ namespace PVZMod
 
 	typedef Set<DDImage*> DDImageSet;
 
-	/// 【游戏类】DirectDraw 接口。（原 Sexy::DDInterface）
+	/// 【游戏类】DirectDraw 接口。（原 `Sexy::DDInterface`）
 	class DDInterface : public NativeDisplay
 	{
 	public:

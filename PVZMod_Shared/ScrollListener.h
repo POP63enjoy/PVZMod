@@ -4,7 +4,7 @@
 
 namespace PVZMod
 {
-	/// 【游戏类】滚动条事件接口。（原 Sexy::ScrollListener）
+	/// 【游戏类】滚动条事件接口。（原 `Sexy::ScrollListener`）
 	class ScrollListener
 	{
 	public:

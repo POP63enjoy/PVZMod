@@ -28,7 +28,7 @@ namespace PVZMod
 	enum SeedType;
 	enum ReanimationID;
 
-	/// 【游戏类】关卡特性。（原 ::Challenge）
+	/// 【游戏类】关卡特性。（原 `::%Challenge`）
 	class Challenge
 	{
 	public:

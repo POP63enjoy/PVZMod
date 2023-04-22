@@ -9,7 +9,7 @@ namespace PVZMod
 	class CheckboxListener;
 	class Image;
 
-	/// 【游戏类】复选框控件。（原 Sexy::Checkbox）
+	/// 【游戏类】复选框控件。（原 `Sexy::Checkbox`）
 	class Checkbox : public Widget
 	{
 	protected:

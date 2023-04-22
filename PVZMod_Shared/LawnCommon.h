@@ -14,7 +14,7 @@ namespace PVZMod
 	class EditListener;
 	class Dialog;
 
-	/// 【游戏函数】创建复选框（原 ::MakeNewCheckBox）。
+	/// 【游戏函数】创建复选框。（原 `::%MakeNewCheckBox`）
 	///
 	/// @param theId		复选框 ID。
 	/// @param theListener	事件侦听器。
@@ -23,7 +23,7 @@ namespace PVZMod
 	/// @return				复选框指针。
 	extern Checkbox* (*MakeNewCheckBox)(int theId, CheckboxListener* theListener, bool theDefault);
 
-	/// 【游戏类】PVZ 专用编辑框（原 ::LawnEditWidget）
+	/// 【游戏类】PVZ 专用编辑框。（原 `::%LawnEditWidget`）
 	class LawnEditWidget : public EditWidget
 	{
 	public:
@@ -38,7 +38,7 @@ namespace PVZMod
 		virtual void			KeyChar(char theChar);
 	};
 
-	/// 【游戏函数】创建编辑框。
+	/// 【游戏函数】创建编辑框。（原 `::%CreateEditWidget`）
 	///
 	/// @param theId		编辑框 ID。
 	/// @param theListener	事件侦听器。
@@ -47,7 +47,7 @@ namespace PVZMod
 	/// @return				编辑框指针。
 	LawnEditWidget*				CreateEditWidget(int theId, EditListener* theListener, Dialog* theDialog);
 
-	/// 【游戏函数】绘制编辑框。
+	/// 【游戏函数】绘制编辑框。（原 `::%DrawEditBox`）
 	/// 
 	///	@param g			绘图对象。
 	/// @param theWidget	编辑框指针。

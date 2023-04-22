@@ -207,7 +207,7 @@ namespace PVZMod
 	enum ReanimLoopType;
 	enum ParticleEffect;
 
-	/// 【游戏类】僵尸。（原 ::Zombie）
+	/// 【游戏类】僵尸。（原 `::%Zombie`）
 	class Zombie : public GameObject
 	{
 	public:
@@ -314,7 +314,7 @@ namespace PVZMod
 
 	static_assert(sizeof(Zombie) == 0x158);
 	
-	/// 【游戏类】僵尸定义信息。（原 ::ZombieDefinition）
+	/// 【游戏类】僵尸定义信息。（原 `::%ZombieDefinition`）
 	class ZombieDefinition
 	{
 	public:

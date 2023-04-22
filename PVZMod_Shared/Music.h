@@ -58,41 +58,41 @@ namespace PVZMod
 		MUSIC_DRUMS_FADING = 0x4,
 	};
 
-	/// 【游戏类】音乐控制类。（原 ::Music）
+	/// 【游戏类】音乐控制类。（原 `::%Music`）
 	class Music
 	{
 	public:
-		LawnApp* mApp;
-		MusicInterface* mMusicInterface;
-		MusicTune mCurMusicTune;
-		MusicFile mCurMusicFileMain;
-		MusicFile mCurMusicFileDrums;
-		MusicFile mCurMusicFileHihats;
-		int mBurstOverride;
-		int mBaseBPM;
-		int mBaseModSpeed;
-		MusicBurstState mMusicBurstState;
-		int mBurstStateCounter;
-		MusicDrumsState mMusicDrumsState;
-		int mQueuedDrumTrackPackedOrder;
-		int mDrumsStateCounter;
-		int mPauseOffset;
-		int mPauseOffsetDrums;
-		bool mPaused;
-		bool mMusicDisabled;
-		int mFadeOutCounter;
-		int mFadeOutDuration;
+		LawnApp*			mApp;
+		MusicInterface*		mMusicInterface;
+		MusicTune			mCurMusicTune;
+		MusicFile			mCurMusicFileMain;
+		MusicFile			mCurMusicFileDrums;
+		MusicFile			mCurMusicFileHihats;
+		int					mBurstOverride;
+		int					mBaseBPM;
+		int					mBaseModSpeed;
+		MusicBurstState		mMusicBurstState;
+		int					mBurstStateCounter;
+		MusicDrumsState		mMusicDrumsState;
+		int					mQueuedDrumTrackPackedOrder;
+		int					mDrumsStateCounter;
+		int					mPauseOffset;
+		int					mPauseOffsetDrums;
+		bool				mPaused;
+		bool				mMusicDisabled;
+		int					mFadeOutCounter;
+		int					mFadeOutDuration;
 
+	public:
 		Music();
 
-		bool TodLoadMusic(MusicFile theMusicFile, const String& theFileName);
-		
-		void LoadSong(MusicFile theMusicFile, const String& theFileName);
-		HMUSIC GetBassMusicHandle(MusicFile theMusicFile);
-		void PlayMusic(MusicTune theMusicTune, int theOffset, int theDrumsOffset);
-		void MakeSureMusicIsPlaying(MusicTune theMusicTune);
-		void StopAllMusic();
-		void PlayFromOffset(MusicFile theMusicFile, int theOffset, double theVolume);
+		bool		TodLoadMusic(MusicFile theMusicFile, const String& theFileName);
+		void		LoadSong(MusicFile theMusicFile, const String& theFileName);
+		HMUSIC		GetBassMusicHandle(MusicFile theMusicFile);
+		void		PlayMusic(MusicTune theMusicTune, int theOffset, int theDrumsOffset);
+		void		MakeSureMusicIsPlaying(MusicTune theMusicTune);
+		void		StopAllMusic();
+		void		PlayFromOffset(MusicFile theMusicFile, int theOffset, double theVolume);
 	};
 
 	static_assert(sizeof(Music) == 0x4c);

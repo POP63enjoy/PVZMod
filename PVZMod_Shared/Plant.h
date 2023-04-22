@@ -205,7 +205,7 @@ namespace PVZMod
 	enum ReanimationType;
 	enum ParticleEffect;
 
-	/// 【游戏类】植物。（原 ::Plant）
+	/// 【游戏类】植物。（原 `::%Plant`）
 	class Plant : public GameObject
 	{
 	public:
@@ -274,7 +274,7 @@ namespace PVZMod
 
 	float					   PlantDrawHeightOffset(Board* theBoard, Plant* thePlant, SeedType theSeedType, int theCol, int theRow);
 
-	/// 【游戏类】植物定义信息。（原 ::PlantDefinition）
+	/// 【游戏类】植物定义信息。（原 `::%PlantDefinition`）
 	class PlantDefinition
 	{
 	public:

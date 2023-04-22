@@ -17,7 +17,7 @@ namespace PVZMod
 {
 	static_assert(sizeof(std::vector<int>::iterator) == 0x4, "Missing _ITERATOR_DEBUG_LEVEL=0");
 
-	/// 【游戏类】与游戏内结构兼容的 std::basic_string 类。
+	/// 【游戏类】与游戏内结构兼容的 `std::basic_string` 类。
 	template <typename T>
 	class BasicString : public std::basic_string<T>
 	{
@@ -38,10 +38,10 @@ namespace PVZMod
 		}
 	};
 
-	/// 【游戏类】与游戏内结构兼容的 std::string 类。
+	/// 【游戏类】与游戏内结构兼容的 `std::string` 类。
 	using String = BasicString<char>;
 
-	/// 【游戏类】与游戏内结构兼容的 std::wstring 类。
+	/// 【游戏类】与游戏内结构兼容的 `std::wstring` 类。
 	using WString = BasicString<wchar_t>;
 
 	/// 【游戏类】与游戏内结构兼容的 std::vector 类。
@@ -54,7 +54,7 @@ namespace PVZMod
 		using std::vector<T>::vector;
 	};
 
-	/// 【游戏类】与游戏内结构兼容的 std::list 类。
+	/// 【游戏类】与游戏内结构兼容的 `std::list` 类。
 	template <typename T>
 	class List :public std::list<T>
 	{
@@ -64,7 +64,7 @@ namespace PVZMod
 		using std::list<T>::list;
 	};
 
-	/// 【游戏类】与游戏内结构兼容的 std::set 类。
+	/// 【游戏类】与游戏内结构兼容的 `std::set` 类。
 	template <typename T,typename U = std::less<T>>
 	class Set :public std::set<T, U>
 	{
@@ -74,7 +74,7 @@ namespace PVZMod
 		using std::set<T, U>::set;
 	};
 
-	/// 【游戏类】与游戏内结构兼容的 std::map 类。
+	/// 【游戏类】与游戏内结构兼容的 `std::map` 类。
 	template <typename T, typename U, typename V = std::less<T>>
 	class Map :public std::map<T, U, V>
 	{

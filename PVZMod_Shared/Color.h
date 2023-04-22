@@ -10,7 +10,7 @@ namespace PVZMod
 	struct SexyRGBA { unsigned char b, g, r, a; };
 #pragma pack(pop)
 
-	/// 【游戏类】颜色。（原 Sexy::Color）
+	/// 【游戏类】颜色。（原 `Sexy::Color`）
 	class Color
 	{
 	public:

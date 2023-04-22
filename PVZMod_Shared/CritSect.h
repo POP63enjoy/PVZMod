@@ -6,7 +6,7 @@
 
 namespace PVZMod
 {
-	/// 【游戏类】线程锁对象（原 Sexy::CritSect）
+	/// 【游戏类】线程锁对象（原 `Sexy::CritSect`）
 	class CritSect
 	{
 	private:

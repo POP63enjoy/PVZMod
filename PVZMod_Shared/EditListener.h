@@ -6,7 +6,7 @@
 #include "KeyCodes.h"
 namespace PVZMod
 {
-	/// 【游戏类】输入框事件接口。（原 Sexy::EditListener）
+	/// 【游戏类】输入框事件接口。（原 `Sexy::EditListener`）
 	class EditListener
 	{
 	public:

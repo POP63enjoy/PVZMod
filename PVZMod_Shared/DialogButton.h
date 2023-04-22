@@ -10,7 +10,7 @@ namespace PVZMod
 	class Graphics;
 	class ButtonListener;
 
-	/// 【游戏类】对话框按钮控件。（原 Sexy::DialogButton）
+	/// 【游戏类】对话框按钮控件。（原 `Sexy::DialogButton`）
 	class DialogButton : public ButtonWidget
 	{
 	public:

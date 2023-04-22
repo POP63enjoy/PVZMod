@@ -18,10 +18,12 @@ namespace PVZMod
 		}
 
 		template <typename T>
-		RegisterManager<T> Extend(InitPatch& patch)
+		RegisterManager<T> RegisterMain(InitPatch& patch)
 		{
-			static_assert(std::is_base_of<Plant, T>::value);
-			patch.PatchTask("MagicPlant::ExtendPlant", [&]
+			static_assert(std::is_base_of<Plant, T>::value,	"MagicPlant::RegisterMain: T must based on Plant.");
+			assert(("MagicPlant::RegisterMain: Do not define virtual functions in T.", (int)(Plant*)(T*)4 == 4));
+
+			patch.PatchTask("MagicPlant::RegisterMain", [&]
 				{
 					using namespace __PRIVATE__;
 
@@ -77,19 +79,29 @@ namespace PVZMod
 			return {};
 		}
 
-		template<typename BaseClass>
-		template<SeedType thePlantId, typename PlantClass>
-		RegisterManager<BaseClass> RegisterManager<BaseClass>::RegisterPlant(InitPatch& patch)
+		template <typename BaseClass>
+		template <typename PlantClass>
+		RegisterManager<BaseClass> RegisterManager<BaseClass>::RegisterPlant(InitPatch& patch, SeedType thePlantId, bool enableMultipleRegister)
 		{
-			static_assert(std::is_base_of<BaseClass, PlantClass>::value);
-			static_assert(sizeof(BaseClass) == sizeof(PlantClass));
-			patch.PatchTask("MagicPlant::RegisterManager::RegisterPlant", [&]
+			static_assert(std::is_base_of<BaseClass, PlantClass>::value,	"MagicPlant::RegisterManager::RegisterPlant: PlantClass must based on BaseClass.");
+			static_assert(sizeof(BaseClass) == sizeof(PlantClass),			"MagicPlant::RegisterManager::RegisterPlant: Do not define non-static member variables in PlantClass.");
+
+			assert(("MagicPlant::RegisterManager::RegisterPlant: Do not define virtual functions in PlantClass.", (int)(Plant*)(PlantClass*)4 == 4));
+
+			enableMultipleRegister |= Magic::IsEnableMultiReg<PlantClass>();
+
+			patch.PatchTask("MagicPlant::RegisterManager::RegisterPlant(" + std::to_string(thePlantId) + "," + std::to_string(typeid(PlantClass).hash_code()) + ")", [&]
 				{
 					using namespace __PRIVATE__;
 
+					Magic::IterateRef<PlantClass>([&] <typename T>
+						{
+							RegisterPlant<T>(patch, thePlantId);
+						});
+
 					PVZMOD_MAGIC_FUNC_CHECK_BASE_CLASS(MF_PlantInitialize_InitMemberVariable, PlantDefinition & (int theGridX, int theGridY, SeedType theSeedType, SeedType theImitaterType, PlantInitialize_InitMemberVariable_t & base), PlantClass, BaseClass,
 						{
-							Binding_MF_PlantInitialize_InitMemberVariable(patch, [](Plant* _this, int theGridX, int theGridY, SeedType theSeedType, SeedType theImitaterType, PlantInitialize_InitMemberVariable_t& base)->PlantDefinition&
+							Binding_MF_PlantInitialize_InitMemberVariable(patch, [thePlantId](Plant* _this, int theGridX, int theGridY, SeedType theSeedType, SeedType theImitaterType, PlantInitialize_InitMemberVariable_t& base) -> PlantDefinition&
 								{
 									if (theSeedType == thePlantId)
 										return ((PlantClass*)_this)->MF_PlantInitialize_InitMemberVariable(theGridX, theGridY, theSeedType, theImitaterType, base);
@@ -100,7 +112,7 @@ namespace PVZMod
 
 					PVZMOD_MAGIC_FUNC_CHECK_BASE_CLASS(MF_PlantInitialize_InitReanimation, Reanimation * (PlantDefinition & thePlantDef, PlantInitialize_InitReanimation & base), PlantClass, BaseClass,
 						{
-							Binding_MF_PlantInitialize_InitReanimation(patch, [](Plant* _this, PlantDefinition& thePlantDef, PlantInitialize_InitReanimation& base)
+							Binding_MF_PlantInitialize_InitReanimation(patch, [thePlantId](Plant* _this, PlantDefinition& thePlantDef, PlantInitialize_InitReanimation& base)
 								{
 									if (_this->mSeedType == thePlantId)
 										return ((PlantClass*)_this)->MF_PlantInitialize_InitReanimation(thePlantDef, base);
@@ -111,7 +123,7 @@ namespace PVZMod
 
 					PVZMOD_MAGIC_FUNC_CHECK_BASE_CLASS(MF_PlantInitialize_BeforeInitType, void(PlantDefinition & thePlantDef, Reanimation * theBodyReanim, PlantInitialize_BeforeInitType & base), PlantClass, BaseClass,
 						{
-							Binding_MF_PlantInitialize_BeforeInitType(patch, [](Plant* _this, PlantDefinition& thePlantDef, Reanimation* theBodyReanim, PlantInitialize_BeforeInitType& base)
+							Binding_MF_PlantInitialize_BeforeInitType(patch, [thePlantId](Plant* _this, PlantDefinition& thePlantDef, Reanimation* theBodyReanim, PlantInitialize_BeforeInitType& base)
 								{
 									if (_this->mSeedType == thePlantId)
 										((PlantClass*)_this)->MF_PlantInitialize_BeforeInitType(thePlantDef, theBodyReanim, base);
@@ -122,7 +134,7 @@ namespace PVZMod
 
 					PVZMOD_MAGIC_FUNC_CHECK_BASE_CLASS(MF_PlantInitialize_InitType, void(PlantDefinition & thePlantDef, Reanimation * theBodyReanim, PlantInitialize_InitType & base), PlantClass, BaseClass,
 						{
-							Binding_MF_PlantInitialize_InitType(patch, [](Plant* _this, PlantDefinition& thePlantDef, Reanimation* theBodyReanim, PlantInitialize_InitType& base)
+							Binding_MF_PlantInitialize_InitType(patch, [thePlantId](Plant* _this, PlantDefinition& thePlantDef, Reanimation* theBodyReanim, PlantInitialize_InitType& base)
 								{
 									if (_this->mSeedType == thePlantId)
 										((PlantClass*)_this)->MF_PlantInitialize_InitType(thePlantDef, theBodyReanim, base);
@@ -133,7 +145,7 @@ namespace PVZMod
 
 					PVZMOD_MAGIC_FUNC_CHECK_BASE_CLASS(MF_PlantInitialize_AfterInitType, void(PlantDefinition & thePlantDef, Reanimation * theBodyReanim, PlantInitialize_AfterInitType & base), PlantClass, BaseClass,
 						{
-							Binding_MF_PlantInitialize_AfterInitType(patch, [](Plant* _this, PlantDefinition& thePlantDef, Reanimation* theBodyReanim, PlantInitialize_AfterInitType& base)
+							Binding_MF_PlantInitialize_AfterInitType(patch, [thePlantId](Plant* _this, PlantDefinition& thePlantDef, Reanimation* theBodyReanim, PlantInitialize_AfterInitType& base)
 								{
 									if (_this->mSeedType == thePlantId)
 										((PlantClass*)_this)->MF_PlantInitialize_AfterInitType(thePlantDef, theBodyReanim, base);
@@ -141,7 +153,7 @@ namespace PVZMod
 										base();
 								});
 						});
-				}, false);
+				}, !enableMultipleRegister);
 			return {};
 		}
 	}

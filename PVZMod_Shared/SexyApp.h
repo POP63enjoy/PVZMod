@@ -9,7 +9,7 @@ namespace PVZMod
 	class InternetManager;
 	class BetaSupport;
 
-	/// 【游戏类】宝开私有程序主类。（原 Sexy::SexyApp）
+	/// 【游戏类】宝开私有程序主类。（原 `Sexy::SexyApp`）
 	class SexyApp : public SexyAppBase
 	{
 	public:

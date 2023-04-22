@@ -6,7 +6,7 @@
 
 namespace PVZMod
 {
-	/// 【游戏类】三角形顶点（原 Sexy::TriVertex）
+	/// 【游戏类】三角形顶点（原 `Sexy::TriVertex`）
 	class TriVertex
 	{
 	public:

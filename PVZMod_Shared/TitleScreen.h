@@ -20,7 +20,7 @@ namespace PVZMod
 		TITLESTATE_SCREEN
 	};
 
-	/// 【游戏类】标题界面。（原 ::TitleScreen）
+	/// 【游戏类】标题界面。（原 `::%TitleScreen`）
 	class TitleScreen : public Widget, public ButtonListener
 	{
 	public:

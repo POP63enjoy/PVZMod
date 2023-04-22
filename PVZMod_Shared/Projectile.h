@@ -42,7 +42,7 @@ namespace PVZMod
 	enum AttachmentID;
 	enum ZombieID;
 
-	/// 【游戏类】子弹。（原 ::Projectile）
+	/// 【游戏类】子弹。（原 `::%Projectile`）
 	class Projectile : public GameObject
 	{
 	public:

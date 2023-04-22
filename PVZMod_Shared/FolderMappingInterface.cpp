@@ -83,7 +83,7 @@ FolderMappingInterface::~FolderMappingInterface()
 
 void FolderMappingInterface::MF_LoadPak()
 {
-	mFolderList.insert(mFolderList.begin(), new Pak("main.pak"));
+	mFolderList.push_front(new Pak("main.pak"));
 }
 
 PFILE* FolderMappingInterface::FOpen(const char* theFileName, const char* theAccess)
@@ -259,7 +259,7 @@ HANDLE FolderMappingInterface::FindFirstFileA(const char* lpFileName, LPWIN32_FI
 	FixFileName(lpFileName, anUpperName);
 	aFindData->mFindCriteria = anUpperName;
 	aFindData->mWHandle = INVALID_HANDLE_VALUE;
-	aFindData->mIndex = 0;
+	aFindData->mIter = mFolderList.begin();
 
 	for (auto &folder : mFolderList)
 	{
@@ -277,7 +277,7 @@ HANDLE FolderMappingInterface::FindFirstFileA(const char* lpFileName, LPWIN32_FI
 				return (HANDLE)aFindData;
 		}
 
-		aFindData->mIndex++;
+		aFindData->mIter++;
 	}
 
 	delete aFindData;
@@ -287,7 +287,7 @@ HANDLE FolderMappingInterface::FindFirstFileA(const char* lpFileName, LPWIN32_FI
 BOOL FolderMappingInterface::FindNextFileA(HANDLE hFindFile, LPWIN32_FIND_DATAA lpFindFileData)
 {
 	PFindData* aFindData = (PFindData*)hFindFile;
-	auto& folder = mFolderList[aFindData->mIndex];
+	auto& folder = *aFindData->mIter;
 
 	if (std::get_if<Folder>(&folder))
 	{
@@ -304,9 +304,9 @@ BOOL FolderMappingInterface::FindNextFileA(HANDLE hFindFile, LPWIN32_FIND_DATAA 
 			return TRUE;
 	}
 
-	while (++aFindData->mIndex < mFolderList.size())
+	while (++aFindData->mIter != mFolderList.end())
 	{
-		folder = mFolderList[aFindData->mIndex];
+		folder = *aFindData->mIter;
 		if (auto folderName = std::get_if<Folder>(&folder); folderName)
 		{
 			aFindData->mWHandle = ::FindFirstFileA((*folderName+aFindData->mFindCriteria).c_str(), lpFindFileData);

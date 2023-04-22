@@ -6,7 +6,7 @@
 
 namespace PVZMod
 {
-	/// 【游戏类】3x3 矩阵。（原 Sexy::SexyMatrix3）
+	/// 【游戏类】3x3 矩阵。（原 `Sexy::SexyMatrix3`）
 	class SexyMatrix3
 	{
 	public:
@@ -32,7 +32,7 @@ namespace PVZMod
 		const SexyMatrix3& operator*=(const SexyMatrix3& theMat);
 	};
 
-	/// 【游戏类】二维变换矩阵。（原 Sexy::SexyTransform2D）
+	/// 【游戏类】二维变换矩阵。（原 `Sexy::SexyTransform2D`）
 	class SexyTransform2D : public SexyMatrix3
 	{
 	public:
@@ -53,7 +53,7 @@ namespace PVZMod
 		void Scale(float sx, float sy);
 	};
 
-	/// 【游戏类】二维变换。（原 Sexy::Transform）
+	/// 【游戏类】二维变换。（原 `Sexy::Transform`）
 	class Transform
 	{
 	protected:

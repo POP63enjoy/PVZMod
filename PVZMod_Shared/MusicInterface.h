@@ -6,7 +6,7 @@
 
 namespace PVZMod
 {
-	/// 【游戏类】基本音乐接口。（原 Sexy::MusicInterface）
+	/// 【游戏类】基本音乐接口。（原 `Sexy::MusicInterface`）
 	class MusicInterface
 	{
 	public:

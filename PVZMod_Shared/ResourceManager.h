@@ -24,7 +24,7 @@ namespace PVZMod
 	typedef Map<String, String>	StringToStringMap;
 	typedef Map<SexyString, SexyString>	XMLParamMap;
 
-	/// 【游戏类】资源管理器。（原 Sexy::ResourceManager）
+	/// 【游戏类】资源管理器。（原 `Sexy::ResourceManager`）
 	class ResourceManager
 	{
 	protected:

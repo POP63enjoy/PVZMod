@@ -28,11 +28,37 @@ namespace PVZMod
 			std::function<Ret(Args...)> mFunction;
 			std::function<Ret()> mDefaultFunction;
 		};
+
+		template <typename T>
+		bool IsEnableMultiReg();
+
+		template <typename T>
+		void IterateRef(auto func);
+
+		template <typename ...Types>
+		class TypeList
+		{
+		private:
+			template <typename First_, typename ...Other_>
+			class Check
+			{
+			public:
+				using First = First_;
+				using Other = TypeList<Other_...>;
+			};
+		public:
+			using First = Check<Types...>::First;
+			using Other = Check<Types...>::Other;
+
+			static void Iterate(auto func);
+		};
+
+		template <> class TypeList<> {};
 	}
 };
 /*
 #define PVZMOD_CHECK_MAGIC_MEMBER(name)																														\
-	template<typename Class, typename PtrType> class Check_##name {																							\
+	template <typename Class, typename PtrType> class Check_##name {																						\
 	private:																																				\
 		template <typename U> static constexpr bool check_type(decltype(&U::name)) { return std::is_same<decltype(&U::name), PtrType>::value; }				\
 		template <typename U> static constexpr bool check_type(...) { return false; }																		\
@@ -42,35 +68,44 @@ namespace PVZMod
 		static constexpr int value = !check_exist<Class>(nullptr) ? Magic::NOT_EXIST : !check_type<Class>(nullptr) ? Magic::TYPE_ERROR : Magic::EXIST;		\
 	}
 */
-#define PVZMOD_CHECK_MAGIC_FUNC(name)																														\
-	template<typename Class, typename FuncType>	class CheckF_##name;																						\
-	template<typename Class, typename Ret, typename ...Args> class CheckF_##name<Class, Ret(Args...)> {														\
-	private:																																				\
-		template <typename U> static constexpr auto check_type(int) -> std::is_same<Ret, decltype(std::declval<U>().name(std::declval<Args>()...))>;		\
-		template <typename U> static constexpr auto check_type(...) -> std::false_type;																		\
-		template <typename U> static constexpr auto check_exist(int) -> decltype(&U::name, std::true_type());												\
-		template <typename U> static constexpr auto check_exist(...) -> std::false_type;																	\
-		template <typename U> static constexpr auto check_static(int) -> decltype(U::name(std::declval<Args>()...), std::true_type());						\
-		template <typename U> static constexpr auto check_static(...) -> std::false_type;																	\
-	public:																																					\
-		static constexpr int value = !decltype(check_exist<Class>(0))::value ? Magic::NOT_EXIST :															\
-			!decltype(check_type<Class>(0))::value ? Magic::TYPE_ERROR : Magic::EXIST;																		\
-		static constexpr bool is_static_v = decltype(check_static<Class>(0))::value;																		\
+#define PVZMOD_CHECK_MAGIC_FUNC(name)																											\
+	template <typename Class, typename FuncType>	class CheckF_##name;																		\
+	template <typename Class, typename Ret, typename ...Args> class CheckF_##name<Class, Ret(Args...)> {										\
+	private:																																	\
+		template <typename U> static auto check_type(int)	-> std::is_same<Ret, decltype(std::declval<U>().name(std::declval<Args>()...))>;	\
+		template <typename U> static auto check_type(...)	-> std::false_type;																	\
+		template <typename U> static auto check_exist(int)	-> decltype(&U::name, std::true_type());											\
+		template <typename U> static auto check_exist(...)	-> std::false_type;																	\
+		template <typename U> static auto check_static(int)	-> decltype(U::name(std::declval<Args>()...), std::true_type());					\
+		template <typename U> static auto check_static(...)	-> std::false_type;																	\
+	public:																																		\
+		static constexpr int value = !decltype(check_exist<Class>(0))::value ? Magic::NOT_EXIST :												\
+			!decltype(check_type<Class>(0))::value ? Magic::TYPE_ERROR : Magic::EXIST;															\
+		static constexpr bool is_static_v = decltype(check_static<Class>(0))::value;															\
 	}
 
-#define PVZMOD_CHECK_MAGIC_VAR(name)																								\
-	template<typename Class, typename VarType> class CheckV_##name {																\
-	private:																														\
-		template <typename U> static constexpr auto check_type(int) -> std::is_same<VarType, decltype(std::declval<U>().name)>;		\
-		template <typename U> static constexpr auto check_type(...) -> std::false_type;												\
-		template <typename U> static constexpr auto check_exist(int) -> decltype(&U::name, std::true_type());						\
-		template <typename U> static constexpr auto check_exist(...) -> std::false_type;											\
-		template <typename U> static constexpr auto check_static(int) -> std::is_same<decltype(&U::name), VarType*>;				\
-		template <typename U> static constexpr auto check_static(...) -> std::false_type;											\
-	public:																															\
-		static constexpr int value = !decltype(check_exist<Class>(0))::value ? Magic::NOT_EXIST :									\
-			!decltype(check_type<Class>(0))::value ? Magic::TYPE_ERROR : Magic::EXIST;												\
-		static constexpr bool is_static_v = decltype(check_static<Class>(0))::value;												\
+#define PVZMOD_CHECK_MAGIC_VAR(name)																						\
+	template <typename Class, typename VarType> class CheckV_##name {														\
+	private:																												\
+		template <typename U> static auto check_type(int)	-> std::is_same<VarType, decltype(std::declval<U>().name)>;		\
+		template <typename U> static auto check_type(...)	-> std::false_type;												\
+		template <typename U> static auto check_exist(int)	-> decltype(&U::name, std::true_type());						\
+		template <typename U> static auto check_exist(...)	-> std::false_type;												\
+		template <typename U> static auto check_static(int)	-> std::is_same<decltype(&U::name), VarType*>;					\
+		template <typename U> static auto check_static(...)	-> std::false_type;												\
+	public:																													\
+		static constexpr int value = !decltype(check_exist<Class>(0))::value ? Magic::NOT_EXIST :							\
+			!decltype(check_type<Class>(0))::value ? Magic::TYPE_ERROR : Magic::EXIST;										\
+		static constexpr bool is_static_v = decltype(check_static<Class>(0))::value;										\
+	}
+
+#define PVZMOD_CHECK_MAGIC_TYPE(name)																		\
+	template <typename Class> class CheckT_##name {															\
+	private:																								\
+		template <typename U, typename = U::name>	static std::true_type	check(int);						\
+		template <typename U>						static std::false_type	check(...);						\
+	public:																									\
+		static constexpr int value = decltype(check<Class>(0))::value ? Magic::EXIST : Magic::NOT_EXIST;	\
 	}
 
 #define PVZMOD_MAGIC_FUNC(Name, Type, Class, ...)																							\
@@ -150,5 +185,7 @@ namespace PVZMod
 		name##_t m##name;																		\
 		struct { __PVZMOD_UNPACK__ var };														\
 	};
+
+#include "Magic.inl"
 
 #endif // !_PVZMOD_MAGIC_H_

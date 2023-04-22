@@ -6,7 +6,7 @@
 
 namespace PVZMod
 {
-	/// 【游戏类】超链接控件。（原 Sexy::HyperlinkWidget）
+	/// 【游戏类】超链接控件。（原 `Sexy::HyperlinkWidget`）
 	class HyperlinkWidget : public ButtonWidget
 	{
 	public:

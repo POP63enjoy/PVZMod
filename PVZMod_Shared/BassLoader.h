@@ -6,7 +6,7 @@
 
 namespace PVZMod
 {
-	/// 【游戏类】bass.dll 2.2 接口。（原 Sexy::BASS_INSTANCE）
+	/// 【游戏类】bass.dll 2.2 接口。（原 `Sexy::BASS_INSTANCE`）
 	struct BASS_INSTANCE
 	{
 		BASS_INSTANCE(const char* dllName) = delete;

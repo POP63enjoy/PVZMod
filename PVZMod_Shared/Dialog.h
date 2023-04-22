@@ -19,7 +19,7 @@ namespace PVZMod
 
 	typedef Vector<String> StringVector;
 
-	/// 【游戏类】对话框控件。（原 Sexy::Dialog）
+	/// 【游戏类】对话框控件。（原 `Sexy::Dialog`）
 	class Dialog : public Widget, public ButtonListener
 	{
 	public:

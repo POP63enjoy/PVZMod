@@ -10,7 +10,7 @@ namespace PVZMod
 
     enum ReanimationID;
 
-    /// 【游戏类】关卡过场。（原 ::CutScene）
+    /// 【游戏类】关卡过场。（原 `::%CutScene`）
     class CutScene
     {
     public:

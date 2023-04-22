@@ -16,25 +16,31 @@ namespace PVZMod
 	class Reanimation;
 	enum SeedType;
 
-	/// Plant 魔法成员扩展。
-	///
-	/// @see MagicPlant_Reference
+	/// `Plant` 魔法成员扩展。
 	namespace MagicPlant
 	{
+		/// 子魔法类注册管理器。
 		template <typename BaseClass>
 		class RegisterManager
 		{
 		public:
-			template <SeedType thePlantId,typename PlantClass>
-			RegisterManager RegisterPlant(InitPatch& patch);
+			/// 【补丁函数】注册以植物类型为判断条件的子魔法类。
+			///
+			/// @tparam PlantClass				子魔法类，继承于 BaseClass，不允许定义构造函数、析构函数、虚函数、非静态成员变量。
+			/// @param patch					补丁对象。
+			/// @param thePlantId				植物编号。
+			/// @param enableMultipleRegister	为 true 则允许重复注册相同的类。（不包括通过 MT_Ref 引用的类）
+			template <typename PlantClass>
+			RegisterManager RegisterPlant(InitPatch& patch, SeedType thePlantId, bool enableMultipleRegister = false);
 		};
 
-		/// 【补丁函数】为 Plant 扩展魔法成员。
+		/// 【补丁函数】为 Plant 注册主魔法类。
 		///
-		/// @tparam T		一个继承于 Plant 的类，不允许定义构造函数、析构函数、虚函数。
+		/// @tparam T		主魔法类，继承于 Plant，不允许定义构造函数、析构函数、虚函数。
 		/// @param patch	补丁对象。
+		/// @return			用于注册子魔法类。
 		template <typename T>
-		RegisterManager<T> Extend(InitPatch& patch);
+		RegisterManager<T> RegisterMain(InitPatch& patch);
 
 		void Binding_ExtendBase(InitPatch& patch, size_t thePlantSize, size_t theDataArraySize);
 

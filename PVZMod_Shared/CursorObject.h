@@ -33,7 +33,7 @@ namespace PVZMod
 	enum PlantID;
 	enum ReanimationID;
 
-	/// 【游戏类】光标对象。（原 ::CursorObject）
+	/// 【游戏类】光标对象。（原 `::%CursorObject`）
 	class CursorObject : public GameObject
 	{
 	public:

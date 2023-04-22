@@ -34,7 +34,7 @@ namespace PVZMod
 	enum ReanimationID;
 	class Board;
 
-	/// 【游戏类】小推车。（原 ::LawnMower）
+	/// 【游戏类】小推车。（原 `::%LawnMower`）
 	class LawnMower
 	{
 	public:

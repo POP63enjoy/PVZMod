@@ -15,6 +15,7 @@ namespace PVZMod
 		class Image;
 	}
 
+	/// 资源相关补丁。
 	namespace ResourcePatch
 	{
 		/*class ImageLoader
@@ -35,14 +36,19 @@ namespace PVZMod
 		};*/
 
 
-		// 将新的 xml 资源文件加入加载列表，需要传入由 ResourceGen 生成的代码中的 ExtractResourcesByName 函数。
+		/// 【补丁函数】将新的 XML 资源文件加入加载列表。
+		///
+		/// @param patch				补丁对象。
+		/// @param theFileName			资源 XML 文件名。
+		/// @param theExtractFunction	资源加载函数，使用 PVZMod_Tools 中的 ResourceGen 生成。
 		void AddResFile(InitPatch& patch, const String& theFileName, bool(*theExtractFunction)(ResourceManager*, const char*));
 
-		/*
-		 *	Magic Member List:
-		 *		void MF_LoadPak();
-		 */
-
+		/// 【补丁函数】替换 PakInterface 类。
+		///
+		/// @tparam T		一个集成于PakInterface 的类，可以定义构造函数和析构函数，可以重写虚函数。<br/>
+		///					可以定义一个魔法函数 `void MF_LoadPak();`，在这里面加载 PAK 文件。
+		/// 
+		/// @param patch	补丁对象。
 		template <typename T>
 		void ReplacePakInterface(InitPatch& patch);
 	}

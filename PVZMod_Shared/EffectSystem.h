@@ -9,7 +9,7 @@ namespace PVZMod
 	class ReanimationHolder;
 	class AttachmentHolder;
 
-	/// 【游戏类】特效系统。（原 ::EffectSystem）
+	/// 【游戏类】特效系统。（原 `::%EffectSystem`）
 	class EffectSystem
 	{
 	public:

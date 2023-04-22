@@ -11,7 +11,7 @@ namespace PVZMod
 	class NativeDisplay;
 	class SexyAppBase;
 
-	/// 【游戏类】内存贴图。（原 Sexy::MemoryImage）
+	/// 【游戏类】内存贴图。（原 `Sexy::MemoryImage`）
 	class MemoryImage : public Image
 	{
 	public:

@@ -45,7 +45,7 @@ namespace PVZMod
 	class SysFont;
 	class TriVertex;
 
-	/// 【游戏类】贴图基本接口。（原 Sexy::Image）
+	/// 【游戏类】贴图基本接口。（原 `Sexy::Image`）
 	class Image
 	{
 		friend class			SysFont;

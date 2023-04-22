@@ -7,7 +7,7 @@ namespace PVZMod
 	class InitPatch;
 	class ReanimationParams;
 
-	/// 特效相关补丁
+	/// 特效相关补丁。
 	namespace EffectPatch
 	{
 		/// 【补丁函数】替换动画参数数组。

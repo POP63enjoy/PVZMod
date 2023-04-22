@@ -54,7 +54,7 @@ namespace PVZMod
 	class LawnApp;
 	class Board;
 
-	/// 【游戏类】游戏对象。（原 ::GameObject）
+	/// 【游戏类】游戏对象。（原 `::%GameObject`）
 	class GameObject
 	{
 	public:

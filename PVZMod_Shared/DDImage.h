@@ -10,7 +10,7 @@ namespace PVZMod
 	class DDInterface;
 	class SysFont;
 
-	/// 【游戏类】DirectDraw 贴图。（原 Sexy::DDImage）
+	/// 【游戏类】DirectDraw 贴图。（原 `Sexy::DDImage`）
 	class DDImage : public MemoryImage
 	{
 	protected:

@@ -88,7 +88,7 @@ namespace PVZMod
 		SEED_NONE = 0xFFFFFFFF,
 	};
 
-	/// 【游戏类】卡片。（原 ::SeedPacket）
+	/// 【游戏类】卡片。（原 `::%SeedPacket`）
 	class SeedPacket : public GameObject
 	{
 	public:

@@ -6,7 +6,7 @@
 
 namespace PVZMod
 {
-	/// 【游戏类】基本显示接口。（原 Sexy::NativeDisplay）
+	/// 【游戏类】基本显示接口。（原 `Sexy::NativeDisplay`）
 	class NativeDisplay
 	{
 	public:

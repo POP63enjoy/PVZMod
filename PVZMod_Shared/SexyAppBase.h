@@ -71,7 +71,7 @@ namespace PVZMod
 		NUM_CURSORS
 	};
 
-	/// 【游戏类】宝开框架主类。（原 Sexy::SexyAppBase）
+	/// 【游戏类】宝开框架主类。（原 `Sexy::SexyAppBase`）
 	class SexyAppBase :public ButtonListener, public DialogListener
 	{
 	public:

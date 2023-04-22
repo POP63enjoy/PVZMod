@@ -185,7 +185,7 @@ namespace PVZMod
 		TRIALTYPE_STAGELOCKED,
 	};
 	
-	/// 【游戏类】游戏程序主类。（原 ::LawnApp）
+	/// 【游戏类】游戏程序主类。（原 `::%LawnApp`）
 	class LawnApp :public SexyApp
 	{
 	public:

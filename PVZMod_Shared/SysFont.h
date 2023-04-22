@@ -9,7 +9,7 @@ namespace PVZMod
 	class ImageFont;
 	class SexyAppBase;
 
-	/// 【游戏类】系统字体。（原 Sexy::SysFont）
+	/// 【游戏类】系统字体。（原 `Sexy::SysFont`）
 	class SysFont : public Font
 	{
 	public:	

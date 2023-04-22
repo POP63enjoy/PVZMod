@@ -27,7 +27,7 @@ namespace PVZMod
 		virtual void			FlashCommand(int theId, const std::string& theCommand, const std::string& theParam) {}
 	};
 
-	/// 【游戏类】Flash 控件。（原 Sexy::FlashWidget）
+	/// 【游戏类】Flash 控件。（原 `Sexy::FlashWidget`）
 	class FlashWidget : public Widget
 	{
 	public:

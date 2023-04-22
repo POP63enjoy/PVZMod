@@ -8,7 +8,7 @@ namespace PVZMod
 {
 	typedef Vector<uint8_t> ByteVector;
 
-	/// 【游戏类】缓冲区。（原 Sexy::Buffer）
+	/// 【游戏类】缓冲区。（原 `Sexy::Buffer`）
 	class Buffer
 	{
 	public:

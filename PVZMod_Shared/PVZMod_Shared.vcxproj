@@ -66,7 +66,6 @@
     <ClInclude Include="Insets.h" />
     <ClInclude Include="KeyCodes.h" />
     <ClInclude Include="LawnApp.h" />
-    <ClInclude Include="MagicBoard_Reference.h" />
     <ClInclude Include="MagicLawnApp.h" />
     <ClInclude Include="LawnCommon.h" />
     <ClInclude Include="LawnDialog.h" />
@@ -76,11 +75,8 @@
     <ClInclude Include="Magic.h" />
     <ClInclude Include="MagicBoard.h" />
     <ClInclude Include="MagicMusic.h" />
-    <ClInclude Include="MagicMusic_Reference.h" />
     <ClInclude Include="MagicPlant.h" />
-    <ClInclude Include="MagicPlant_Reference.h" />
     <ClInclude Include="MagicZombie.h" />
-    <ClInclude Include="MagicZombie_Reference.h" />
     <ClInclude Include="MemoryImage.h" />
     <ClInclude Include="MTRand.h" />
     <ClInclude Include="Music.h" />
@@ -123,7 +119,6 @@
     <ClInclude Include="WidgetManager.h" />
     <ClInclude Include="WidgetPatch.h" />
     <ClInclude Include="Zombie.h" />
-    <ClInclude Include="MagicLawnApp_Reference.h" />
     <ClInclude Include="xtree.h" />
   </ItemGroup>
   <ItemGroup>
@@ -197,6 +192,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="GameUIPatch.inl" />
+    <None Include="Magic.inl" />
     <None Include="MagicBoard.inl" />
     <None Include="MagicLawnApp.inl" />
     <None Include="MagicMusic.inl" />

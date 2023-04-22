@@ -9,7 +9,7 @@ namespace PVZMod
 {
 	class LawnApp;
 
-	/// 【游戏类】游戏按钮。（原 ::GameButton）
+	/// 【游戏类】游戏按钮。（原 `::%GameButton`）
 	class GameButton
 	{
 	public:

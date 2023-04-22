@@ -21,7 +21,7 @@ namespace PVZMod
 		inline size_t defaultExtraSize = 0;
 	}
 
-	/// 【游戏类】对象池。（原 ::DataArray）
+	/// 【游戏类】对象池。（原 `::%DataArray`）
 	///
 	/// @tparam T				对象类型。
 	/// @tparam mExtraTypeSize	动态扩充大小。

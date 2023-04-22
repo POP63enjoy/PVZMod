@@ -239,7 +239,7 @@ namespace PVZMod
 	constexpr int MAX_GRID_SIZE_X = 9, MAX_GRID_SIZE_Y = 6;
 	constexpr int MAX_ZOMBIE_WAVES = 100, MAX_ZOMBIES_IN_WAVE = 50;
 
-	/// 【游戏类】出怪计算信息。（原 ::ZombiePicker）
+	/// 【游戏类】出怪计算信息。（原 `::%ZombiePicker`）
 	class ZombiePicker
 	{
 	public:
@@ -273,7 +273,7 @@ namespace PVZMod
 		GameObjectType					mObjectType;
 	};
 
-	/// 【游戏类】关卡界面。（原 ::Board）
+	/// 【游戏类】关卡界面。（原 `::%Board`）
 	class Board :public Widget, public ButtonListener
 	{
 	private:

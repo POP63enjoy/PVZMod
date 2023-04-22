@@ -18,31 +18,31 @@ namespace PVZMod
 	class ZombiePicker;
 	enum GameMode;
 
-	/// Board 魔法成员扩展。
-	///
-	/// @see MagicBoard_Reference
+	/// `Board` 魔法成员扩展。
 	namespace MagicBoard
 	{
-		/// 注册管理器。
+		/// 子魔法类注册管理器。
 		template <typename BaseClass>
 		class RegisterManager
 		{
 		public:
-			/// 【补丁函数】注册关卡。
+			/// 【补丁函数】注册以关卡为判断条件的子魔法类。
 			///
-			/// @tparam theLevelId	关卡编号。
-			/// @tparam LevelClass	关卡类，继承于 BaseClass，不允许定义构造函数、析构函数、虚函数、非静态成员变量。
-			/// @param patch		补丁对象。
-			template <GameMode theLevelId, typename LevelClass>
-			static RegisterManager RegisterLevel(InitPatch& patch);
+			/// @tparam LevelClass				子魔法类，继承于 BaseClass，不允许定义构造函数、析构函数、虚函数、非静态成员变量。
+			/// @param patch					补丁对象。
+			/// @param theLevelId				关卡编号。
+			/// @param enableMultipleRegister	为 true 则允许重复注册相同的类。（不包括通过 MT_Ref 引用的类）
+			template <typename LevelClass>
+			static RegisterManager RegisterLevel(InitPatch& patch, GameMode theLevelId, bool enableMultipleRegister = false);
 		};
 
-		/// 【补丁函数】为 Board 扩展魔法成员。
+		/// 【补丁函数】为 Board 注册主魔法类。
 		///
-		/// @tparam T		一个继承于 Board 的类，不允许定义构造函数、析构函数、虚函数。
+		/// @tparam T		主魔法类，继承于 Board，不允许定义构造函数、析构函数、虚函数。
 		/// @param patch	补丁对象。
+		/// @return			用于注册子魔法类。
 		template<typename T>
-		RegisterManager<T> Extend(InitPatch& patch);
+		RegisterManager<T> RegisterMain(InitPatch& patch);
 
 		void Binding_ExtendBase(InitPatch& patch, size_t theBoardSize, bool autoSaveExtendedData);
 

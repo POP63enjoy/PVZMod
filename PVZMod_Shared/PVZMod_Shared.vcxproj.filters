@@ -382,21 +382,6 @@
     <ClInclude Include="CutScene.h">
       <Filter>Game Objects</Filter>
     </ClInclude>
-    <ClInclude Include="MagicLawnApp_Reference.h">
-      <Filter>Application\Patch</Filter>
-    </ClInclude>
-    <ClInclude Include="MagicBoard_Reference.h">
-      <Filter>Game Objects\Patch</Filter>
-    </ClInclude>
-    <ClInclude Include="MagicPlant_Reference.h">
-      <Filter>Game Objects\Patch</Filter>
-    </ClInclude>
-    <ClInclude Include="MagicZombie_Reference.h">
-      <Filter>Game Objects\Patch</Filter>
-    </ClInclude>
-    <ClInclude Include="MagicMusic_Reference.h">
-      <Filter>Sound &amp; Music\Patch</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ButtonWidget.cpp">
@@ -621,6 +606,9 @@
     </None>
     <None Include="MagicMusic.inl">
       <Filter>Sound &amp; Music\Patch</Filter>
+    </None>
+    <None Include="Magic.inl">
+      <Filter>Magic</Filter>
     </None>
   </ItemGroup>
 </Project>

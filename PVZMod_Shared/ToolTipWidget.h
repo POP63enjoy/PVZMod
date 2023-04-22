@@ -6,7 +6,7 @@
 
 namespace PVZMod
 {
-	/// 【游戏类】工具提示。（原 ::ToolTipWidget）
+	/// 【游戏类】工具提示。（原 `::%ToolTipWidget`）
 	class ToolTipWidget
 	{
 	public:

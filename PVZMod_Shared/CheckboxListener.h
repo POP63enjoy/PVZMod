@@ -4,7 +4,7 @@
 
 namespace PVZMod
 {
-	/// 【游戏类】复选框事件接口。（原 Sexy::CheckboxListener）
+	/// 【游戏类】复选框事件接口。（原 `Sexy::CheckboxListener`）
 	class CheckboxListener
 	{
 	public:

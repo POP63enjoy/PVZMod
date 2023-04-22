@@ -9,9 +9,9 @@
 
 namespace PVZMod
 {
-	/// 【游戏类】默认字符串类型（原 ::SexyString）。
+	/// 【游戏类】默认字符串类型（原 `::%SexyString`）。
 	using SexyString = WString;
-	/// 【游戏类】默认字符类型（原 ::SexyChar）。
+	/// 【游戏类】默认字符类型（原 `::%SexyChar`）。
 	using SexyChar = wchar_t;
 
 	using DefinesMap = Map<String, String>;

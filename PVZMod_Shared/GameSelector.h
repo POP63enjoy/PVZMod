@@ -23,7 +23,7 @@ namespace PVZMod
 	};
 	
 
-	/// 【游戏类】主菜单界面。（原 ::GameSelector）
+	/// 【游戏类】主菜单界面。（原 `::%GameSelector`）
 	class GameSelector :public Widget, public ButtonListener
 	{
 	public:

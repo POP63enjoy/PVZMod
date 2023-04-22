@@ -9,7 +9,7 @@ namespace PVZMod
 	class Image;
 	class ButtonListener;
 
-	/// 【游戏类】按钮控件。（原 Sexy::ButtonWidget）
+	/// 【游戏类】按钮控件。（原 `Sexy::ButtonWidget`）
 	class ButtonWidget : public Widget
 	{
 	public:

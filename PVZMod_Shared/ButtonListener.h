@@ -4,7 +4,7 @@
 
 namespace PVZMod
 {
-	/// 【游戏类】按钮事件接口。（原 Sexy::ButtonListener）
+	/// 【游戏类】按钮事件接口。（原 `Sexy::ButtonListener`）
 	class ButtonListener
 	{
 	public:

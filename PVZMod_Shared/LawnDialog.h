@@ -12,7 +12,7 @@ namespace PVZMod
 
 	constexpr int DIALOG_HEADER_OFFSET = 45;
 
-	/// 【游戏类】石头对话框。（原 ::LawnDialog）
+	/// 【游戏类】石头对话框。（原 `::%LawnDialog`）
 	class LawnDialog :public Dialog
 	{
 	public:

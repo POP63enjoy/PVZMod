@@ -52,7 +52,7 @@ namespace PVZMod
 	enum AttachmentID;
 	enum SeedType;
 
-	/// 【游戏类】掉落物。（原 ::Coin）
+	/// 【游戏类】掉落物。（原 `::%Coin`）
 	class Coin : public GameObject
 	{
 	public:

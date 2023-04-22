@@ -16,25 +16,31 @@ namespace PVZMod
 	enum RenderLayer;
 	enum ZombieType;
 
-	/// Zombie 魔法成员扩展。
-	///
-	/// @see MagicZombie_Reference
+	/// `Zombie` 魔法成员扩展。
 	namespace MagicZombie
 	{
+		/// 子魔法类注册管理器。
 		template <typename BaseClass>
 		class RegisterManager
 		{
 		public:
-			template <ZombieType theZombieId, typename ZombieClass>
-			RegisterManager RegisterZombie(InitPatch& patch);
+			/// 【补丁函数】注册以僵尸类型为判断条件的子魔法类。
+			///
+			/// @tparam ZombieClass				子魔法类，继承于 BaseClass，不允许定义构造函数、析构函数、虚函数、非静态成员变量。
+			/// @param patch					补丁对象。
+			/// @param theZombieId				僵尸编号。
+			/// @param enableMultipleRegister	为 true 则允许重复注册相同的类。（不包括通过 MT_Ref 引用的类）
+			template <typename ZombieClass>
+			RegisterManager RegisterZombie(InitPatch& patch, ZombieType theZombieId, bool enableMultipleRegister = false);
 		};
 
-		/// 【补丁函数】为 Zombie 扩展魔法成员。
+		/// 【补丁函数】为 Zombie 注册主魔法类。
 		///
-		/// @tparam T		一个继承于 Zombie 的类，不允许定义构造函数、析构函数、虚函数。
+		/// @tparam T		主魔法类，继承于 Zombie，不允许定义构造函数、析构函数、虚函数。
 		/// @param patch	补丁对象。
+		/// @return			用于注册子魔法类。
 		template <typename T>
-		RegisterManager<T> Extend(InitPatch& patch);
+		RegisterManager<T> RegisterMain(InitPatch& patch);
 
 		void Binding_ExtendBase(InitPatch& patch, size_t theZombieSize, size_t theDataArraySize);
 

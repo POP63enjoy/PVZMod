@@ -38,7 +38,7 @@ namespace PVZMod
 
 	typedef Vector<std::pair<Widget*, int> > DeferredOverlayVector;
 
-	/// 【游戏类】控件管理器。（原 Sexy::WidgetManager）
+	/// 【游戏类】控件管理器。（原 `Sexy::WidgetManager`）
 	class WidgetManager : public WidgetContainer
 	{
 	public:
