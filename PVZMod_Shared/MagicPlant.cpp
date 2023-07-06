@@ -10,6 +10,8 @@
 
 using namespace PVZMod;
 
+// 基本信息绑定 & 对象上限 - MC_DATA_ARRAY_SIZE
+
 void MagicPlant::Binding_ExtendBase(InitPatch& patch, size_t thePlantSize, size_t theDataArraySize)
 {
 	patch.PatchTask("MagicPlant::Binding_ExtendBase", [&]
@@ -99,6 +101,8 @@ void MagicPlant::Binding_ExtendBase(InitPatch& patch, size_t thePlantSize, size_
 			}
 		}, true, true);
 }
+
+// 初始化 - MF_PlantInitialize
 
 static PlantDefinition& _PlantInitialize_InitMemberVariable_base(Plant* _this, int theGridX, int theGridY, SeedType theSeedType, SeedType theImitaterType)
 {

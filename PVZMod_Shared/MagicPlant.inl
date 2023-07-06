@@ -20,7 +20,7 @@ namespace PVZMod
 		template <typename T>
 		RegisterManager<T> RegisterMain(InitPatch& patch)
 		{
-			static_assert(std::is_base_of<Plant, T>::value,	"MagicPlant::RegisterMain: T must based on Plant.");
+			static_assert(std::is_base_of<Plant, T>::value, "MagicPlant::RegisterMain: T must based on Plant.");
 			assert(("MagicPlant::RegisterMain: Do not define virtual functions in T.", (int)(Plant*)(T*)4 == 4));
 
 			patch.PatchTask("MagicPlant::RegisterMain", [&]
@@ -29,52 +29,18 @@ namespace PVZMod
 
 					{
 						size_t dataArraySize = 1024;
-						PVZMOD_MAGIC_SVAR(MC_DATA_ARRAY_SIZE, const size_t, T,
+						PVZMOD_IF_MAGIC_SVAR_EXIST(MC_DATA_ARRAY_SIZE, const size_t, T,
 							{
 								dataArraySize = T::MC_DATA_ARRAY_SIZE;
 							});
 						Binding_ExtendBase(patch, sizeof(T), dataArraySize);
 					}
 
-					PVZMOD_MAGIC_FUNC(MF_PlantInitialize_InitMemberVariable, PlantDefinition & (int theGridX, int theGridY, SeedType theSeedType, SeedType theImitaterType, PlantInitialize_InitMemberVariable_t & base), T,
-						{
-							Binding_MF_PlantInitialize_InitMemberVariable(patch, [](Plant* _this, int theGridX, int theGridY, SeedType theSeedType, SeedType theImitaterType, PlantInitialize_InitMemberVariable_t& base) -> PlantDefinition&
-								{
-									return ((T*)_this)->MF_PlantInitialize_InitMemberVariable(theGridX, theGridY, theSeedType, theImitaterType, base);
-								});
-						});
-
-					PVZMOD_MAGIC_FUNC(MF_PlantInitialize_InitReanimation, Reanimation * (PlantDefinition & thePlantDef, PlantInitialize_InitReanimation & base), T,
-						{
-							Binding_MF_PlantInitialize_InitReanimation(patch, [](Plant* _this, PlantDefinition& thePlantDef, PlantInitialize_InitReanimation& base)
-								{
-									return ((T*)_this)->MF_PlantInitialize_InitReanimation(thePlantDef, base);
-								});
-						});
-
-					PVZMOD_MAGIC_FUNC(MF_PlantInitialize_BeforeInitType, void(PlantDefinition & thePlantDef, Reanimation * theBodyReanim, PlantInitialize_BeforeInitType & base), T,
-						{
-							Binding_MF_PlantInitialize_BeforeInitType(patch, [](Plant* _this, PlantDefinition& thePlantDef, Reanimation* theBodyReanim, PlantInitialize_BeforeInitType& base)
-								{
-									((T*)_this)->MF_PlantInitialize_BeforeInitType(thePlantDef, theBodyReanim, base);
-								});
-						});
-
-					PVZMOD_MAGIC_FUNC(MF_PlantInitialize_InitType, void(PlantDefinition & thePlantDef, Reanimation * theBodyReanim, PlantInitialize_InitType & base), T,
-						{
-							Binding_MF_PlantInitialize_InitType(patch, [](Plant* _this, PlantDefinition& thePlantDef, Reanimation* theBodyReanim, PlantInitialize_InitType& base)
-								{
-									((T*)_this)->MF_PlantInitialize_InitType(thePlantDef, theBodyReanim, base);
-								});
-						});
-
-					PVZMOD_MAGIC_FUNC(MF_PlantInitialize_AfterInitType, void(PlantDefinition & thePlantDef, Reanimation * theBodyReanim, PlantInitialize_AfterInitType & base), T,
-						{
-							Binding_MF_PlantInitialize_AfterInitType(patch, [](Plant* _this, PlantDefinition& thePlantDef, Reanimation* theBodyReanim, PlantInitialize_AfterInitType& base)
-								{
-									((T*)_this)->MF_PlantInitialize_AfterInitType(thePlantDef, theBodyReanim, base);
-								});
-						});
+					PVZMOD_GENERAL_MAGIC_FUNC(MF_PlantInitialize_InitMemberVariable, PlantDefinition&(int theGridX, int theGridY, SeedType theSeedType, SeedType theImitaterType, PlantInitialize_InitMemberVariable_t & base), T);
+					PVZMOD_GENERAL_MAGIC_FUNC(MF_PlantInitialize_InitReanimation, Reanimation*(PlantDefinition& thePlantDef, PlantInitialize_InitReanimation& base), T);
+					PVZMOD_GENERAL_MAGIC_FUNC(MF_PlantInitialize_BeforeInitType, void(PlantDefinition& thePlantDef, Reanimation* theBodyReanim, PlantInitialize_BeforeInitType& base), T);
+					PVZMOD_GENERAL_MAGIC_FUNC(MF_PlantInitialize_InitType, void(PlantDefinition& thePlantDef, Reanimation* theBodyReanim, PlantInitialize_InitType& base), T);
+					PVZMOD_GENERAL_MAGIC_FUNC(MF_PlantInitialize_AfterInitType, void(PlantDefinition& thePlantDef, Reanimation* theBodyReanim, PlantInitialize_AfterInitType& base), T);
 				}, true, true);
 			return {};
 		}
@@ -95,64 +61,15 @@ namespace PVZMod
 					using namespace __PRIVATE__;
 
 					Magic::IterateRef<PlantClass>([&] <typename T>
-						{
-							RegisterPlant<T>(patch, thePlantId);
-						});
+					{
+						RegisterPlant<T>(patch, thePlantId);
+					});
 
-					PVZMOD_MAGIC_FUNC_CHECK_BASE_CLASS(MF_PlantInitialize_InitMemberVariable, PlantDefinition & (int theGridX, int theGridY, SeedType theSeedType, SeedType theImitaterType, PlantInitialize_InitMemberVariable_t & base), PlantClass, BaseClass,
-						{
-							Binding_MF_PlantInitialize_InitMemberVariable(patch, [thePlantId](Plant* _this, int theGridX, int theGridY, SeedType theSeedType, SeedType theImitaterType, PlantInitialize_InitMemberVariable_t& base) -> PlantDefinition&
-								{
-									if (theSeedType == thePlantId)
-										return ((PlantClass*)_this)->MF_PlantInitialize_InitMemberVariable(theGridX, theGridY, theSeedType, theImitaterType, base);
-									else
-										return base();
-								});
-						});
-
-					PVZMOD_MAGIC_FUNC_CHECK_BASE_CLASS(MF_PlantInitialize_InitReanimation, Reanimation * (PlantDefinition & thePlantDef, PlantInitialize_InitReanimation & base), PlantClass, BaseClass,
-						{
-							Binding_MF_PlantInitialize_InitReanimation(patch, [thePlantId](Plant* _this, PlantDefinition& thePlantDef, PlantInitialize_InitReanimation& base)
-								{
-									if (_this->mSeedType == thePlantId)
-										return ((PlantClass*)_this)->MF_PlantInitialize_InitReanimation(thePlantDef, base);
-									else
-										return base();
-								});
-						});
-
-					PVZMOD_MAGIC_FUNC_CHECK_BASE_CLASS(MF_PlantInitialize_BeforeInitType, void(PlantDefinition & thePlantDef, Reanimation * theBodyReanim, PlantInitialize_BeforeInitType & base), PlantClass, BaseClass,
-						{
-							Binding_MF_PlantInitialize_BeforeInitType(patch, [thePlantId](Plant* _this, PlantDefinition& thePlantDef, Reanimation* theBodyReanim, PlantInitialize_BeforeInitType& base)
-								{
-									if (_this->mSeedType == thePlantId)
-										((PlantClass*)_this)->MF_PlantInitialize_BeforeInitType(thePlantDef, theBodyReanim, base);
-									else
-										base();
-								});
-						});
-
-					PVZMOD_MAGIC_FUNC_CHECK_BASE_CLASS(MF_PlantInitialize_InitType, void(PlantDefinition & thePlantDef, Reanimation * theBodyReanim, PlantInitialize_InitType & base), PlantClass, BaseClass,
-						{
-							Binding_MF_PlantInitialize_InitType(patch, [thePlantId](Plant* _this, PlantDefinition& thePlantDef, Reanimation* theBodyReanim, PlantInitialize_InitType& base)
-								{
-									if (_this->mSeedType == thePlantId)
-										((PlantClass*)_this)->MF_PlantInitialize_InitType(thePlantDef, theBodyReanim, base);
-									else
-										base();
-								});
-						});
-
-					PVZMOD_MAGIC_FUNC_CHECK_BASE_CLASS(MF_PlantInitialize_AfterInitType, void(PlantDefinition & thePlantDef, Reanimation * theBodyReanim, PlantInitialize_AfterInitType & base), PlantClass, BaseClass,
-						{
-							Binding_MF_PlantInitialize_AfterInitType(patch, [thePlantId](Plant* _this, PlantDefinition& thePlantDef, Reanimation* theBodyReanim, PlantInitialize_AfterInitType& base)
-								{
-									if (_this->mSeedType == thePlantId)
-										((PlantClass*)_this)->MF_PlantInitialize_AfterInitType(thePlantDef, theBodyReanim, base);
-									else
-										base();
-								});
-						});
+					PVZMOD_GENERAL_CHILD_MAGIC_FUNC(MF_PlantInitialize_InitMemberVariable, PlantDefinition&(int theGridX, int theGridY, SeedType theSeedType, SeedType theImitaterType, PlantInitialize_InitMemberVariable_t& base), PlantClass, BaseClass, thePlantId, PVZMOD_ARG(2) == thePlantId);
+					PVZMOD_GENERAL_CHILD_MAGIC_FUNC(MF_PlantInitialize_InitReanimation, Reanimation*(PlantDefinition & thePlantDef, PlantInitialize_InitReanimation & base), PlantClass, BaseClass, thePlantId, _this->mSeedType == thePlantId);
+					PVZMOD_GENERAL_CHILD_MAGIC_FUNC(MF_PlantInitialize_BeforeInitType, void(PlantDefinition& thePlantDef, Reanimation* theBodyReanim, PlantInitialize_BeforeInitType& base), PlantClass, BaseClass, thePlantId, _this->mSeedType == thePlantId);
+					PVZMOD_GENERAL_CHILD_MAGIC_FUNC(MF_PlantInitialize_InitType, void(PlantDefinition& thePlantDef, Reanimation* theBodyReanim, PlantInitialize_InitType& base), PlantClass, BaseClass, thePlantId, _this->mSeedType == thePlantId);
+					PVZMOD_GENERAL_CHILD_MAGIC_FUNC(MF_PlantInitialize_AfterInitType, void(PlantDefinition& thePlantDef, Reanimation* theBodyReanim, PlantInitialize_AfterInitType& base), PlantClass, BaseClass, thePlantId, _this->mSeedType == thePlantId);
 				}, !enableMultipleRegister);
 			return {};
 		}

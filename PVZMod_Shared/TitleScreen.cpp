@@ -36,8 +36,7 @@ TitleScreen::TitleScreen(LawnApp* theApp)
 
 TitleScreen::~TitleScreen()
 {
-	if (mStartButton)
-		delete mStartButton;
+	delete mStartButton;
 }
 
 void TitleScreen::AddedToManager(WidgetManager* theWidgetManager)

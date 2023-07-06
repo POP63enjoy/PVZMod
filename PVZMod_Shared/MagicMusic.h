@@ -20,6 +20,11 @@ namespace PVZMod
 		template <typename T>
 		void RegisterMain(InitPatch& patch);
 
+		////////////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////
+
+		// ≤•∑≈“Ù¿÷ - MF_PlayMusic
+
 		using PlayMusic_t = Magic::BaseFunction<void(Music* _this, MusicTune theMusicTune, int theOffset, int theDrumsOffset)>;
 		void Binding_MF_PlayMusic(InitPatch& patch, const std::function<void(Music* _this, MusicTune theMusicTune, int theOffset, int theDrumsOffset, PlayMusic_t& base)>& func);
 	}

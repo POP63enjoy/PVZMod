@@ -38,6 +38,33 @@ void MF_InitLevel(MagicBoard::InitLevel_t& base);
 void MF_DisposeBoard(MagicBoard::DisposeBoard_t& base);
 ```
 
+## 关卡存读档 - MF_Sync、MF_FixAfterLoad
+
+注意：默认情况下，框架会以复制字节的形式自动存读主魔法类中新增的成员变量，而如果定义了 `MF_Sync` 开头的任意魔法函数，框架将关闭自动存读机制，开发者应手动存读新增的成员变量。
+
+* ✅ 可以用于主魔法类。
+* ✅ 可以用于子魔法类。
+
+```cpp
+// 存读类成员数据。
+void MF_Sync_SyncData(SaveGameContext& theContext, MagicBoard::Sync_SyncData_t& base);
+
+// 存读对象池数据。
+void MF_Sync_SyncDataArray(SaveGameContext& theContext, MagicBoard::Sync_SyncDataArray_t& base);
+
+// 存读对象池内的对象。
+void MF_Sync_SyncDataArrayObject(SaveGameContext& theContext, MagicBoard::Sync_SyncDataArrayObject_t& base);
+
+// 存读其它对象。
+void MF_Sync_SyncOtherObject(SaveGameContext& theContext, MagicBoard::Sync_SyncOtherObject_t& base);
+
+// 存读其它内容。
+void MF_Sync_SyncOther(SaveGameContext& theContext, MagicBoard::Sync_SyncOther_t& base);
+
+// 读档后修复。
+void MF_FixAfterLoad(MagicBoard::FixAfterLoad_t& base);
+```
+
 ## 出怪计算 - MF_ZombiePicker
 
 * ✅ 可以用于主魔法类。
@@ -70,6 +97,53 @@ void MF_ZombiePicker_PutRandom(ZombiePicker& theZombiePicker, int theWave, Magic
 
   @param theWave 当前波数。
 
+## 静态关卡名称 - MC_LEVEL_NAME
+
+指定当前关卡名称。优先级小于动态关卡名称 `mvDynLevelName`，大于 @ref magic_ref_lawn_app 的 `MF_GetLevelName`。
+
+* ❌ 不可用于主魔法类。
+* ✅ 可以用于子魔法类。
+
+```cpp
+static constexpr const SexyChar* MC_LEVEL_NAME = _S("Level Name");
+```
+
+## 动态关卡名称 - mvUseDynLevelName、mvDynLevelName
+
+动态指定关卡内当前右下角的关卡名。优先级最高，对于过场中和菜单中的关卡名没有影响。
+
+* ✅ 可以用于主魔法类。
+* ❌ 不可用于子魔法类。
+
+```cpp
+// 为 true 则 mvDynLevelName 生效。当 Board 重新创建后，此值会重置为 false，请注意需手动存储状态。
+static inline bool mvUseDynLevelName = false;
+static inline SexyString mvDynLevelName = _S("Dynamic Name");
+```
+
+## 绘制关卡名称 - MF_DrawLevel
+
+* ✅ 可以用于主魔法类。
+* ✅ 可以用于子魔法类。
+
+```cpp
+void MF_DrawLevel(Graphics* g, const SexyString& theLevelName, int thePosX, int thePosY, DrawStringJustification theJustification, Font* theFont, const Color& theColor, MagicBoard::DrawLevel_t& base);
+```
+
+* @param g 绘图对象。
+
+  @param theLevelName 关卡名称。
+
+  @param thePosX X 坐标。
+
+  @param thePosY Y 坐标。
+
+  @param theFont 字体。
+  
+  @param theColor 颜色。
+  
+  @param theJustification 对齐方式。
+
 ## 画面偏移 - mvOffsetX、mvOffsetY
 
 对关卡画面进行偏移，同时修改鼠标判定。
@@ -80,15 +154,4 @@ void MF_ZombiePicker_PutRandom(ZombiePicker& theZombiePicker, int theWave, Magic
 ```cpp
 static inline int mvOffsetX = 0;
 static inline int mvOffsetY = 0;
-```
-
-## 自动存储新增成员变量 - MC_AUTO_SAVE_EXTENDED_DATA
-
-如果为 true 或未定义，则在游戏存档时通过拷贝字节的方式存储所有新增成员变量。
-
-* ✅ 可以用于主魔法类。
-* ❌ 不可用于子魔法类。
-
-```cpp
-static constexpr bool MC_AUTO_SAVE_EXTENDED_DATA = false;	// 禁止自动存储新增成员。
 ```

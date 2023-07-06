@@ -35,7 +35,7 @@ GameSelector::GameSelector(LawnApp* theApp)
 	mToolTip = new ToolTipWidget();
 
 	mAdventureButton = MakeNewButton(
-		Btn_Adventure,
+		GameSelector_Adventure,
 		this,
 		_S(""),
 		nullptr,
@@ -54,7 +54,7 @@ GameSelector::GameSelector(LawnApp* theApp)
 	mAdventureButton->mUsePolygonShape = true;
 
 	mMinigameButton = MakeNewButton(
-		Btn_Minigame,
+		GameSelector_Minigame,
 		this,
 		_S(""),
 		nullptr,
@@ -73,7 +73,7 @@ GameSelector::GameSelector(LawnApp* theApp)
 	mMinigameButton->mUsePolygonShape = true;
 
 	mPuzzleButton = MakeNewButton(
-		Btn_Puzzle,
+		GameSelector_Puzzle,
 		this,
 		_S(""),
 		nullptr,
@@ -92,7 +92,7 @@ GameSelector::GameSelector(LawnApp* theApp)
 	mPuzzleButton->mUsePolygonShape = true;
 
 	mSurvivalButton = MakeNewButton(
-		Btn_Survival,
+		GameSelector_Survival,
 		this,
 		_S(""),
 		nullptr,
@@ -111,7 +111,7 @@ GameSelector::GameSelector(LawnApp* theApp)
 	mSurvivalButton->mUsePolygonShape = true;
 
 	mZenGardenButton = MakeNewButton(
-		Btn_ZenGarden,
+		GameSelector_ZenGarden,
 		this,
 		_S(""),
 		nullptr,
@@ -124,7 +124,7 @@ GameSelector::GameSelector(LawnApp* theApp)
 	mZenGardenButton->mClip = false;
 
 	mOptionsButton = MakeNewButton(
-		Btn_Options,
+		GameSelector_Options,
 		this,
 		_S(""),
 		nullptr,
@@ -138,7 +138,7 @@ GameSelector::GameSelector(LawnApp* theApp)
 	mOptionsButton->mButtonOffsetY = 15;
 
 	mHelpButton = MakeNewButton(
-		Btn_Help,
+		GameSelector_Help,
 		this,
 		_S(""),
 		nullptr,
@@ -152,7 +152,7 @@ GameSelector::GameSelector(LawnApp* theApp)
 	mHelpButton->mButtonOffsetY = 30;
 
 	mQuitButton = MakeNewButton(
-		Btn_Quit,
+		GameSelector_Quit,
 		this,
 		_S(""),
 		nullptr,
@@ -167,7 +167,7 @@ GameSelector::GameSelector(LawnApp* theApp)
 	mQuitButton->mButtonOffsetY = 5;
 
 	mChangeUserButton = MakeNewButton(
-		Btn_ChangeUser,
+		GameSelector_ChangeUser,
 		this,
 		_S(""),
 		nullptr,
@@ -183,7 +183,7 @@ GameSelector::GameSelector(LawnApp* theApp)
 	mOverlayWidget->Resize(0, 0, BOARD_WIDTH, BOARD_HEIGHT);
 
 	mStoreButton = MakeNewButton(
-		Btn_Store,
+		GameSelector_Store,
 		this,
 		_S(""),
 		nullptr,
@@ -195,7 +195,7 @@ GameSelector::GameSelector(LawnApp* theApp)
 	mStoreButton->mMouseVisible = false;
 
 	mAlmanacButton = MakeNewButton(
-		Btn_Almanac,
+		GameSelector_Almanac,
 		this,
 		_S(""),
 		nullptr,
@@ -268,31 +268,18 @@ GameSelector::GameSelector(LawnApp* theApp)
 
 GameSelector::~GameSelector()
 {
-	if (mAdventureButton)
-		delete mAdventureButton;
-	if (mMinigameButton)
-		delete mMinigameButton;
-	if (mPuzzleButton)
-		delete mPuzzleButton;
-	if (mOptionsButton)
-		delete mOptionsButton;
-	if (mQuitButton)
-		delete mQuitButton;
-	if (mHelpButton)
-		delete mHelpButton;
-	if (mOverlayWidget)
-		delete mOverlayWidget;
-	if (mStoreButton)
-		delete mStoreButton;
-	if (mAlmanacButton)
-		delete mAlmanacButton;
-	if (mZenGardenButton)
-		delete mZenGardenButton;
-	if (mSurvivalButton)
-		delete mSurvivalButton;
-	if (mChangeUserButton)
-		delete mChangeUserButton;
-
+	delete mAdventureButton;
+	delete mMinigameButton;
+	delete mPuzzleButton;
+	delete mOptionsButton;
+	delete mQuitButton;
+	delete mHelpButton;
+	delete mOverlayWidget;
+	delete mStoreButton;
+	delete mAlmanacButton;
+	delete mZenGardenButton;
+	delete mSurvivalButton;
+	delete mChangeUserButton;
 	delete mToolTip;
 }
 

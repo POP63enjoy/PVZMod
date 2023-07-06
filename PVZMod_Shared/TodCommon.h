@@ -29,6 +29,7 @@ namespace PVZMod
 	bool					TodLoadResources(const String& theGroup);
 
 	SexyString				TodReplaceNumberString(const SexyString& theText, const SexyChar* theStringToFind, int theNumber);
+	SexyString				TodReplaceString(const SexyString& theText, const SexyChar* theStringToFind, const SexyString& theStringToSubstitute);
 
 	enum DrawStringJustification
 	{

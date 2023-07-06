@@ -68,7 +68,7 @@ public:
 	virtual BOOL			FindClose(HANDLE hFindFile) = 0;
 };
 
-class PakInterface : public PakInterfaceBase
+class PakInterface :public PakInterfaceBase
 {
 public:
 	PakCollectionList		mPakCollectionList;	

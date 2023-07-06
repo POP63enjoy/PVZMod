@@ -4,7 +4,6 @@
 #include "DDInterface.h"
 #include "WidgetManager.h"
 #include "DDImage.h"
-
 #include <cassert>
 
 using namespace PVZMod;
@@ -24,16 +23,12 @@ void SexyAppBase::SetCursor(int theCursorNum)
 
 void SexyAppBase::SetBoolean(const String& theId, bool theValue)
 {
-	std::pair<StringBoolMap::iterator, bool> aPair = mBoolProperties.insert(StringBoolMap::value_type(theId, theValue));
-	if (!aPair.second) // Found it, change value
-		aPair.first->second = theValue;
+	mBoolProperties[theId] = theValue;
 }
 
 void SexyAppBase::SetString(const String& theId, const WString& theValue)
 {
-	std::pair<StringWStringMap::iterator, bool> aPair = mStringProperties.insert(StringWStringMap::value_type(theId, theValue));
-	if (!aPair.second) // Found it, change value
-		aPair.first->second = theValue;
+	mStringProperties[theId] = theValue;
 }
 
 bool SexyAppBase::ProcessDeferredMessages(bool singleMessage)
@@ -56,8 +51,6 @@ bool SexyAppBase::ProcessDeferredMessages(bool singleMessage)
 	return result;
 }
 
-
-
 int SexyAppBase::InitDDInterface()
 {
 	int func = 0x5583a0;
@@ -73,7 +66,7 @@ int SexyAppBase::InitDDInterface()
 
 bool SexyAppBase::GetBoolean(const String& theId)
 {
-	StringBoolMap::iterator anItr = mBoolProperties.find(theId);
+	auto anItr = mBoolProperties.find(theId);
 	assert(anItr != mBoolProperties.end());
 
 	if (anItr != mBoolProperties.end())
@@ -88,6 +81,7 @@ bool SexyAppBase::RegistryReadString(const String& theKey, String* theString)
 
 	uint32_t aType;
 	uint32_t aLen = sizeof(aStr) - 1;
+
 	if (!RegistryRead(theKey, &aType, (uint8_t*)aStr, &aLen))
 		return false;
 
@@ -150,7 +144,6 @@ bool SexyAppBase::Is3DAccelerated()
 	return mDDInterface->mIs3D;
 }
 
-
 void SexyAppBase::ReinitDDInterface()
 {
 	InitDDInterface();
@@ -162,14 +155,14 @@ void SexyAppBase::ReinitDDInterface()
 void SexyAppBase::KeepAspectRatioFullClient(int theClientWidth, int theClientHeight)
 {
 	Rect rect;
-	if ((double)mWidth / mHeight < (double)theClientWidth / theClientHeight) // ×óÓÒºÚ±ß
+	if ((double)mWidth / mHeight < (double)theClientWidth / theClientHeight)	// ×óÓÒºÚ±ß
 	{
 		rect.mHeight = theClientHeight;
 		rect.mWidth = (int)ceil((double)theClientHeight * mWidth / mHeight);
 		rect.mY = 0;
 		rect.mX = (theClientWidth - rect.mWidth) / 2;
 	}
-	else // ÉÏÏÂºÚ±ß
+	else																		// ÉÏÏÂºÚ±ß
 	{
 		rect.mWidth = theClientWidth;
 		rect.mHeight = (int)ceil((double)theClientWidth * mHeight / mWidth);

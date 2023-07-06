@@ -7,7 +7,7 @@
 namespace PVZMod
 {
 	/// 【游戏类】超链接控件。（原 `Sexy::HyperlinkWidget`）
-	class HyperlinkWidget : public ButtonWidget
+	class HyperlinkWidget :public ButtonWidget
 	{
 	public:
 		Color					mColor;

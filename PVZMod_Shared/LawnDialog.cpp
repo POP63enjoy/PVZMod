@@ -120,12 +120,9 @@ LawnDialog::LawnDialog(LawnApp* theApp,
 
 LawnDialog::~LawnDialog()
 {
-	if (mReanimation)
-		delete mReanimation;
-	if (mLawnYesButton)
-		delete mLawnYesButton;
-	if (mLawnNoButton)
-		delete mLawnNoButton;
+	delete mReanimation;
+	delete mLawnYesButton;
+	delete mLawnNoButton;
 }
 
 void LawnDialog::AddedToManager(WidgetManager* theWidgetManager)

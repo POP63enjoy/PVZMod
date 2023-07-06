@@ -2,6 +2,7 @@
 #include "Graphics.h"
 #include "GameButton.h"
 #include "LawnApp.h"
+#include "Challenge.h"
 
 using namespace PVZMod;
 
@@ -56,23 +57,23 @@ int Board::PickRowForNewZombie(ZombieType theZombieType)
 	return result;
 }
 
-#define ITERATE(object)									\
-bool Board::Iterate##object##s(object*& the##object)	\
-{														\
-	while (m##object##s.IterateNext(the##object))		\
-		if (!the##object->mDead)						\
-			return true;								\
-		return false;									\
-}														\
+#define ITERATE_GAMEOBJECT(object) \
+bool Board::Iterate##object##s(object*& the##object) \
+{ \
+	while (m##object##s.IterateNext(the##object)) \
+		if (!the##object->mDead) \
+			return true; \
+		return false; \
+}
 
-ITERATE(Zombie);
-ITERATE(Plant);
-ITERATE(Projectile);
-ITERATE(Coin);
-ITERATE(LawnMower);
-ITERATE(GridItem);
+ITERATE_GAMEOBJECT(Zombie);
+ITERATE_GAMEOBJECT(Plant);
+ITERATE_GAMEOBJECT(Projectile);
+ITERATE_GAMEOBJECT(Coin);
+ITERATE_GAMEOBJECT(LawnMower);
+ITERATE_GAMEOBJECT(GridItem);
 
-#undef ITERATE
+#undef ITERATE_GAMEOBJECT
 
 int Board::GetNumWavesPerSurvivalStage()
 {
@@ -96,6 +97,18 @@ bool Board::IsFlagWave(int theWaveNumber)
 int Board::GetNumWavesPerFlag()
 {
 	return (mApp->IsFirstTimeAdventureMode() && mNumWaves < 10) ? mNumWaves : 10;
+}
+
+int Board::GetSurvivalFlagsCompleted()
+{
+	int aWavesPerFlag = GetNumWavesPerFlag();
+	int aFlagsCompleted = mChallenge->mSurvivalStage * GetNumWavesPerSurvivalStage() / aWavesPerFlag;
+	int aCurrentWave = mCurrentWave;
+
+	if (IsFlagWave(aCurrentWave - 1) && mBoardFadeOutCounter < 0 && !mNextSurvivalStageCounter)
+		aCurrentWave -= 1;
+
+	return aCurrentWave / aWavesPerFlag + aFlagsCompleted;
 }
 
 void Board::PutZombieInWave(ZombieType theZombieType, int theWaveNumber, ZombiePicker* theZombiePicker)
@@ -188,7 +201,7 @@ Plant* Board::GetFlowerPotAt(int theGridX, int theGridY)
 	Plant* aPlant = nullptr;
 	while (IteratePlants(aPlant))
 	{
-		if (aPlant->mPlantCol == theGridX && aPlant->mRow == theGridY && !aPlant->NotOnGround() && aPlant->mSeedType == SeedType::SEED_FLOWERPOT)
+		if (aPlant->mPlantCol == theGridX && aPlant->mRow == theGridY && !aPlant->NotOnGround() && aPlant->mSeedType == SEED_FLOWERPOT)
 		{
 			return aPlant;
 		}
@@ -199,11 +212,26 @@ Plant* Board::GetFlowerPotAt(int theGridX, int theGridY)
 bool Board::StageIsNight()
 {
 	return
-		mBackground == BackgroundType::BACKGROUND_2_NIGHT ||
-		mBackground == BackgroundType::BACKGROUND_4_FOG ||
-		mBackground == BackgroundType::BACKGROUND_6_BOSS ||
-		mBackground == BackgroundType::BACKGROUND_MUSHROOM_GARDEN ||
-		mBackground == BackgroundType::BACKGROUND_ZOMBIQUARIUM;
+		mBackground == BACKGROUND_2_NIGHT ||
+		mBackground == BACKGROUND_4_FOG ||
+		mBackground == BACKGROUND_6_BOSS ||
+		mBackground == BACKGROUND_MUSHROOM_GARDEN ||
+		mBackground == BACKGROUND_ZOMBIQUARIUM;
+}
+
+bool Board::HasProgressMeter()
+{
+	int func = 0x418830;
+	bool result;
+
+	__asm
+	{
+		mov edx, this
+		call func
+		mov result, al
+	}
+
+	return result;
 }
 
 ZombieID Board::ZombieGetID(Zombie* theZombie)

@@ -16,6 +16,7 @@ namespace PVZMod
 	class Board;
 	class LawnApp;
 	class ZombiePicker;
+	class SaveGameContext;
 	enum GameMode;
 
 	/// `Board` 魔法成员扩展。
@@ -44,7 +45,14 @@ namespace PVZMod
 		template<typename T>
 		RegisterManager<T> RegisterMain(InitPatch& patch);
 
+		////////////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////
+
+		// 基本信息绑定
+
 		void Binding_ExtendBase(InitPatch& patch, size_t theBoardSize, bool autoSaveExtendedData);
+
+		// 构造函数和析构函数 - MF_Constructor、MF_Destructor
 
 		using Constructor_t = Magic::BaseFunction<void(Board* _this, LawnApp* theApp)>;
 		void Binding_MF_Constructor(InitPatch& patch, const std::function<void(Board* _this, LawnApp* theApp, Constructor_t& base)>& func);
@@ -52,11 +60,37 @@ namespace PVZMod
 		using Destructor_t = Magic::BaseFunction<void(Board* _this)>;
 		void Binding_MF_Destructor(InitPatch& patch, const std::function<void(Board* _this, Destructor_t& base)>& func);
 
+		// 关卡信息初始化 - MF_InitLevel
+
 		using InitLevel_t = Magic::BaseFunction<void(Board* _this)>;
 		void Binding_MF_InitLevel(InitPatch& patch, const std::function<void(Board* _this, InitLevel_t& base)>& func);
 
+		// 释放资源 - MF_DisposeBoard
+
 		using DisposeBoard_t = Magic::BaseFunction<void(Board* _this)>;
 		void Binding_MF_DisposeBoard(InitPatch& patch, const std::function<void(Board* _this, DisposeBoard_t& base)>& func);
+
+		// 关卡存读档 - MF_Sync、MF_FixAfterLoad
+
+		using Sync_SyncData_t = Magic::BaseFunction<void(Board* _this, SaveGameContext& theContext)>;
+		void Binding_MF_Sync_SyncData(InitPatch& patch, const std::function<void(Board* _this, SaveGameContext& theContext, Sync_SyncData_t& base)>& func);
+
+		using Sync_SyncDataArray_t = Magic::BaseFunction<void(Board* _this, SaveGameContext& theContext)>;
+		void Binding_MF_Sync_SyncDataArray(InitPatch& patch, const std::function<void(Board* _this, SaveGameContext& theContext, Sync_SyncDataArray_t& base)>& func);
+
+		using Sync_SyncDataArrayObject_t = Magic::BaseFunction<void(Board* _this, SaveGameContext& theContext)>;
+		void Binding_MF_Sync_SyncDataArrayObject(InitPatch& patch, const std::function<void(Board* _this, SaveGameContext& theContext, Sync_SyncDataArrayObject_t& base)>& func);
+
+		using Sync_SyncOtherObject_t = Magic::BaseFunction<void(Board* _this, SaveGameContext& theContext)>;
+		void Binding_MF_Sync_SyncOtherObject(InitPatch& patch, const std::function<void(Board* _this, SaveGameContext& theContext, Sync_SyncOtherObject_t& base)>& func);
+
+		using Sync_SyncOther_t = Magic::BaseFunction<void(Board* _this, SaveGameContext& theContext)>;
+		void Binding_MF_Sync_SyncOther(InitPatch& patch, const std::function<void(Board* _this, SaveGameContext& theContext, Sync_SyncOther_t& base)>& func);
+
+		using FixAfterLoad_t = Magic::BaseFunction<void(Board* _this)>;
+		void Binding_MF_FixAfterLoad(InitPatch& patch, const std::function<void(Board* _this, FixAfterLoad_t& base)>& func);
+
+		// 出怪计算 - MF_ZombiePicker
 
 		using ZombiePicker_CalculateNumWaves_t = Magic::BaseFunction<void(Board* _this)>;
 		void Binding_MF_ZombiePicker_CalculateNumWaves(InitPatch& patch, const std::function<void(Board* _this, ZombiePicker_CalculateNumWaves_t& base)>& func);
@@ -79,7 +113,21 @@ namespace PVZMod
 		using ZombiePicker_PutRandom_t = Magic::BaseFunction<void(Board* _this, ZombiePicker& theZombiePicker, int theWave)>;
 		void Binding_MF_ZombiePicker_PutRandom(InitPatch& patch, const std::function<void(Board* _this, ZombiePicker& theZombiePicker, int theWave, ZombiePicker_PutRandom_t& base)>& func);
 
-		extern int* mvOffsetXPtr, * mvOffsetYPtr;
+		// 静态关卡名称 - MC_LEVEL_NAME
+
+		void Binding_MC_LEVEL_NAME(InitPatch& patch, GameMode theLevelId, const SexyChar* theLevelName);
+		
+		// 动态关卡名称 - mvUseDynLevelName、mvDynLevelName
+
+		void Binding_mvDynLevelName(InitPatch& patch, bool* theUseDynLevelNamePtr, SexyString* theDynLevelNamePtr);
+
+		// 绘制关卡名称 - MF_DrawLevel
+
+		using DrawLevel_t = Magic::BaseFunction<void(Board* _this, Graphics* g, const SexyString& theLevelName, int thePosX, int thePosY, DrawStringJustification theJustification, Font* theFont, const Color& theColor)>;
+		void Binding_MF_DrawLevel(InitPatch& patch, const std::function<void(Board* _this, Graphics* g, const SexyString& theLevelName, int thePosX, int thePosY, DrawStringJustification theJustification, Font* theFont, const Color& theColor, DrawLevel_t& base)>& func);
+
+		// 画面偏移 - mvOffsetX、mvOffsetY
+
 		void Binding_mvOffset(InitPatch& patch, int* theOffsetXPtr, int* theOffsetYPtr);
 	}
 }

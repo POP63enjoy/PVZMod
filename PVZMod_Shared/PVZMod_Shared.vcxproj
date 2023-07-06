@@ -66,6 +66,7 @@
     <ClInclude Include="Insets.h" />
     <ClInclude Include="KeyCodes.h" />
     <ClInclude Include="LawnApp.h" />
+    <ClInclude Include="MagicBoard_private.h" />
     <ClInclude Include="MagicLawnApp.h" />
     <ClInclude Include="LawnCommon.h" />
     <ClInclude Include="LawnDialog.h" />
@@ -74,10 +75,12 @@
     <ClInclude Include="ListWidget.h" />
     <ClInclude Include="Magic.h" />
     <ClInclude Include="MagicBoard.h" />
+    <ClInclude Include="MagicLawnApp_private.h" />
     <ClInclude Include="MagicMusic.h" />
     <ClInclude Include="MagicPlant.h" />
     <ClInclude Include="MagicZombie.h" />
     <ClInclude Include="MemoryImage.h" />
+    <ClInclude Include="MessageWidget.h" />
     <ClInclude Include="MTRand.h" />
     <ClInclude Include="Music.h" />
     <ClInclude Include="MusicInterface.h" />
@@ -96,6 +99,7 @@
     <ClInclude Include="Res.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="ResourcePatch.h" />
+    <ClInclude Include="SaveGame.h" />
     <ClInclude Include="ScrollbarWidget.h" />
     <ClInclude Include="ScrollbuttonWidget.h" />
     <ClInclude Include="ScrollListener.h" />
@@ -110,9 +114,11 @@
     <ClInclude Include="TitleScreen.h" />
     <ClInclude Include="TodCommon.h" />
     <ClInclude Include="TodFoley.h" />
+    <ClInclude Include="TodList.h" />
     <ClInclude Include="TodParticle.h" />
     <ClInclude Include="TodStringFile.h" />
     <ClInclude Include="ToolTipWidget.h" />
+    <ClInclude Include="Trail.h" />
     <ClInclude Include="TriVertex.h" />
     <ClInclude Include="Widget.h" />
     <ClInclude Include="WidgetContainer.h" />
@@ -126,6 +132,7 @@
     <ClCompile Include="BassLoader.cpp" />
     <ClCompile Include="BassMusicInterface.cpp" />
     <ClCompile Include="Board.cpp" />
+    <ClCompile Include="Buffer.cpp" />
     <ClCompile Include="ButtonWidget.cpp" />
     <ClCompile Include="ChallengeScreen.cpp" />
     <ClCompile Include="Checkbox.cpp" />
@@ -173,6 +180,7 @@
     <ClCompile Include="Res.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="ResourcePatch.cpp" />
+    <ClCompile Include="SaveGame.cpp" />
     <ClCompile Include="ScrollbarWidget.cpp" />
     <ClCompile Include="ScrollbuttonWidget.cpp" />
     <ClCompile Include="SexyAppBase.cpp" />
@@ -277,7 +285,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <EnableEnhancedInstructionSet>NoExtensions</EnableEnhancedInstructionSet>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -297,7 +305,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <EnableEnhancedInstructionSet>NoExtensions</EnableEnhancedInstructionSet>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -317,7 +325,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <EnableEnhancedInstructionSet>NoExtensions</EnableEnhancedInstructionSet>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -337,7 +345,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <EnableEnhancedInstructionSet>NoExtensions</EnableEnhancedInstructionSet>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>

@@ -11,7 +11,7 @@ namespace PVZMod
 	class SysFont;
 
 	/// °æ”Œœ∑¿‡°øDirectDraw Ã˘Õº°££®‘≠ `Sexy::DDImage`£©
-	class DDImage : public MemoryImage
+	class DDImage :public MemoryImage
 	{
 	protected:
 		friend class			SysFont;
@@ -94,7 +94,7 @@ namespace PVZMod
 		virtual void			DeleteNativeData();
 		virtual void			DeleteExtraBuffers();
 
-		static DDImage* GetNew();
+		static DDImage*			GetNew();
 	};
 }
 

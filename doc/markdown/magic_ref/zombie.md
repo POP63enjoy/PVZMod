@@ -53,5 +53,5 @@ void MF_ZombieInitialize_AfterInitType(ZombieDefinition& theZombieDef, Zombie* t
 * ❌ 不可用于子魔法类。
 
 ```cpp
-static constexpr size_t MC_DATA_ARRAY_SIZE = 2048;	// 将对象上限设置为 2048
+static constexpr size_t MC_DATA_ARRAY_SIZE = 2048;	// 将对象上限设置为 2048。
 ```

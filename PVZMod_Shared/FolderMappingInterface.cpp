@@ -92,17 +92,20 @@ PFILE* FolderMappingInterface::FOpen(const char* theFileName, const char* theAcc
 	{
 		for (auto& folder : mFolderList)
 		{
-			if (auto folderName = std::get_if<Folder>(&folder); folderName)
+			if (auto folderName = std::get_if<Folder>(&folder))
 			{
 				FILE* aFP = nullptr;
+
 				fopen_s(&aFP, (*folderName + theFileName).c_str(), theAccess);
-				if (aFP == NULL)
-					return NULL;
-				PFILE* aPFP = new PFILE;
-				aPFP->mRecord = NULL;
-				aPFP->mPos = 0;
-				aPFP->mFP = aFP;
-				return aPFP;
+
+				if (aFP != nullptr)
+				{
+					PFILE* aPFP = new PFILE;
+					aPFP->mRecord = nullptr;
+					aPFP->mPos = 0;
+					aPFP->mFP = aFP;
+					return aPFP;
+				}
 			}
 			else
 			{
@@ -118,7 +121,7 @@ PFILE* FolderMappingInterface::FOpen(const char* theFileName, const char* theAcc
 					PFILE* aPFP = new PFILE;
 					aPFP->mRecord = &anItr->second;
 					aPFP->mPos = 0;
-					aPFP->mFP = NULL;
+					aPFP->mFP = nullptr;
 					return aPFP;
 				}
 			}
@@ -129,10 +132,10 @@ PFILE* FolderMappingInterface::FOpen(const char* theFileName, const char* theAcc
 
 	FILE* aFP = nullptr;
 	fopen_s(&aFP, theFileName, theAccess);
-	if (aFP == NULL)
-		return NULL;
+	if (aFP == nullptr)
+		return nullptr;
 	PFILE* aPFP = new PFILE;
-	aPFP->mRecord = NULL;
+	aPFP->mRecord = nullptr;
 	aPFP->mPos = 0;
 	aPFP->mFP = aFP;
 	return aPFP;
@@ -140,7 +143,7 @@ PFILE* FolderMappingInterface::FOpen(const char* theFileName, const char* theAcc
 
 int FolderMappingInterface::FClose(PFILE* theFile)
 {
-	if (theFile->mRecord == NULL)
+	if (theFile->mRecord == nullptr)
 		fclose(theFile->mFP);
 	delete theFile;
 	return 0;
@@ -148,7 +151,7 @@ int FolderMappingInterface::FClose(PFILE* theFile)
 
 int FolderMappingInterface::FSeek(PFILE* theFile, long theOffset, int theOrigin)
 {
-	if (theFile->mRecord != NULL)
+	if (theFile->mRecord != nullptr)
 	{
 		if (theOrigin == SEEK_SET)
 			theFile->mPos = theOffset;
@@ -166,7 +169,7 @@ int FolderMappingInterface::FSeek(PFILE* theFile, long theOffset, int theOrigin)
 
 int FolderMappingInterface::FTell(PFILE* theFile)
 {
-	if (theFile->mRecord != NULL)
+	if (theFile->mRecord != nullptr)
 		return theFile->mPos;
 	else
 		return ftell(theFile->mFP);
@@ -174,7 +177,7 @@ int FolderMappingInterface::FTell(PFILE* theFile)
 
 size_t FolderMappingInterface::FRead(void* thePtr, int theElemSize, int theCount, PFILE* theFile)
 {
-	if (theFile->mRecord != NULL)
+	if (theFile->mRecord != nullptr)
 	{
 		int aSizeBytes = min(theElemSize * theCount, theFile->mRecord->mSize - theFile->mPos);
 
@@ -191,7 +194,7 @@ size_t FolderMappingInterface::FRead(void* thePtr, int theElemSize, int theCount
 
 int FolderMappingInterface::FGetC(PFILE* theFile)
 {
-	if (theFile->mRecord != NULL)
+	if (theFile->mRecord != nullptr)
 	{
 		for (;;)
 		{
@@ -208,7 +211,7 @@ int FolderMappingInterface::FGetC(PFILE* theFile)
 
 int FolderMappingInterface::UnGetC(int theChar, PFILE* theFile)
 {
-	if (theFile->mRecord != NULL)
+	if (theFile->mRecord != nullptr)
 	{
 		// This won't work if we're not pushing the same chars back in the stream
 		theFile->mPos = max(theFile->mPos - 1, 0);
@@ -220,7 +223,7 @@ int FolderMappingInterface::UnGetC(int theChar, PFILE* theFile)
 
 char* FolderMappingInterface::FGetS(char* thePtr, int theSize, PFILE* theFile)
 {
-	if (theFile->mRecord != NULL)
+	if (theFile->mRecord != nullptr)
 	{
 		int anIdx = 0;
 		while (anIdx < theSize)
@@ -228,7 +231,7 @@ char* FolderMappingInterface::FGetS(char* thePtr, int theSize, PFILE* theFile)
 			if (theFile->mPos >= theFile->mRecord->mSize)
 			{
 				if (anIdx == 0)
-					return NULL;
+					return nullptr;
 				break;
 			}
 			char aChar = *((char*)theFile->mRecord->mCollection->mDataPtr + theFile->mRecord->mStartPos + theFile->mPos++) ^ 0xF7;
@@ -246,7 +249,7 @@ char* FolderMappingInterface::FGetS(char* thePtr, int theSize, PFILE* theFile)
 
 int FolderMappingInterface::FEof(PFILE* theFile)
 {
-	if (theFile->mRecord != NULL)
+	if (theFile->mRecord != nullptr)
 		return theFile->mPos >= theFile->mRecord->mSize;
 	else
 		return feof(theFile->mFP);
@@ -263,7 +266,7 @@ HANDLE FolderMappingInterface::FindFirstFileA(const char* lpFileName, LPWIN32_FI
 
 	for (auto &folder : mFolderList)
 	{
-		if (auto folderName = std::get_if<Folder>(&folder); folderName)
+		if (auto folderName = std::get_if<Folder>(&folder))
 		{
 			aFindData->mWHandle = ::FindFirstFileA((*folderName + aFindData->mFindCriteria).c_str(), lpFindFileData);
 			if (aFindData->mWHandle != INVALID_HANDLE_VALUE)
@@ -307,7 +310,7 @@ BOOL FolderMappingInterface::FindNextFileA(HANDLE hFindFile, LPWIN32_FIND_DATAA 
 	while (++aFindData->mIter != mFolderList.end())
 	{
 		folder = *aFindData->mIter;
-		if (auto folderName = std::get_if<Folder>(&folder); folderName)
+		if (auto folderName = std::get_if<Folder>(&folder))
 		{
 			aFindData->mWHandle = ::FindFirstFileA((*folderName+aFindData->mFindCriteria).c_str(), lpFindFileData);
 			if (aFindData->mWHandle != INVALID_HANDLE_VALUE)

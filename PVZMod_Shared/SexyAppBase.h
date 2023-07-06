@@ -75,14 +75,14 @@ namespace PVZMod
 	class SexyAppBase :public ButtonListener, public DialogListener
 	{
 	public:
-		uint32_t					mRandSeed;
+		uint32_t				mRandSeed;
 
-		String				mCompanyName;
-		String				mFullCompanyName;
-		String				mProdName;
+		String					mCompanyName;
+		String					mFullCompanyName;
+		String					mProdName;
 		SexyString				mTitle;
-		String				mRegKey;
-		String				mChangeDirTo;
+		String					mRegKey;
+		String					mChangeDirTo;
 
 		int						mRelaxUpdateBacklogCount; // app doesn't try to catch up for this many frames
 		int						mPreferredX;
@@ -107,7 +107,7 @@ namespace PVZMod
 		CritSect				mCritSect;
 		bool					mBetaValidate;
 		uint8_t					mAdd8BitMaxTable[512];
-		WidgetManager* mWidgetManager;
+		WidgetManager*			mWidgetManager;
 		DialogMap				mDialogMap;
 		DialogList				mDialogList;
 		DWORD					mPrimaryThreadId;
@@ -130,17 +130,17 @@ namespace PVZMod
 		bool					mNoDefer;
 		bool					mFullScreenPageFlip;
 		bool					mTabletPC;
-		DDInterface* mDDInterface;
+		DDInterface*			mDDInterface;
 		bool					mAlphaDisabled;
-		MusicInterface* mMusicInterface;
+		MusicInterface*			mMusicInterface;
 		bool					mReadFromRegistry;
-		String				mRegisterLink;
-		String				mProductVersion;
-		Image* mCursorImages[NUM_CURSORS];
+		String					mRegisterLink;
+		String					mProductVersion;
+		Image*					mCursorImages[NUM_CURSORS];
 		HCURSOR					mOverrideCursor;
 		bool					mIsOpeningURL;
 		bool					mShutdownOnURLOpen;
-		String				mOpeningURL;
+		String					mOpeningURL;
 		DWORD					mOpeningURLTime;
 		DWORD					mLastTimerTime;
 		DWORD					mLastBigDelayTime;
@@ -181,7 +181,7 @@ namespace PVZMod
 		int						mStepMode;  // 0 = off, 1 = step, 2 = waiting for step
 
 		int						mCursorNum;
-		SoundManager* mSoundManager;
+		SoundManager*			mSoundManager;
 		HCURSOR					mHandCursor;
 		HCURSOR					mDraggingCursor;
 		WidgetSafeDeleteList	mSafeDeleteList;
@@ -193,7 +193,7 @@ namespace PVZMod
 		bool					mIsDisabled;
 		bool					mHasFocus;
 		int						mDrawTime;
-		uint32_t					mFPSStartTick;
+		uint32_t				mFPSStartTick;
 		int						mFPSFlipCount;
 		int						mFPSDirtyCount;
 		int						mFPSTime;
@@ -213,8 +213,8 @@ namespace PVZMod
 		bool					mCustomCursorDirty;
 		bool					mLastShutdownWasGraceful;
 		bool					mIsWideWindow;
-		bool mWriteToSexyCache;
-		bool mSexyCacheBuffers;
+		bool					mWriteToSexyCache;
+		bool					mSexyCacheBuffers;
 
 		int						mNumLoadingThreadTasks;
 		int						mCompletedLoadingThreadTasks;
@@ -223,8 +223,8 @@ namespace PVZMod
 		bool					mRecordingDemoBuffer;
 		bool					mPlayingDemoBuffer;
 		bool					mManualShutdown;
-		String			mDemoPrefix;
-		String			mDemoFileName;
+		String					mDemoPrefix;
+		String					mDemoFileName;
 		Buffer					mDemoBuffer;
 		int						mDemoLength;
 		int						mLastDemoMouseX;
@@ -247,7 +247,7 @@ namespace PVZMod
 		bool					mEnableMaximizeButton;
 		bool					mCtrlDown;
 		bool					mAltDown;
-		bool mAllowAltEnter;
+		bool					mAllowAltEnter;
 
 		int						mSyncRefreshRate;
 		bool					mVSyncUpdates;
@@ -264,7 +264,7 @@ namespace PVZMod
 		DWORD					mRecommendedVidMemory3D;
 
 		bool					mWidescreenAware;
-		bool mWidescreenTranslate;
+		bool					mWidescreenTranslate;
 		Rect					mScreenBounds;
 		bool					mEnableWindowAspect;
 		Ratio					mWindowAspect;
@@ -274,7 +274,7 @@ namespace PVZMod
 		StringIntMap			mIntProperties;
 		StringDoubleMap			mDoubleProperties;
 		StringStringVectorMap	mStringVectorProperties;
-		ResourceManager* mResourceManager;
+		ResourceManager*		mResourceManager;
 		LONG					mOldWndProc;
 #ifdef PVZMOD_SEXYAPP_ALL_PUBLIC
 	public:
@@ -525,9 +525,9 @@ namespace PVZMod
 		static LRESULT CALLBACK	WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 	public:	// ÐÂÔöº¯Êý
-		void ReinitDDInterface();
-		void KeepAspectRatioFullClient(int theClientWidth, int theClientHeight);
-		LRESULT WindowSizingKeepAspectRatio(HWND hwnd, WPARAM wParam, LPARAM lParam);
+		void					ReinitDDInterface();
+		void					KeepAspectRatioFullClient(int theClientWidth, int theClientHeight);
+		LRESULT					WindowSizingKeepAspectRatio(HWND hwnd, WPARAM wParam, LPARAM lParam);
 	};
 
 	static_assert(sizeof(SexyAppBase) == 0x640);

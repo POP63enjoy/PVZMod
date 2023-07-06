@@ -53,11 +53,24 @@ bool PVZMod::TodLoadResources(const String& theGroup)
 SexyString PVZMod::TodReplaceNumberString(const SexyString& theText, const SexyChar* theStringToFind, int theNumber)
 {
 	SexyString aFinalString = TodStringTranslate(theText);
-	int aPos = aFinalString.find(theStringToFind);
-	if (aPos != SexyString::npos)
+	
+	if (size_t aPos = aFinalString.find(theStringToFind); aPos != SexyString::npos)
 	{
 		SexyString aNumberString = StrFormat(_S("%d"), theNumber);
 		aFinalString.replace(aPos, sexystrlen(theStringToFind), aNumberString);
+	}
+
+	return aFinalString;
+}
+
+SexyString PVZMod::TodReplaceString(const SexyString& theText, const SexyChar* theStringToFind, const SexyString& theStringToSubstitute)
+{
+	SexyString aFinalString = TodStringTranslate(theText);
+	
+	if (size_t aPos = aFinalString.find(theStringToFind); aPos != SexyString::npos)
+	{
+		SexyString aFinalStringToSubstitute = TodStringTranslate(theStringToSubstitute);
+		aFinalString.replace(aPos, sexystrlen(theStringToFind), aFinalStringToSubstitute);
 	}
 
 	return aFinalString;

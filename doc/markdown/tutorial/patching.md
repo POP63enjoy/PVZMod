@@ -97,4 +97,4 @@ void PVZMod::Main(InitPatch& patch)
 
 原版游戏中，还有大部分类是不支持多态的，例如 `PVZMod::Plant`、`PVZMod::Zombie` 等基于 `PVZMod::GameObject` 的类，还有如 `PVZMod::LawnApp` 和 `PVZMod::Board` 这类实现多态继承比较复杂的类，继承这些类，需要用到“魔法成员机制”，具体使用方法会在后面的章节详细解释，简单来说，就是在继承的类中，定义指定名称的成员函数或成员变量，就会自动进行对应的补丁，以调用对应函数或操作对应的变量。
 
-另外，两种形式的继承还可能同时存在于一个类，例如 `PVZMod::ResourcePatch::ReplacePakInterface`，既支持重写虚函数，也有魔法成员。
+另外，两种形式的继承还可能同时存在于一个类，例如通过 `PVZMod::ResourcePatch::ReplacePakInterface` 函数替换 `PakInterface`，既支持重写虚函数，也有魔法成员。

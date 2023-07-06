@@ -39,10 +39,10 @@ namespace PVZMod
 		bool					mIsWindowed;
 
 		typedef Set<MemoryImage*> ImageSet;
-		ImageSet mImageSet;
+		ImageSet				mImageSet;
 
 		typedef List<SexyMatrix3> TransformStack;
-		TransformStack mTransformStack;
+		TransformStack			mTransformStack;
 
 		//static std::string mErrorString;
 

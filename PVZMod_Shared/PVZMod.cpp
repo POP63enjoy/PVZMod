@@ -2,6 +2,7 @@
 #include <cassert>
 #include "Res.h"
 #include <intrin.h>
+#include "MagicBoard_private.h"
 
 using namespace PVZMod;
 
@@ -84,6 +85,9 @@ BOOL WINAPI DllMain(
 					{
 						ExtractGameResourcesByName = (decltype(ExtractGameResourcesByName))patch->mHook.HookFunction((void*)0x478320, &ExtractAllResourcesByName);
 					});
+
+				__MAGIC_BOARD_PRIVATE__::LevelNamePatch(*patch);
+
 				Main(*patch);
 			});
 		delete patch;

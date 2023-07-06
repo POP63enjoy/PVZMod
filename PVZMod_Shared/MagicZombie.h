@@ -42,7 +42,14 @@ namespace PVZMod
 		template <typename T>
 		RegisterManager<T> RegisterMain(InitPatch& patch);
 
+		////////////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////
+
+		// 基本信息绑定 & 对象上限 - MC_DATA_ARRAY_SIZE
+
 		void Binding_ExtendBase(InitPatch& patch, size_t theZombieSize, size_t theDataArraySize);
+
+		// 初始化 - MF_ZombieInitialize
 
 		using ZombieInitialize_InitMemberVariable_t = Magic::BaseFunction<ZombieDefinition& (Zombie* _this, int theRow, ZombieType theType, bool theVariant, Zombie* theParentZombie, int theFromWave)>;
 		void Binding_MF_ZombieInitialize_InitMemberVariable(InitPatch& patch, const std::function<ZombieDefinition& (Zombie* _this, int theRow, ZombieType theType, bool theVariant, Zombie* theParentZombie, int theFromWave, ZombieInitialize_InitMemberVariable_t& base)>& func);

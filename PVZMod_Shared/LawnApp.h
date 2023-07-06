@@ -184,6 +184,9 @@ namespace PVZMod
 		TRIALTYPE_NONE,
 		TRIALTYPE_STAGELOCKED,
 	};
+
+	constexpr const int ADVENTURE_AREAS = 5;
+	constexpr const int LEVELS_PER_AREA = 10;
 	
 	/// 【游戏类】游戏程序主类。（原 `::%LawnApp`）
 	class LawnApp :public SexyApp
@@ -271,6 +274,7 @@ namespace PVZMod
 		void					ShowChallengeScreen(ChallengePage thePage);
 		int						GetCurrentChallengeIndex();
 		ChallengeDefinition&	GetCurrentChallengeDef();
+		static SexyString		GetStageString(int theLevel);
 
 		bool					IsAdventureMode();
 		bool					IsWhackAZombieLevel();
@@ -288,14 +292,18 @@ namespace PVZMod
 		bool					IsShovelLevel();
 		bool					IsWallnutBowlingLevel();
 		bool					IsScaryPotterLevel();
+		static bool				IsEndlessScaryPotter(GameMode theGameMode);
 		bool					IsIZombieLevel();
+		static bool				IsEndlessIZombie(GameMode theGameMode);
 
-		void				PreNewGame(GameMode theGameMode, bool theLookForSavedGame);
+		void					PreNewGame(GameMode theGameMode, bool theLookForSavedGame);
 
-		void				PlayFoley(FoleyType theFoleyType);
+		void					PlayFoley(FoleyType theFoleyType);
 
-		void				CenterDialog(Dialog* theDialog, int theWidth, int theHeight);
-		int					LawnMessageBox(int theDialogId, const SexyChar* theHeaderName, const SexyChar* theLinesName, const SexyChar* theButton1Name, const SexyChar* theButton2Name, int theButtonMode);
+		void					CenterDialog(Dialog* theDialog, int theWidth, int theHeight);
+		int						LawnMessageBox(int theDialogId, const SexyChar* theHeaderName, const SexyChar* theLinesName, const SexyChar* theButton1Name, const SexyChar* theButton2Name, int theButtonMode);
+
+		static SexyString		Pluralize(int theCount, const SexyChar* theSingular, const SexyChar* thePlural);
 	};
 
 	static_assert(sizeof(LawnApp) == 0x8c8);

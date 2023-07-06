@@ -42,7 +42,14 @@ namespace PVZMod
 		template <typename T>
 		RegisterManager<T> RegisterMain(InitPatch& patch);
 
+		////////////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////
+
+		// 基本信息绑定 & 对象上限 - MC_DATA_ARRAY_SIZE
+
 		void Binding_ExtendBase(InitPatch& patch, size_t thePlantSize, size_t theDataArraySize);
+
+		// 初始化 - MF_PlantInitialize
 
 		using PlantInitialize_InitMemberVariable_t = Magic::BaseFunction<PlantDefinition& (Plant* _this, int theGridX, int theGridY, SeedType theSeedType, SeedType theImitaterType)>;
 		void Binding_MF_PlantInitialize_InitMemberVariable(InitPatch& patch, const std::function<PlantDefinition& (Plant* _this, int theGridX, int theGridY, SeedType theSeedType, SeedType theImitaterType, PlantInitialize_InitMemberVariable_t& base)>& func);

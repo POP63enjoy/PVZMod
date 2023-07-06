@@ -25,7 +25,7 @@ ChallengeScreen::ChallengeScreen(LawnApp* theApp, ChallengePage thePage)
 	mUnlockStateCounter = 0;
 	TodLoadResources("DelayLoad_ChallengeScreen");
 
-	mBackButton = MakeNewButton(BTN_BACK, this, _S("[BACK_TO_MENU]"), nullptr, IMAGE_SEEDCHOOSER_BUTTON2,
+	mBackButton = MakeNewButton(ChallengeScreen_Back, this, _S("[BACK_TO_MENU]"), nullptr, IMAGE_SEEDCHOOSER_BUTTON2,
 		IMAGE_SEEDCHOOSER_BUTTON2_GLOW, IMAGE_SEEDCHOOSER_BUTTON2_GLOW);
 	mBackButton->mTextDownOffsetX = 1;
 	mBackButton->mTextDownOffsetY = 1;
@@ -35,7 +35,7 @@ ChallengeScreen::ChallengeScreen(LawnApp* theApp, ChallengePage thePage)
 
 	for (int aPageIdx = CHALLENGE_PAGE_SURVIVAL; aPageIdx < MAX_CHALLANGE_PAGES; aPageIdx++)
 	{
-		ButtonWidget* aPageButton = new ButtonWidget(BTN_PAGE + aPageIdx, this);
+		ButtonWidget* aPageButton = new ButtonWidget(ChallengeScreen_Page + aPageIdx, this);
 		aPageButton->mDoFinger = true;
 		mPageButton[aPageIdx] = aPageButton;
 		if (aPageIdx == CHALLENGE_PAGE_LIMBO)
@@ -56,7 +56,7 @@ ChallengeScreen::ChallengeScreen(LawnApp* theApp, ChallengePage thePage)
 	for (int aChallengeMode = 0; aChallengeMode < NUM_CHALLENGE_MODES; aChallengeMode++)
 	{
 		ChallengeDefinition& aChlDef = GetChallengeDefinition(aChallengeMode);
-		ButtonWidget* aChallengeButton = new ButtonWidget(BTN_MODE + aChallengeMode, this);
+		ButtonWidget* aChallengeButton = new ButtonWidget(ChallengeScreen_Mode + aChallengeMode, this);
 		mChallengeButtons[aChallengeMode] = aChallengeButton;
 		aChallengeButton->mDoFinger = true;
 		aChallengeButton->mFrameNoDraw = true;

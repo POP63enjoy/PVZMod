@@ -2,10 +2,13 @@
 #define PVZMOD_SEXYAPP_ALL_PUBLIC
 #include "LawnApp.h"
 #include "MagicLawnApp.h"
-
+#include "MagicLawnApp_private.h"
 #include <cassert>
+#include "TodStringFile.h"
 
 using namespace PVZMod;
+
+// 构造函数和析构函数 - MF_Constructor、MF_Destructor
 
 void MagicLawnApp::Binding_MF_Constructor(InitPatch& patch, const std::function<void(LawnApp* _this, Constructor_t& base)>& func)
 {
@@ -85,6 +88,8 @@ void MagicLawnApp::Binding_MF_Destructor(InitPatch& patch, const std::function<v
 			func_list.push_back(func);
 		}, false);
 }
+
+// 初始化与释放 - MF_Init、MF_LoadingThreadProc、MF_LoadingCompleted、MF_Shutdown
 
 void MagicLawnApp::Binding_MF_Init(InitPatch& patch, const std::function<void(LawnApp* _this, Init_t& base)>& func)
 {
@@ -242,6 +247,8 @@ void MagicLawnApp::Binding_MF_Shutdown(InitPatch& patch, const std::function<voi
 		}, false);
 }
 
+// 游戏窗口消息处理 - MF_WindowProc
+
 void MagicLawnApp::Binding_MF_WindowProc(InitPatch& patch, const std::function<LRESULT(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam, WindowProc_t& base)>& func)
 {
 	patch.PatchTask("MagicLawnApp::Binding_MF_WindowProc", [&]
@@ -292,6 +299,8 @@ void MagicLawnApp::Binding_MF_WindowProc(InitPatch& patch, const std::function<L
 			func_list.push_back(func);
 		});
 }
+
+// 全局对话框 - MC_NUM_DIALOGS、MF_DialogButtonDepress
 
 void MagicLawnApp::Binding_MC_NUM_DIALOGS(InitPatch& patch, int theNumDialogs)
 {
@@ -356,6 +365,52 @@ void MagicLawnApp::Binding_MF_DialogButtonDepress(InitPatch& patch, const std::f
 		}, false);
 }
 
+// 关卡名称
+
+static std::vector<std::function<SexyString(LawnApp* _this, GameMode theLevelId, MagicLawnApp::GetLevelName_t& base)>> _GetLevelName_FuncList;
+
+std::function<SexyString(LawnApp* _this, GameMode theLevelId, const std::function<SexyString()>& defaultNameFunc)> __MAGIC_LAWNAPP_PRIVATE__::GetAppLevelName = [](LawnApp* _this, GameMode theLevelId, const std::function<SexyString()>& defaultNameFunc)
+{
+	if (_GetLevelName_FuncList.empty())
+		return defaultNameFunc();
+
+	MagicLawnApp::GetLevelName_t base;
+
+	base.mFunction = [&](LawnApp* __this, GameMode _theLevelId)
+	{
+		std::swap(_this, __this);
+		std::swap(theLevelId, _theLevelId);
+		auto result = base();
+		_this = __this;
+		theLevelId = _theLevelId;
+		return result;
+	};
+	base.mDefaultFunction = [&, i = _GetLevelName_FuncList.size() - 1]() mutable
+	{
+		if (i == 0)
+			return defaultNameFunc();
+		else
+		{
+			i--;
+			auto result = TodStringTranslate(_GetLevelName_FuncList[i](_this, theLevelId, base));
+			i++;
+			return result;
+		}
+	};
+
+	return TodStringTranslate(_GetLevelName_FuncList.back()(_this, theLevelId, base));
+};
+
+void MagicLawnApp::Binding_MF_GetLevelName(InitPatch& patch, const std::function<SexyString(LawnApp* _this, GameMode theLevelId, GetLevelName_t& base)>& func)
+{
+	patch.PatchTask("MagicLawnApp::Binding_MF_GetLevelName", [&]
+		{
+			_GetLevelName_FuncList.push_back(func);
+		}, false);
+}
+
+// 各种补丁
+
 void MagicLawnApp::Binding_mvExclusiveFullscreen(InitPatch& patch, bool& exclusiveFullscreen)
 {
 	patch.PatchTask("MagicLawnApp::Binding_mvExclusiveFullscreen", [&]
@@ -413,4 +468,3 @@ void MagicLawnApp::Binding_mvWindowCanResize(InitPatch& patch, bool& windowCanRe
 				});
 		});
 }
-

@@ -16,6 +16,18 @@ bool ResourceManager::ParseResourcesFile(const String& theFilename)
 	return result;
 }
 
+bool ResourceManager::ReparseResourcesFile(const String& theFilename)
+{
+	bool oldDefined = mAllowAlreadyDefinedResources;
+	mAllowAlreadyDefinedResources = true;
+
+	bool aResult = ParseResourcesFile(theFilename);
+
+	mAllowAlreadyDefinedResources = oldDefined;
+
+	return aResult;
+}
+
 bool ResourceManager::ReplaceImage(const String& theId, Image* theImage)
 {
 	ResMap::iterator anItr = mImageMap.find(theId);

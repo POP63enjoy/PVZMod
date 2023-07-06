@@ -37,6 +37,16 @@ void MF_LoadingCompleted(MagicLawnApp::LoadingCompleted_t& base);
 
 // 关闭游戏时释放资源。
 void MF_Shutdown(MagicLawnApp::Shutdown_t& base);
+
+// 注：LoadingCompleted 的原始内容参考。
+void LawnApp::LoadingCompleted()
+{
+	mWidgetManager->RemoveWidget(mTitleScreen);
+	SafeDeleteWidget(mTitleScreen);
+	mTitleScreen = nullptr;
+	mResourceManager->DeleteImage("IMAGE_TITLESCREEN");
+	ShowGameSelector();
+}
 ```
 
 ## 游戏窗口消息处理 - MF_WindowProc
@@ -45,10 +55,13 @@ void MF_Shutdown(MagicLawnApp::Shutdown_t& base);
 * ❌ 不可用于子魔法类。
 
 ```cpp
+// 以下两种形式二选一：
+
+// 静态函数形式。
 static LRESULT MF_WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam, MagicLawnApp::WindowProc_t& base);
-// 或
-LRESULT MF_WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam, MagicLawnApp::WindowProc_t& base);
-// 注意 this 指针可能为 nullptr。
+
+// 非静态函数形式，this 指针可能为 nullptr。
+LRESULT MF_WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam, MagicLawnApp::WindowProc_t& base);	
 ```
 
 * @param hwnd 窗口句柄。
@@ -77,6 +90,20 @@ void MF_DialogButtonDepress(int theId, bool isYes, MagicLawnApp::DialogButtonDep
 * @param theId 对话框 id。
 
   @param isYes 为 true 则点击“确定”或“是”按钮，为 false 则点击“取消”或“否”按钮。
+
+## 关卡名称 - MF_GetLevelName
+
+根据关卡 id 指定关卡名称。优先级小于 @ref magic_ref_board 的 `MC_LEVEL_NAME` 和 `mvDynLevelName`。
+
+* ✅ 可以用于主魔法类。
+* ❌ 不可用于子魔法类。
+
+```cpp
+SexyString MF_GetLevelName(GameMode theLevelId, MagicLawnApp::GetLevelName_t& base);
+```
+
+* @param theLevelId 关卡 id。
+* @return 关卡 id 对应的关卡名称。
 
 ## 各种补丁
 

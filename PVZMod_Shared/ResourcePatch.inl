@@ -55,7 +55,7 @@ namespace PVZMod
 
 				patch.mHook.InsertCodeAndJump((void*)0x55a17a, (void*)0x55a1a2, [](Hook::Regs* regs)
 					{
-						PVZMOD_MAGIC_FUNC(MF_LoadPak, void(), T,
+						PVZMOD_IF_MAGIC_FUNC_EXIST(MF_LoadPak, void(), T,
 							{
 								((T*)gPakInterfaceBase)->MF_LoadPak();
 							});

@@ -22,6 +22,20 @@ namespace PVZMod
 		SELECTOR_IDLE,
 	};
 	
+	enum GameSelector_Button
+	{
+		GameSelector_Adventure = 100,
+		GameSelector_Minigame,
+		GameSelector_Puzzle,
+		GameSelector_Options,
+		GameSelector_Help,
+		GameSelector_Quit,
+		GameSelector_ChangeUser,
+		GameSelector_Store,
+		GameSelector_Almanac,
+		GameSelector_ZenGarden,
+		GameSelector_Survival,
+	};
 
 	/// 【游戏类】主菜单界面。（原 `::%GameSelector`）
 	class GameSelector :public Widget, public ButtonListener
@@ -61,21 +75,6 @@ namespace PVZMod
 		bool					mHasTrophy;
 		bool					mUnlockSelectorCheat;
 
-		enum
-		{
-			Btn_Adventure = 100,
-			Btn_Minigame,
-			Btn_Puzzle,
-			Btn_Options,
-			Btn_Help,
-			Btn_Quit,
-			Btn_ChangeUser,
-			Btn_Store,
-			Btn_Almanac,
-			Btn_ZenGarden,
-			Btn_Survival,
-		};
-
 	public:
 		GameSelector(LawnApp* theApp);
 		virtual ~GameSelector();
@@ -99,16 +98,17 @@ namespace PVZMod
 
 	static_assert(sizeof(GameSelector) == 0x130);
 
-	class GameSelectorOverlay : public Widget
+	class GameSelectorOverlay :public Widget
 	{
 	public:
-		GameSelector* mParent;					//+0x88
+		GameSelector*	mParent;
 
 	public:
 		GameSelectorOverlay(GameSelector* theGameSelector);
-		virtual ~GameSelectorOverlay() { }
+		virtual ~GameSelectorOverlay() {}
 
-		virtual void Draw(Graphics* g);
+	public:
+		virtual void	Draw(Graphics* g);
 	};
 }
 

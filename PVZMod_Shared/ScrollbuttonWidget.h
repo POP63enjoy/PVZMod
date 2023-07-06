@@ -9,7 +9,7 @@ namespace PVZMod
 	class ButtonListener;
 
 	/// 【游戏类】滚动条按钮控件。（原 `Sexy::ScrollbuttonWidget`）
-	class ScrollbuttonWidget : public ButtonWidget
+	class ScrollbuttonWidget :public ButtonWidget
 	{
 	public:
 		bool				mHorizontal;

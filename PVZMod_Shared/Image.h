@@ -60,7 +60,7 @@ namespace PVZMod
 		int						mNumCols;
 
 		// for animations
-		AnimInfo* mAnimInfo;
+		AnimInfo*				mAnimInfo;
 
 	public:
 		Image();

@@ -18,7 +18,7 @@ namespace PVZMod
 		{
 			using namespace __PRIVATE__;
 			bool result = false;
-			PVZMOD_MAGIC_SVAR(MC_MULTI_REG, const bool, T,
+			PVZMOD_IF_MAGIC_SVAR_EXIST(MC_MULTI_REG, const bool, T,
 				{
 					result = T::MC_MULTI_REG;
 				});

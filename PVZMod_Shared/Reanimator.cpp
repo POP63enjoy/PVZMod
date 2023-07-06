@@ -203,6 +203,7 @@ bool Reanimation::TrackExists(const char* theTrackName)
 	for (int aTrackIndex = 0; aTrackIndex < mDefinition->mTrackCount; aTrackIndex++)
 		if (_stricmp(mDefinition->mTracks[aTrackIndex].mName, theTrackName) == 0)
 			return true;
+
 	return false;
 }
 

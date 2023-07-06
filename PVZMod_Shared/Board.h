@@ -269,7 +269,7 @@ namespace PVZMod
 	class HitResult
 	{
 	public:
-		void* mObject;
+		void*							mObject;
 		GameObjectType					mObjectType;
 	};
 
@@ -443,8 +443,8 @@ namespace PVZMod
 		// -------- Ö²Îï --------
 
 		// Éú³É
-		Plant*							AddPlant(int theGridX, int theGridY, SeedType theSeedType, SeedType theImitaterType = SeedType::SEED_NONE);
-		Plant*							NewPlant(int theGridX, int theGridY, SeedType theSeedType, SeedType theImitaterType = SeedType::SEED_NONE);
+		Plant*							AddPlant(int theGridX, int theGridY, SeedType theSeedType, SeedType theImitaterType = SEED_NONE);
+		Plant*							NewPlant(int theGridX, int theGridY, SeedType theSeedType, SeedType theImitaterType = SEED_NONE);
 		void							DoPlantingEffects(int theGridX, int theGridY, Plant* thePlant);
 		
 		// ÒÆ³ý
@@ -492,6 +492,9 @@ namespace PVZMod
 		int								GetNumWavesPerSurvivalStage();
 		bool							IsFlagWave(int theWaveNumber);
 		int								GetNumWavesPerFlag();
+		int								GetSurvivalFlagsCompleted();
+		bool							HasProgressMeter();
+
 		void							PutZombieInWave(ZombieType theZombieType, int theWaveNumber, ZombiePicker* theZombiePicker);
 		void							PutInMissingZombies(int theWaveNumber, ZombiePicker* theZombiePicker);
 		ZombieType						PickZombieType(int theZombiePoints, int theWaveIndex, ZombiePicker* theZombiePicker);

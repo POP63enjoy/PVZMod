@@ -12,7 +12,7 @@
 #include "TodParticle.h"
 #include "Res.h"
 #include "TodFoley.h"
-#include "MagicBoard.h"
+#include "MagicBoard_private.h"
 
 using namespace PVZMod;
 using namespace GameObjectPatch;
@@ -27,8 +27,8 @@ void GameObjectPatch::FixBoardToolTipPos(InitPatch& patch)
 					int& x = *(int*)&regs->ebx;
 					int& y = *(int*)&regs->edi;
 					auto absPos = board->GetAbsPos();
-					x -= absPos.mX + *MagicBoard::mvOffsetXPtr;
-					y -= absPos.mY + *MagicBoard::mvOffsetYPtr;
+					x -= absPos.mX + *__MAGIC_BOARD_PRIVATE__::mvOffsetXPtr;
+					y -= absPos.mY + *__MAGIC_BOARD_PRIVATE__::mvOffsetYPtr;
 				}, 4);
 		});
 }
@@ -43,8 +43,8 @@ void GameObjectPatch::FixBoardCursorPos(InitPatch& patch)
 					int& x = *(int*)&regs->esi;
 					int& y = *(int*)&regs->ebx;
 					auto absPos = board->GetAbsPos();
-					x -= absPos.mX + *MagicBoard::mvOffsetXPtr;
-					y -= absPos.mY + *MagicBoard::mvOffsetYPtr;
+					x -= absPos.mX + *__MAGIC_BOARD_PRIVATE__::mvOffsetXPtr;
+					y -= absPos.mY + *__MAGIC_BOARD_PRIVATE__::mvOffsetYPtr;
 				});
 		});
 }
@@ -59,8 +59,8 @@ void GameObjectPatch::FixBoardHighlightPos(InitPatch& patch)
 					int& x = *(int*)&regs->ebx;
 					int& y = *(int*)&regs->esi;
 					auto absPos = board->GetAbsPos();
-					x -= absPos.mX + *MagicBoard::mvOffsetXPtr;
-					y -= absPos.mY + *MagicBoard::mvOffsetYPtr;
+					x -= absPos.mX + *__MAGIC_BOARD_PRIVATE__::mvOffsetXPtr;
+					y -= absPos.mY + *__MAGIC_BOARD_PRIVATE__::mvOffsetYPtr;
 				});
 
 			auto func = [](Hook::Regs* regs)
@@ -69,8 +69,8 @@ void GameObjectPatch::FixBoardHighlightPos(InitPatch& patch)
 				int& x = *(int*)&regs->eax;
 				int& y = *(int*)&regs->edx;
 				auto absPos = board->GetAbsPos();
-				x -= absPos.mX + *MagicBoard::mvOffsetXPtr;
-				y -= absPos.mY + *MagicBoard::mvOffsetYPtr;
+				x -= absPos.mX + *__MAGIC_BOARD_PRIVATE__::mvOffsetXPtr;
+				y -= absPos.mY + *__MAGIC_BOARD_PRIVATE__::mvOffsetYPtr;
 			};
 
 			patch.mHook.InsertCode((void*)0x410170, func);
@@ -110,8 +110,8 @@ void GameObjectPatch::FixCursorObjectPos(InitPatch& patch)
 					{
 						CursorObject* curobj = (CursorObject*)regs->esi;
 						auto boardPos = gLawnApp->mBoard->GetAbsPos();
-						curobj->mX -= boardPos.mX + *MagicBoard::mvOffsetXPtr;
-						curobj->mY -= boardPos.mY + *MagicBoard::mvOffsetYPtr;
+						curobj->mX -= boardPos.mX + *__MAGIC_BOARD_PRIVATE__::mvOffsetXPtr;
+						curobj->mY -= boardPos.mY + *__MAGIC_BOARD_PRIVATE__::mvOffsetYPtr;
 					}
 				});
 		});
@@ -128,8 +128,8 @@ void GameObjectPatch::FixCursorPreviewPos(InitPatch& patch)
 						int& x = *(int*)&regs->ebx;
 						int& y = *(int*)&regs->edx;
 						auto boardPos = gLawnApp->mBoard->GetAbsPos();
-						x -= boardPos.mX + *MagicBoard::mvOffsetXPtr;
-						y -= boardPos.mY + *MagicBoard::mvOffsetYPtr;
+						x -= boardPos.mX + *__MAGIC_BOARD_PRIVATE__::mvOffsetXPtr;
+						y -= boardPos.mY + *__MAGIC_BOARD_PRIVATE__::mvOffsetYPtr;
 					}
 				});
 		});

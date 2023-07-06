@@ -103,7 +103,7 @@
       <AdditionalIncludeDirectories>$(PVZMod_63enjoy_Path)PVZMod_Shared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
 	  <EnableEnhancedInstructionSet>NoExtensions</EnableEnhancedInstructionSet>
-	  <LanguageStandard>stdcpplatest</LanguageStandard>
+	  <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -126,7 +126,7 @@
       <AdditionalIncludeDirectories>$(PVZMod_63enjoy_Path)PVZMod_Shared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
 	  <EnableEnhancedInstructionSet>NoExtensions</EnableEnhancedInstructionSet>
-	  <LanguageStandard>stdcpplatest</LanguageStandard>
+	  <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -148,7 +148,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(PVZMod_63enjoy_Path)PVZMod_Shared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-	  <LanguageStandard>stdcpplatest</LanguageStandard>
+	  <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -170,7 +170,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(PVZMod_63enjoy_Path)PVZMod_Shared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-	  <LanguageStandard>stdcpplatest</LanguageStandard>
+	  <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

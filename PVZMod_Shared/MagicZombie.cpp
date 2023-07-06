@@ -155,6 +155,8 @@ void MagicZombie::Binding_ExtendBase(InitPatch& patch, size_t theZombieSize, siz
 		}, true, true);
 }
 
+// ³õÊ¼»¯ - MF_ZombieInitialize
+
 static ZombieDefinition& _ZombieInitialize_InitMemberVariable_base(Zombie* _this, int theRow, ZombieType theType, bool theVariant, Zombie* theParentZombie, int theFromWave)
 {
 	_this->mFromWave = theFromWave;

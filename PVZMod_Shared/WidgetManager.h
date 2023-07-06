@@ -28,9 +28,9 @@ namespace PVZMod
 	class PreModalInfo
 	{
 	public:
-		Widget* mBaseModalWidget;
-		Widget* mPrevBaseModalWidget;
-		Widget* mPrevFocusWidget;
+		Widget*					mBaseModalWidget;
+		Widget*					mPrevBaseModalWidget;
+		Widget*					mPrevFocusWidget;
 		FlagsMod				mPrevBelowModalFlagsMod;
 	};
 

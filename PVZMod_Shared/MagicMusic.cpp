@@ -5,6 +5,8 @@
 
 using namespace PVZMod;
 
+// ≤•∑≈“Ù¿÷ - MF_PlayMusic
+
 void MagicMusic::Binding_MF_PlayMusic(InitPatch& patch, const std::function<void(Music* _this, MusicTune theMusicTune, int theOffset, int theDrumsOffset, PlayMusic_t& base)>& func)
 {
 	patch.PatchTask("MagicMusic::Binding_MF_PlayMusic", [&]

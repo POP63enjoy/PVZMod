@@ -123,7 +123,7 @@ void ResourcePatch::AddResFile(InitPatch& patch, const String& theFileName, bool
 							LawnApp* app = (LawnApp*)regs->ebp;
 							for (auto& file : gResFileList)
 							{
-								if (!app->mResourceManager->ParseResourcesFile(file.first))
+								if (!app->mResourceManager->ReparseResourcesFile(file.first))
 								{
 									app->ShowResourceError(true);
 								}

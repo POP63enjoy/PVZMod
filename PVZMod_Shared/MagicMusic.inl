@@ -34,13 +34,7 @@ namespace PVZMod
 							delete (T*)regs->eax;
 						});
 
-					PVZMOD_MAGIC_FUNC(MF_PlayMusic, void(MusicTune theMusicTune, int theOffset, int theDrumsOffset, PlayMusic_t & base), T,
-						{
-							Binding_MF_PlayMusic(patch, [](Music* _this, MusicTune theMusicTune, int theOffset, int theDrumsOffset, PlayMusic_t& base)
-								{
-									((T*)_this)->MF_PlayMusic(theMusicTune, theOffset, theDrumsOffset, base);
-								});
-						});
+					PVZMOD_GENERAL_MAGIC_FUNC(MF_PlayMusic, void(MusicTune theMusicTune, int theOffset, int theDrumsOffset, PlayMusic_t& base), T);
 				}, true, true);
 		}
 	}

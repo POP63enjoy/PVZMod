@@ -27,7 +27,7 @@ namespace PVZMod
 	typedef Map<int, BassMusicInfo> BassMusicMap;
 
 	/// 【游戏类】bass.dll 音乐接口。（原 `Sexy::BassMusicInterface`）
-	class BassMusicInterface : public MusicInterface
+	class BassMusicInterface :public MusicInterface
 	{
 	public:
 		BassMusicMap			mMusicMap;

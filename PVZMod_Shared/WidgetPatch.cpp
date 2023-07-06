@@ -2,7 +2,7 @@
 #include "PVZMod.h"
 #include "Board.h"
 #include "LawnApp.h"
-#include "MagicBoard.h"
+#include "MagicBoard_private.h"
 
 using namespace PVZMod;
 
@@ -20,8 +20,8 @@ void WidgetPatch::FixGameButtonClickPos(InitPatch& patch)
 					y -= parentPos.mY;
 					if (parent == gLawnApp->mBoard)
 					{
-						x -= *MagicBoard::mvOffsetXPtr;
-						y -= *MagicBoard::mvOffsetYPtr;
+						x -= *__MAGIC_BOARD_PRIVATE__::mvOffsetXPtr;
+						y -= *__MAGIC_BOARD_PRIVATE__::mvOffsetYPtr;
 					}
 				});
 		});

@@ -21,7 +21,7 @@ namespace PVZMod
 	};
 
 	/// 【游戏类】标题界面。（原 `::%TitleScreen`）
-	class TitleScreen : public Widget, public ButtonListener
+	class TitleScreen :public Widget, public ButtonListener
 	{
 	public:
 		HyperlinkWidget*	mStartButton;

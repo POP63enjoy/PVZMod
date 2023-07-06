@@ -31,7 +31,7 @@ void Plant::SetSleeping(bool theIsAsleep)
 
 bool Plant::MakesSun()
 {
-	return mSeedType == SeedType::SEED_SUNFLOWER || mSeedType == SeedType::SEED_TWINSUNFLOWER || mSeedType == SeedType::SEED_SUNSHROOM;
+	return mSeedType == SEED_SUNFLOWER || mSeedType == SEED_TWINSUNFLOWER || mSeedType == SEED_SUNSHROOM;
 }
 
 bool Plant::IsOnBoard()
@@ -50,13 +50,13 @@ bool Plant::IsInPlay()
 
 bool Plant::NotOnGround()
 {
-	if (mSeedType == SeedType::SEED_SQUASH)
+	if (mSeedType == SEED_SQUASH)
 	{
-		if (mState == PlantState::STATE_SQUASH_RISING || mState == PlantState::STATE_SQUASH_FALLING || mState == PlantState::STATE_SQUASH_DONE_FALLING)
+		if (mState == STATE_SQUASH_RISING || mState == STATE_SQUASH_FALLING || mState == STATE_SQUASH_DONE_FALLING)
 			return true;
 	}
 
-	return mSquished || mOnBungeeState == PlantOnBungeeState::PLANT_RISING_WITH_BUNGEE || mDead;
+	return mSquished || mOnBungeeState == PLANT_RISING_WITH_BUNGEE || mDead;
 }
 
 TodParticleSystem* Plant::AddAttachedParticle(int thePosX, int thePosY, int theRenderPosition, ParticleEffect theEffect)
@@ -79,16 +79,16 @@ TodParticleSystem* Plant::AddAttachedParticle(int thePosX, int thePosY, int theR
 bool Plant::IsNocturnal(SeedType theSeedtype)
 {
 	return
-		theSeedtype == SeedType::SEED_PUFFSHROOM ||
-		theSeedtype == SeedType::SEED_SEASHROOM ||
-		theSeedtype == SeedType::SEED_SUNSHROOM ||
-		theSeedtype == SeedType::SEED_FUMESHROOM ||
-		theSeedtype == SeedType::SEED_HYPNOSHROOM ||
-		theSeedtype == SeedType::SEED_DOOMSHROOM ||
-		theSeedtype == SeedType::SEED_ICESHROOM ||
-		theSeedtype == SeedType::SEED_MAGNETSHROOM ||
-		theSeedtype == SeedType::SEED_SCAREDYSHROOM ||
-		theSeedtype == SeedType::SEED_GLOOMSHROOM;
+		theSeedtype == SEED_PUFFSHROOM ||
+		theSeedtype == SEED_SEASHROOM ||
+		theSeedtype == SEED_SUNSHROOM ||
+		theSeedtype == SEED_FUMESHROOM ||
+		theSeedtype == SEED_HYPNOSHROOM ||
+		theSeedtype == SEED_DOOMSHROOM ||
+		theSeedtype == SEED_ICESHROOM ||
+		theSeedtype == SEED_MAGNETSHROOM ||
+		theSeedtype == SEED_SCAREDYSHROOM ||
+		theSeedtype == SEED_GLOOMSHROOM;
 }
 
 float PVZMod::PlantDrawHeightOffset(Board* theBoard, Plant* thePlant, SeedType theSeedType, int theCol, int theRow)
@@ -114,7 +114,7 @@ PlantDefinition& PVZMod::GetPlantDefinition(SeedType theSeedType)
 	auto aPlantDefs = (PlantDefinition*)0x6AF238;
 
 	assert(aPlantDefs[theSeedType].mSeedType == theSeedType);
-	assert(theSeedType >= 0 && theSeedType < (int)SeedType::NUM_SEED_TYPES);	// 暂时，直到新增植物
+	assert(theSeedType >= 0 && theSeedType < NUM_SEED_TYPES);	// 暂时，直到新增植物
 
 	return aPlantDefs[theSeedType];
 }

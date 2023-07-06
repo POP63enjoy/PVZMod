@@ -37,12 +37,12 @@ namespace PVZMod
 
 		struct BaseRes
 		{
-			ResType mType;
-			String mId;
-			String mResGroup;
-			String mPath;
-			XMLParamMap mXMLAttributes;
-			bool mFromProgram;
+			ResType			mType;
+			String			mId;
+			String			mResGroup;
+			String			mPath;
+			XMLParamMap		mXMLAttributes;
+			bool			mFromProgram;
 
 			virtual ~BaseRes() {}
 			virtual void DeleteResource() { }
@@ -50,21 +50,21 @@ namespace PVZMod
 
 		struct ImageRes : public BaseRes
 		{
-			SharedImageRef mImage;
-			String mAlphaImage;
-			String mAlphaGridImage;
-			String mVariant;
-			bool mAutoFindAlpha;
-			bool mPalletize;
-			bool mA4R4G4B4;
-			bool mA8R8G8B8;
-			bool mDDSurface;
-			bool mPurgeBits;
-			bool mMinimizeSubdivisions;
-			int mRows;
-			int mCols;
-			DWORD mAlphaColor;
-			AnimInfo mAnimInfo;
+			SharedImageRef	mImage;
+			String			mAlphaImage;
+			String			mAlphaGridImage;
+			String			mVariant;
+			bool			mAutoFindAlpha;
+			bool			mPalletize;
+			bool			mA4R4G4B4;
+			bool			mA8R8G8B8;
+			bool			mDDSurface;
+			bool			mPurgeBits;
+			bool			mMinimizeSubdivisions;
+			int				mRows;
+			int				mCols;
+			DWORD			mAlphaColor;
+			AnimInfo		mAnimInfo;
 
 			ImageRes() { mType = ResType_Image; }
 			virtual void DeleteResource();
@@ -72,9 +72,9 @@ namespace PVZMod
 
 		struct SoundRes : public BaseRes
 		{
-			int mSoundId;
-			double mVolume;
-			int mPanning;
+			int				mSoundId;
+			double			mVolume;
+			int				mPanning;
 
 			SoundRes() { mType = ResType_Sound; }
 			virtual void DeleteResource();
@@ -82,18 +82,18 @@ namespace PVZMod
 
 		struct FontRes : public BaseRes
 		{
-			Font* mFont;
-			Image* mImage;
-			String mImagePath;
-			String mTags;
+			Font*			mFont;
+			Image*			mImage;
+			String			mImagePath;
+			String			mTags;
 
 			// For SysFonts
-			bool mSysFont;
-			bool mBold;
-			bool mItalic;
-			bool mUnderline;
-			bool mShadow;
-			int mSize;
+			bool			mSysFont;
+			bool			mBold;
+			bool			mItalic;
+			bool			mUnderline;
+			bool			mShadow;
+			int				mSize;
 
 
 			FontRes() { mType = ResType_Font; }

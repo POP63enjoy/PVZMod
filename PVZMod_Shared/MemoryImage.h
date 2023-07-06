@@ -12,7 +12,7 @@ namespace PVZMod
 	class SexyAppBase;
 
 	/// 【游戏类】内存贴图。（原 `Sexy::MemoryImage`）
-	class MemoryImage : public Image
+	class MemoryImage :public Image
 	{
 	public:
 		uint32_t*				mBits;

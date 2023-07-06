@@ -1,5 +1,7 @@
+#pragma once
 #ifndef _PVZMOD_RES_H_
 #define _PVZMOD_RES_H_
+
 #include "SexyCommon.h"
 
 namespace PVZMod
@@ -1377,7 +1379,6 @@ namespace PVZMod
 	ResourceId GetIdBySound(int theSound);
 	const char* GetStringIdById(int theId);
 	ResourceId GetIdByStringId(const char *theStringId);
-
-} // namespace PVZMod
+}
 
 #endif // !_PVZMOD_RES_H_

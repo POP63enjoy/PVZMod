@@ -11,7 +11,7 @@ namespace PVZMod
 	class ScrollbuttonWidget;
 
 	/// 【游戏类】滚动条控件。（原 `Sexy::ScrollbarWidget`）
-	class ScrollbarWidget : public Widget, public ButtonListener
+	class ScrollbarWidget :public Widget, public ButtonListener
 	{
 	public:
 
@@ -48,7 +48,7 @@ namespace PVZMod
 		int						mButtonAcc;
 		int						mLastMouseX;
 		int						mLastMouseY;
-		ScrollListener* mScrollListener;
+		ScrollListener*			mScrollListener;
 
 	public:
 		ScrollbarWidget(int theId, ScrollListener* theScrollListener);

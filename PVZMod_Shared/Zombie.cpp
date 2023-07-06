@@ -217,7 +217,7 @@ ZombieDefinition& PVZMod::GetZombieDefinition(ZombieType theZombieType)
 	auto aZombieDefs = (ZombieDefinition*)0x6ADA38;
 
 	assert(aZombieDefs[theZombieType].mZombieType == theZombieType);
-	assert(theZombieType >= 0 && theZombieType < (int)ZombieType::NUM_ZOMBIE_TYPES);	// 暂时，直到新增僵尸
+	assert(theZombieType >= 0 && theZombieType < NUM_ZOMBIE_TYPES);	// 暂时，直到新增僵尸
 
 	return aZombieDefs[theZombieType];
 }

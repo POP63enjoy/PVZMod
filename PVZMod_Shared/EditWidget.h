@@ -10,7 +10,7 @@ namespace PVZMod
 	class EditListener;
 
 	/// 【游戏类】输入框控件。（原 `Sexy::EditWidget`）
-	class EditWidget : public Widget
+	class EditWidget :public Widget
 	{
 	public:
 		enum

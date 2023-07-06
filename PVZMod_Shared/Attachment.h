@@ -25,11 +25,11 @@ namespace PVZMod
 	class AttachEffect
 	{
 	public:
-		size_t mEffectID;
-		EffectType mEffectType;
-		SexyTransform2D mOffset;
-		bool mDontDrawIfParentHidden;
-		bool mDontPropogateColor;
+		size_t				mEffectID;
+		EffectType			mEffectType;
+		SexyTransform2D		mOffset;
+		bool				mDontDrawIfParentHidden;
+		bool				mDontPropogateColor;
 	};
 
 	AttachEffect* AttachReanim(AttachmentID* theAttachmentID, Reanimation* theReanimation, float theOffsetX, float theOffsetY);

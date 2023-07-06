@@ -26,22 +26,21 @@ namespace PVZMod
 		UNLOCK_FADING,
 	};
 
+	enum ChallengeScreen_Button
+	{
+		ChallengeScreen_Back = 100,
+		ChallengeScreen_Mode = 200,
+		ChallengeScreen_Page = 300,
+	};
+
 	class LawnApp;
 	class ToolTipWidget;
 	class NewLawnButton;
 	class ButtonWidget;
 
 	/// 【游戏类】选关界面。（原 `::%ChallengeScreen`）
-	class ChallengeScreen : public Widget, public ButtonListener
+	class ChallengeScreen :public Widget, public ButtonListener
 	{
-	private:
-		enum
-		{
-			BTN_BACK = 100,
-			BTN_MODE = 200,
-			BTN_PAGE = 300
-		};
-
 	public:
 		NewLawnButton*		mBackButton;							
 		ButtonWidget*		mPageButton[MAX_CHALLANGE_PAGES];		
@@ -88,7 +87,7 @@ namespace PVZMod
 		ChallengePage			mPage;
 		int						mRow;
 		int						mCol;
-		const SexyChar*			mChallengeName;
+		const char*				mChallengeName;
 	};
 
 	extern ChallengeDefinition* gChallengeDefs;

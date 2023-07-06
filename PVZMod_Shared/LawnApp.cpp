@@ -9,6 +9,7 @@
 #include "GameButton.h"
 #include "TodStringFile.h"
 #include "ChallengeScreen.h"
+#include "TodCommon.h"
 
 using namespace PVZMod;
 
@@ -49,10 +50,9 @@ Reanimation* LawnApp::AddReanimation(float theX, float theY, int aRenderOrder, R
 void LawnApp::RemoveReanimation(ReanimationID theReanimationID)
 {
 	Reanimation* aReanim = ReanimationTryToGet(theReanimationID);
+
 	if (aReanim)
-	{
 		aReanim->ReanimationDie();
-	}
 }
 
 void LawnApp::ShowGameSelector()
@@ -88,12 +88,19 @@ void LawnApp::ShowChallengeScreen(ChallengePage thePage)
 
 int LawnApp::GetCurrentChallengeIndex()
 {
-	return (int)mGameMode - (int)GameMode::GAMEMODE_SURVIVAL_NORMAL_STAGE_1;
+	return (int)mGameMode - (int)GAMEMODE_SURVIVAL_NORMAL_STAGE_1;
 }
 
 ChallengeDefinition& LawnApp::GetCurrentChallengeDef()
 {
 	return GetChallengeDefinition(GetCurrentChallengeIndex());
+}
+
+SexyString LawnApp::GetStageString(int theLevel)
+{
+	int aArea = ClampInt((theLevel - 1) / LEVELS_PER_AREA + 1, 1, ADVENTURE_AREAS + 1);
+	int aSub = theLevel - (aArea - 1) * LEVELS_PER_AREA;
+	return StrFormat(_S("%d-%d"), aArea, aSub);
 }
 
 bool LawnApp::IsAdventureMode()
@@ -106,10 +113,9 @@ bool LawnApp::IsWhackAZombieLevel()
 	if (mBoard == nullptr)
 		return false;
 
-	if (mGameMode == GAMEMODE_CHALLENGE_WHACK_A_ZOMBIE)
-		return true;
-
-	return IsAdventureMode() && mPlayerInfo->mLevel == 15;
+	return
+		(mGameMode == GAMEMODE_CHALLENGE_WHACK_A_ZOMBIE) ||
+		(IsAdventureMode() && mPlayerInfo->mLevel == 15);
 }
 
 bool LawnApp::IsFirstTimeAdventureMode()
@@ -124,13 +130,13 @@ bool LawnApp::HasFinishedAdventure()
 
 bool LawnApp::IsMiniBossLevel()
 {
-	if (mBoard == nullptr)
+	if (mBoard == nullptr || !IsAdventureMode())
 		return false;
 
 	return
-		(IsAdventureMode() && mPlayerInfo->mLevel == 10) ||
-		(IsAdventureMode() && mPlayerInfo->mLevel == 20) ||
-		(IsAdventureMode() && mPlayerInfo->mLevel == 30);
+		mPlayerInfo->mLevel == 10 ||
+		mPlayerInfo->mLevel == 20 ||
+		mPlayerInfo->mLevel == 30;
 }
 
 bool LawnApp::IsSurvivalMode()
@@ -166,10 +172,8 @@ bool LawnApp::IsStormyNightLevel()
 	if (mBoard == nullptr)
 		return false;
 
-	if (mGameMode == GAMEMODE_CHALLENGE_STORMY_NIGHT)
-		return true;
-
-	return IsAdventureMode() && mPlayerInfo->mLevel == 40;
+	return (mGameMode == GAMEMODE_CHALLENGE_STORMY_NIGHT) ||
+		(IsAdventureMode() && mPlayerInfo->mLevel == 40);
 }
 
 bool LawnApp::IsLittleTroubleLevel()
@@ -182,10 +186,9 @@ bool LawnApp::IsBungeeBlitzLevel()
 	if (mBoard == nullptr)
 		return false;
 
-	if (mGameMode == GAMEMODE_CHALLENGE_BUNGEE_BLITZ)
-		return true;
-
-	return IsAdventureMode() && mPlayerInfo->mLevel == 45;
+	return 
+		(mGameMode == GAMEMODE_CHALLENGE_BUNGEE_BLITZ) ||
+		(IsAdventureMode() && mPlayerInfo->mLevel == 45);
 }
 
 bool LawnApp::IsShovelLevel()
@@ -198,18 +201,21 @@ bool LawnApp::IsWallnutBowlingLevel()
 	if (mBoard == nullptr)
 		return false;
 
-	if (mGameMode == GAMEMODE_CHALLENGE_WALLNUT_BOWLING || mGameMode == GAMEMODE_CHALLENGE_WALLNUT_BOWLING_2)
-		return true;
-
-	return IsAdventureMode() && mPlayerInfo->mLevel == 5;
+	return 
+		(mGameMode == GAMEMODE_CHALLENGE_WALLNUT_BOWLING || mGameMode == GAMEMODE_CHALLENGE_WALLNUT_BOWLING_2) ||
+		(IsAdventureMode() && mPlayerInfo->mLevel == 5);
 }
 
 bool LawnApp::IsScaryPotterLevel()
 {
-	if (mGameMode >= GAMEMODE_SCARY_POTTER_1 && mGameMode <= GAMEMODE_SCARY_POTTER_ENDLESS)
-		return true;
+	return 
+		(mGameMode >= GAMEMODE_SCARY_POTTER_1 && mGameMode <= GAMEMODE_SCARY_POTTER_ENDLESS) ||
+		(IsAdventureMode() && mPlayerInfo->mLevel == 35);
+}
 
-	return IsAdventureMode() && mPlayerInfo->mLevel == 35;
+bool LawnApp::IsEndlessScaryPotter(GameMode theGameMode)
+{
+	return theGameMode == GAMEMODE_SCARY_POTTER_ENDLESS;
 }
 
 bool LawnApp::IsIZombieLevel()
@@ -217,17 +223,12 @@ bool LawnApp::IsIZombieLevel()
 	if (mBoard == nullptr)
 		return false;
 
-	return
-		mGameMode == GameMode::GAMEMODE_PUZZLE_I_ZOMBIE_1 ||
-		mGameMode == GameMode::GAMEMODE_PUZZLE_I_ZOMBIE_2 ||
-		mGameMode == GameMode::GAMEMODE_PUZZLE_I_ZOMBIE_3 ||
-		mGameMode == GameMode::GAMEMODE_PUZZLE_I_ZOMBIE_4 ||
-		mGameMode == GameMode::GAMEMODE_PUZZLE_I_ZOMBIE_5 ||
-		mGameMode == GameMode::GAMEMODE_PUZZLE_I_ZOMBIE_6 ||
-		mGameMode == GameMode::GAMEMODE_PUZZLE_I_ZOMBIE_7 ||
-		mGameMode == GameMode::GAMEMODE_PUZZLE_I_ZOMBIE_8 ||
-		mGameMode == GameMode::GAMEMODE_PUZZLE_I_ZOMBIE_9 ||
-		mGameMode == GameMode::GAMEMODE_PUZZLE_I_ZOMBIE_ENDLESS;
+	return mGameMode >= GAMEMODE_PUZZLE_I_ZOMBIE_1 && mGameMode <= GAMEMODE_PUZZLE_I_ZOMBIE_ENDLESS;
+}
+
+bool LawnApp::IsEndlessIZombie(GameMode theGameMode)
+{
+	return theGameMode == GAMEMODE_PUZZLE_I_ZOMBIE_ENDLESS;
 }
 
 void LawnApp::PreNewGame(GameMode theGameMode, bool theLookForSavedGame)
@@ -264,19 +265,23 @@ int LawnApp::LawnMessageBox(int theDialogId, const SexyChar* theHeaderName, cons
 	Widget* aOldFocus = mWidgetManager->mFocusWidget;
 
 	LawnDialog* aDialog = (LawnDialog*)DoDialog(theDialogId, true, theHeaderName, theLinesName, theButton1Name, theButtonMode);
+
 	if (aDialog->mYesButton)
-	{
 		aDialog->mYesButton->mLabel = TodStringTranslate(theButton1Name);
-	}
 	if (aDialog->mNoButton)
-	{
 		aDialog->mNoButton->mLabel = TodStringTranslate(theButton2Name);
-	}
-	//aDialog->CalcSize(0, 0);
 
 	mWidgetManager->SetFocus(aDialog);
 	int aResult = aDialog->WaitForResult(true);
 	mWidgetManager->SetFocus(aOldFocus);
 
 	return aResult;
+}
+
+SexyString LawnApp::Pluralize(int theCount, const SexyChar* theSingular, const SexyChar* thePlural)
+{
+	if (theCount == 1)
+		return TodReplaceNumberString(theSingular, _S("{COUNT}"), theCount);
+	else
+		return TodReplaceNumberString(thePlural, _S("{COUNT}"), theCount);
 }

@@ -21,7 +21,7 @@ namespace PVZMod
 	typedef Set<DDImage*> DDImageSet;
 
 	/// 【游戏类】DirectDraw 接口。（原 `Sexy::DDInterface`）
-	class DDInterface : public NativeDisplay
+	class DDInterface :public NativeDisplay
 	{
 	public:
 		enum
@@ -36,9 +36,9 @@ namespace PVZMod
 			RESULT_3D_FAIL = 7
 		};
 
-		SexyAppBase* mApp;
-		D3DInterface* mD3DInterface;
-		D3DTester* mD3DTester;
+		SexyAppBase*			mApp;
+		D3DInterface*			mD3DInterface;
+		D3DTester*				mD3DTester;
 		bool					mIs3D;
 
 		CritSect				mCritSect;
@@ -66,9 +66,9 @@ namespace PVZMod
 		DWORD					mMillisecondsPerFrame;
 		int						mScanLineFailCount;
 
-		int* mRedAddTable;
-		int* mGreenAddTable;
-		int* mBlueAddTable;
+		int*					mRedAddTable;
+		int*					mGreenAddTable;
+		int*					mBlueAddTable;
 
 		uint32_t				mRedConvTable[256];
 		uint32_t				mGreenConvTable[256];
@@ -89,14 +89,14 @@ namespace PVZMod
 		int						mNextCursorY;
 		int						mCursorX;
 		int						mCursorY;
-		Image* mCursorImage;
+		Image*					mCursorImage;
 		bool					mHasOldCursorArea;
 		LPDIRECTDRAWSURFACE		mOldCursorArea;
 		LPDIRECTDRAWSURFACE		mNewCursorArea;
-		DDImage* mOldCursorAreaImage;
-		DDImage* mNewCursorAreaImage;
+		DDImage*				mOldCursorAreaImage;
+		DDImage*				mNewCursorAreaImage;
 
-		String				mErrorString;
+		String					mErrorString;
 
 	public:
 		bool					CopyBitmap(LPDIRECTDRAWSURFACE theSurface, HBITMAP TheBitmap, int theX, int theY, int theWidth, int theHeight);
@@ -120,9 +120,9 @@ namespace PVZMod
 		DDInterface(SexyAppBase* theApp);
 		virtual ~DDInterface();
 
-		static String		ResultToString(int theResult);
+		static String			ResultToString(int theResult);
 
-		DDImage* GetScreenImage();
+		DDImage*				GetScreenImage();
 		int						Init(HWND theWindow, bool IsWindowed);
 		bool					Redraw(Rect* theClipRect = NULL);
 		void					SetVideoOnlyDraw(bool videoOnly);

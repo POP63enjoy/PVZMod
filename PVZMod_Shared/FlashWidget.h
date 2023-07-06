@@ -28,7 +28,7 @@ namespace PVZMod
 	};
 
 	/// 【游戏类】Flash 控件。（原 `Sexy::FlashWidget`）
-	class FlashWidget : public Widget
+	class FlashWidget :public Widget
 	{
 	public:
 		enum
@@ -46,32 +46,32 @@ namespace PVZMod
 		};
 
 	public:
-		int						mState;
-		int						mId;
-		FlashListener* mFlashListener;
-		HMODULE					mFlashLibHandle;
+		int											mState;
+		int											mId;
+		FlashListener*								mFlashListener;
+		HMODULE										mFlashLibHandle;
 
-		ControlSite* mControlSite;
-		FlashSink* mFlashSink;
-		ShockwaveFlashObjects::IShockwaveFlash* mFlashInterface;
-		IOleObject* mOleObject;
-		IOleInPlaceObjectWindowless* mWindowlessObject;
+		ControlSite*								mControlSite;
+		FlashSink*									mFlashSink;
+		ShockwaveFlashObjects::IShockwaveFlash*		mFlashInterface;
+		IOleObject*									mOleObject;
+		IOleInPlaceObjectWindowless*				mWindowlessObject;
 
-		int						mCOMCount;
-		DDImage* mImage;
-		int						mPauseCount;
-		bool					mHasLostFocus;
+		int											mCOMCount;
+		DDImage*									mImage;
+		int											mPauseCount;
+		bool										mHasLostFocus;
 
-		Rect					mDirtyRect;
-		bool					mFlashDirty;
+		Rect										mDirtyRect;
+		bool										mFlashDirty;
 
-		int						mCurCursor;
-		HCURSOR					mCurOverrideCursor;
+		int											mCurCursor;
+		HCURSOR										mCurOverrideCursor;
 
-		bool					mAutoPause;
-		Image* mBkgImage;
-		Rect					mBkgImageSrcRect;
-		Color					mBkgColor;
+		bool										mAutoPause;
+		Image*										mBkgImage;
+		Rect										mBkgImageSrcRect;
+		Color										mBkgColor;
 
 	public:
 		void					CleanupImages();

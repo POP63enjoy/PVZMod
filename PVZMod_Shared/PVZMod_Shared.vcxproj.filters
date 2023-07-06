@@ -382,6 +382,24 @@
     <ClInclude Include="CutScene.h">
       <Filter>Game Objects</Filter>
     </ClInclude>
+    <ClInclude Include="SaveGame.h">
+      <Filter>Save</Filter>
+    </ClInclude>
+    <ClInclude Include="Trail.h">
+      <Filter>Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="TodList.h">
+      <Filter>Other</Filter>
+    </ClInclude>
+    <ClInclude Include="MessageWidget.h">
+      <Filter>Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicBoard_private.h">
+      <Filter>Game Objects\Patch</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicLawnApp_private.h">
+      <Filter>Application\Patch</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ButtonWidget.cpp">
@@ -582,6 +600,12 @@
     </ClCompile>
     <ClCompile Include="CutScene.cpp">
       <Filter>Game Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveGame.cpp">
+      <Filter>Save</Filter>
+    </ClCompile>
+    <ClCompile Include="Buffer.cpp">
+      <Filter>Other\Sexy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
